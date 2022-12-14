@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom"
 
 import Navigation from '../components/Navigation';
 import Hero from '../components/landing-components/Hero';
+import ProjectDisplay from '../components/landing-components/ProjectDisplay';
 
 function Landing() {
   const location = useLocation();
@@ -13,6 +14,7 @@ function Landing() {
     <>
     <Navigation />
     <Hero/>
+    <ProjectDisplay/>
     </>
   )
 }
