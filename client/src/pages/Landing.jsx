@@ -11,11 +11,11 @@ function Landing() {
   console.log(location);
 
   return (
-    <>
-    <Navigation />
-    <Hero/>
-    <ProjectDisplay/>
-    </>
+    <main className="w-full">
+      <Navigation />
+      <Hero/>
+      <ProjectDisplay/>
+    </main>
   )
 }
 

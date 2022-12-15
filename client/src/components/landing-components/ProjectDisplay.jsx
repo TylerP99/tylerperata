@@ -11,13 +11,22 @@ function ProjectDisplay() {
 },
 {
   name: "Hyrule Compendium",
-}
+},
+{
+  name: "Hyrule Compendium",
+},
+{
+  name: "Hyrule Compendium",
+},
+{
+  name: "Hyrule Compendium",
+},
   ]
 
   return (
-    <section>
+    <section className="w-full">
         <h2>Projects</h2>
-        <section className="flex">
+        <section className="flex flex-wrap w-full">
             {projects.map(x => (<ProjectCard/>))}
         </section>
     </section>

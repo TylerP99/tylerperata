@@ -8,7 +8,7 @@ function ProjectCard() {
 
 
   return (
-    <section className="border w-1/3 px-3 py-1 ">
+    <section className="border w-full px-3 py-1 md:w-1/2 xl:w-1/3">
       <section className="">
         <img src={image} />
         <h2>Project Name</h2>
