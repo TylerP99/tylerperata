@@ -8,13 +8,16 @@ function Hero() {
 
       <section>
 
-        <h1>Hero Left</h1>
+        <h3>Hello, my name is</h3>
+        <h1>Tyler Perata</h1>
+        <h3>and I am a</h3>
+        <h2>Web Developer</h2>
         
       </section>     
 
       <section>
 
-        <SocialDisplay />
+        <h2>Some Graphic</h2>
         
       </section>   
 
