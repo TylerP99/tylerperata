@@ -1,4 +1,5 @@
 import ProjectCard from "../ProjectCard"
+import SectionHeader from "../SectionHeader"
 
 function ProjectDisplay() {
 
@@ -22,7 +23,7 @@ function ProjectDisplay() {
 
   return (
     <section className="place-content-center">
-        <h2 className="center">Projects</h2>
+        <SectionHeader text="My Work"/>
         <section className="flex  flex-wrap justify-around align-center">
             {projects.map(x => (<ProjectCard/>))}
         </section>
