@@ -8,21 +8,27 @@ function ProjectCard() {
 
 
   return (
-    <section className="border w-full px-3 py-1 md:w-1/2 xl:w-1/3">
-      <section className="">
-        <img src={image} />
-        <h2>Project Name</h2>
+    <section className="w-full shadow px-3 py-5 mb-5 md:w-2/5 xl:w-1/5">
+      <section className="mb-3">
+        <h2
+        className="text-center font-medium text-lg mb-2"
+        >
+          Project Name
+        </h2>
+        <img
+        src={image} 
+        /> 
       </section>
       <section className="info">
-        <p>Summary of this project that is relatively brief</p>
-        <section>
-          <h3>Made with</h3>
-          <ul className="flex space-x-3">
-            <li className="border px-2 py-1">Nodejs</li>
-            <li className="border px-2 py-1">Expressjs</li>
-            <li className="border px-2 py-1">TailwindCss</li>
-          </ul>
-        </section>
+        <ul className="flex flex-wrap gap-3 mb-2">
+          <li className="border px-2 py-1">Nodejs</li>
+          <li className="border px-2 py-1">Expressjs</li>
+          <li className="border px-2 py-1">TailwindCss</li>
+          <li className="border px-2 py-1">TailwindCss</li>
+          <li className="border px-2 py-1">Nodejs</li>
+          <li className="border px-2 py-1">Nodejs</li>
+          <li className="border px-2 py-1">Expressjs</li>
+        </ul>
         <p>A complete, multiline description of the project. Should explain what the project does, how it works, and maybe some impressions from working on the project. This might not stay, not sure yet.</p>
         <ul>
           <li><a>Github Link</a></li>
