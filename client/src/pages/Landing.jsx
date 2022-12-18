@@ -12,7 +12,7 @@ function Landing() {
   console.log(location);
 
   return (
-    <main className="w-full">
+    <main className="w-full bg-black text-white">
       <Menu />
       <Hero/>
       <ProjectDisplay/>

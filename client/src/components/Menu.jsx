@@ -27,33 +27,33 @@ function Menu() {
                     <div className="hamburger-middle"></div>
                     <div className="hamburger-bottom"></div>
                 </button>
-                <nav>
+                <nav className="hidden md:block">
                     <ul className="flex justify-end gap-10">
-                        <li className={liStyle}>
+                        <li>
                             <NavLink
                             className={({ isActive }) => (isActive ? linkActive : "")}
                             exact to="/"
                             >Home</NavLink>
                         </li>
-                        <li className={liStyle}>
+                        <li>
                             <NavLink
                             className={({ isActive }) => (isActive ? linkActive : "")}
                             to="/portfolio"
                             >Portfolio</NavLink>
                         </li>
-                        <li className={liStyle}>
+                        <li>
                             <NavLink
                             className={({ isActive }) => (isActive ? linkActive : "")}
                             to="/resume"
                             >Resume</NavLink>
                         </li>
-                        <li className={liStyle}>
+                        <li>
                             <NavLink
                             className={({ isActive }) => (isActive ? linkActive: "")}
                             to="/freelancing"
                             >Freelancing</NavLink>
                         </li>
-                        <li className={liStyle}>
+                        <li>
                             <NavLink
                             className={({ isActive }) => (isActive ? linkActive : "")}
                             to="/blog"

@@ -8,7 +8,7 @@ function ProjectCard() {
 
 
   return (
-    <section className="w-full shadow px-3 py-5 mb-5 md:w-2/5 xl:w-1/5">
+    <section className="w-full shadow px-3 py-5 mb-5 border border-GoldCrayola md:w-2/5 xl:w-1/5">
       <section className="mb-3">
         <h2
         className="text-center font-medium text-lg mb-2"
