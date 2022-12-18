@@ -16,7 +16,7 @@ function Menu() {
 
     return (
         <div>
-            <header className="p-3">
+            <header className="p-3 shadow-sm relative">
                 {/* Open Nav */}
                 <button 
                 id="menu-btn" 
@@ -27,9 +27,43 @@ function Menu() {
                     <div className="hamburger-middle"></div>
                     <div className="hamburger-bottom"></div>
                 </button>
+                <nav>
+                    <ul className="flex justify-end gap-10">
+                        <li className={liStyle}>
+                            <NavLink
+                            className={({ isActive }) => (isActive ? linkActive : "")}
+                            exact to="/"
+                            >Home</NavLink>
+                        </li>
+                        <li className={liStyle}>
+                            <NavLink
+                            className={({ isActive }) => (isActive ? linkActive : "")}
+                            to="/portfolio"
+                            >Portfolio</NavLink>
+                        </li>
+                        <li className={liStyle}>
+                            <NavLink
+                            className={({ isActive }) => (isActive ? linkActive : "")}
+                            to="/resume"
+                            >Resume</NavLink>
+                        </li>
+                        <li className={liStyle}>
+                            <NavLink
+                            className={({ isActive }) => (isActive ? linkActive: "")}
+                            to="/freelancing"
+                            >Freelancing</NavLink>
+                        </li>
+                        <li className={liStyle}>
+                            <NavLink
+                            className={({ isActive }) => (isActive ? linkActive : "")}
+                            to="/blog"
+                            >Blog</NavLink>
+                        </li>
+                    </ul>
+                </nav>
             </header>
-            <nav id="menu" className={"flex flex-col absolute transition-transform w-full bg-white" + ((open) ? "" : " -translate-x-full")}>
-                <ul>
+            <nav id="menu" className={"absolute transition-transform w-full bg-white" + ((open) ? "" : " -translate-x-full")}>
+                <ul className="flex flex-col">
                     <li className={liStyle}>
                         <NavLink
                         className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : "")}
