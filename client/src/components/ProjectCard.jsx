@@ -1,4 +1,9 @@
+import { FaNodeJs, FaReact } from "react-icons/fa"
+import { SiTailwindcss } from "react-icons/si"
+
 import image from "../assets/hyrule_compendium.png"
+
+import Technology from "./project-card/Technology";
 
 function ProjectCard() {
 
@@ -21,13 +26,13 @@ function ProjectCard() {
       </section>
       <section className="info">
         <ul className="flex flex-wrap gap-3 mb-2">
-          <li className="border px-2 py-1">Nodejs</li>
-          <li className="border px-2 py-1">Expressjs</li>
-          <li className="border px-2 py-1">TailwindCss</li>
-          <li className="border px-2 py-1">TailwindCss</li>
-          <li className="border px-2 py-1">Nodejs</li>
-          <li className="border px-2 py-1">Nodejs</li>
-          <li className="border px-2 py-1">Expressjs</li>
+          <li><Technology Icon={FaReact} text="React" /></li>
+          <li><Technology Icon={FaReact} text="React" /></li>
+          <li><Technology Icon={FaReact} text="React" /></li>
+          <li><Technology Icon={FaReact} text="React" /></li>
+          <li><Technology Icon={FaReact} text="React" /></li>
+          <li><Technology Icon={FaReact} text="React" /></li>
+          <li><Technology Icon={FaReact} text="React" /></li>
         </ul>
         <p>A complete, multiline description of the project. Should explain what the project does, how it works, and maybe some impressions from working on the project. This might not stay, not sure yet.</p>
         <ul>
