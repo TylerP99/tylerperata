@@ -23,7 +23,7 @@ function ProjectDisplay() {
 
   return (
     <section className="place-content-center">
-        <SectionHeader text="My Work"/>
+        <SectionHeader text="My Projects"/>
         <section className="flex flex-wrap gap-1 justify-around align-center px-3">
             {projects.map(x => (<ProjectCard/>))}
         </section>

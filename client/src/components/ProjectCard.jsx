@@ -4,6 +4,7 @@ import { SiTailwindcss } from "react-icons/si"
 import image from "../assets/hyrule_compendium.png"
 
 import Technology from "./project-card/Technology";
+import LinkButton from "./LinkButton";
 
 function ProjectCard() {
 
@@ -13,10 +14,10 @@ function ProjectCard() {
 
 
   return (
-    <section className="w-full shadow px-3 py-5 mb-5 border border-GoldCrayola md:w-2/5 xl:w-1/5">
+    <section className="w-full shadow px-5 py-3 mb-5 border-2 md:w-[48%] lg:w-[31%] xl:w-[23%]">
       <section className="mb-3">
         <h2
-        className="text-center font-medium text-lg mb-2"
+        className="text-center font-medium text-lg mb-3"
         >
           Project Name
         </h2>
@@ -25,7 +26,7 @@ function ProjectCard() {
         /> 
       </section>
       <section className="info">
-        <ul className="flex flex-wrap gap-3 mb-2">
+        <ul className="flex flex-wrap gap-3 mb-2 mx-auto">
           <li><Technology Icon={FaReact} text="React" /></li>
           <li><Technology Icon={FaReact} text="React" /></li>
           <li><Technology Icon={FaReact} text="React" /></li>
@@ -34,10 +35,12 @@ function ProjectCard() {
           <li><Technology Icon={FaReact} text="React" /></li>
           <li><Technology Icon={FaReact} text="React" /></li>
         </ul>
-        <p>A complete, multiline description of the project. Should explain what the project does, how it works, and maybe some impressions from working on the project. This might not stay, not sure yet.</p>
-        <ul>
-          <li><a>Github Link</a></li>
-          <li><a>Live Link</a></li>
+        <p
+        className="mb-2"
+        >A complete, multiline description of the project. Should explain what the project does, how it works, and maybe some impressions from working on the project. This might not stay, not sure yet.</p>
+        <ul className="flex flex-col justify-even items-center w-3/4 mx-auto">
+          <li className="w-full mb-2"><LinkButton text="Github Source Code" link="https://www.gog.com/" /></li>
+          <li className="w-full"><LinkButton text="Live Site" link="https://www.google.com/" /></li>
         </ul>
       </section>
     </section>

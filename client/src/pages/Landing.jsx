@@ -7,6 +7,7 @@ import Hero from '../components/landing-components/Hero';
 import ProjectDisplay from '../components/landing-components/ProjectDisplay';
 import Menu from '../components/Menu';
 import ContactForm from '../components/ContactForm';
+import ContentBlock from '../components/ContentBlock';
 
 function Landing() {
   const location = useLocation();
@@ -15,9 +16,15 @@ function Landing() {
   return (
     <main className="w-full bg-black text-white">
       <Menu/>
-      <Hero/>
-      <ProjectDisplay/>
-      <ContactForm/>
+      <ContentBlock>
+        <Hero/>
+      </ContentBlock>
+      <ContentBlock>
+        <ProjectDisplay/>
+      </ContentBlock>
+      <ContentBlock>
+        <ContactForm/>
+      </ContentBlock>
     </main>
   )
 }
