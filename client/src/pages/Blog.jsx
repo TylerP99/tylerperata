@@ -7,7 +7,6 @@ function Blog() {
   return (
     <>
       <Navigation />
-      <div>Blog</div>
       <PostList/>
     </>
   )
