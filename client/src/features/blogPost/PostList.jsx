@@ -20,7 +20,6 @@ function PostList() {
       </article>
   ));
 
-
   return (
     <div>
         <h2
