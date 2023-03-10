@@ -1,8 +1,11 @@
 import React from 'react'
 
-function Comment() {
+function Comment({text="", author="Unknown"}) {
   return (
-    <div>Comment</div>
+    <div>
+        <p>{author}</p>
+        <p>{text}</p>
+    </div>
   )
 }
 
