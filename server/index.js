@@ -13,12 +13,12 @@ const cors = require("cors");
 const corsOptions = require("./config/corsSettings");
 app.use(cors(corsOptions));
 
-app.require(express.json());
-app.require(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 require("./config/mongoDBConfig")();
 
-app.require("/", "./routes/index.js");
+app.use("/", require("./routes/index.js"));
 
 // Catch any undefined routes
 app.all('*', (req, res) => {

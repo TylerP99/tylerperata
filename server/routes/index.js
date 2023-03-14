@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-router.require("/api/posts", "./posts.js");
+router.use("/api/posts", require("./posts.js"));
 
 module.exports = router;
