@@ -1,8 +1,11 @@
+//Environment Variables
 require("dotenv").config();
 
+// Express
 const express = require("express");
 const app = express();
 
+// Nodejs path
 const path = require("path");
 
 // Custom error handler
@@ -13,11 +16,14 @@ const cors = require("cors");
 const corsOptions = require("./config/corsSettings");
 app.use(cors(corsOptions));
 
+// Middleware for requests
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+// Connect database
 require("./config/mongoDBConfig")();
 
+// Defined routes
 app.use("/", require("./routes/index.js"));
 
 // Catch any undefined routes
@@ -35,6 +41,7 @@ app.all('*', (req, res) => {
 // Use error handler
 app.use(errorHandler);
 
+// Start server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
     console.log(`tylerperata running on ${PORT}`)
