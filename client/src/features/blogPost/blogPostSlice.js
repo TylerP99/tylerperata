@@ -2,7 +2,8 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     posts: [],
-    status: "idle" //idle, loading, success, failed
+    status: "idle", //idle, loading, success, failed
+    message: null,
 }
 
 export const blogPostSlice = createSlice({
