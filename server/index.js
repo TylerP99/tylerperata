@@ -8,6 +8,10 @@ const app = express();
 // Nodejs path
 const path = require("path");
 
+// Logger
+const morgan = require("morgan");
+app.use(morgan("dev"));
+
 // Custom error handler
 const {errorHandler} = require("./middleware/errorHandler");
 

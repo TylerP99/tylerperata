@@ -10,7 +10,8 @@ const getBlogPosts = AsyncHandler(async (req, res) => {
 });
 
 const addBlogPost = AsyncHandler(async (req, res) => {
-    const [title, content] = req.body;
+    console.log(req.body);
+    const {title, content} = req.body;
 
     if(!title || !content) return res.status(400).json({error: "Title and post content are both required!"});
 
@@ -38,7 +39,8 @@ const updateBlogPost = AsyncHandler(async (req, res) => {
 });
 
 const deleteBlogPost = AsyncHandler(async (req, res) => {
-    const [id] = req.body;
+    const id = req.params.id;
+    console.log(id);
 
     if(!id) {
         return res.status(400).json({error: "No post selected"});
