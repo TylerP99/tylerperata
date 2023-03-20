@@ -7,6 +7,8 @@ function BlogPage() {
 
     const {id} = useParams();
 
+    const userRole = "viewer"; // viewer, editor
+
     const post = useSelector((state) => selectOnePost(state, id));
 
     return (
