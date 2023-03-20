@@ -2,6 +2,8 @@ import {useDispatch, useSelector} from "react-redux";
 import { useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 
+import { Link } from "react-router-dom";
+
 import {getPosts, deletePost, selectAllPosts, selectPostStatus} from "./blogPostSlice";
 
 import AddPostForm from "./AddPostForm";
@@ -44,9 +46,11 @@ function PostList() {
           >
             <FaTrash/>
           </button>
-          <h3
-          className="bold text-xl mb-2"
-          >{x.title}</h3>
+          <Link to={`/blog/${x._id}`} >
+            <h3
+            className="bold text-xl mb-2"
+            >{x.title}</h3>
+          </Link>
           <p>{x.content.slice(0,100) + (x.content.length >= 100 ? "..." : "")}</p>
 
         </article>

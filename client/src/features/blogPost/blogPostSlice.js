@@ -77,7 +77,8 @@ export const blogPostSlice = createSlice({
             state.status = "loading";
         })
         .addCase(getPosts.fulfilled, (state, action) => {
-            console.log(action);
+            console.log("Get posts fulfilled");
+            console.log(action.payload);
             
             state.status = "suceeded";
             state.posts = action.payload;
@@ -97,6 +98,7 @@ export const blogPostSlice = createSlice({
             console.log(action);
             
             state.status = "suceeded";
+            state.posts.push(action.payload);
         })
         .addCase(addPost.rejected, (state, action) => {
             console.log("Add post rejected")
@@ -141,6 +143,11 @@ export const blogPostSlice = createSlice({
 });
 
 export const selectAllPosts = (state) => state.blogPost.posts;
+export const selectOnePost = (state, id) => {
+    console.log(id);
+    console.log(state.blogPost.posts);
+    return state.blogPost.posts.find(x => x._id == id);
+};
 export const selectPostStatus = (state) => state.blogPost.status;
 
 
