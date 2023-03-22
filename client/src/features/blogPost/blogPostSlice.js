@@ -12,7 +12,6 @@ const POSTS_URL = "http://localhost:5000/api/posts"
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
     try{
         const res = await axios.get(POSTS_URL);
-        console.log(res);
         
         return res.data;
     }
@@ -23,11 +22,7 @@ export const getPosts = createAsyncThunk("posts/getPosts", async () => {
 
 export const addPost = createAsyncThunk("posts/addPost", async (post) => {
     try{
-        console.log("Add post request")
         const res = await axios.post(POSTS_URL, post);
-        
-        console.log(res);
-        console.log("End add post request")
         return res.data;
         
     }
@@ -37,9 +32,9 @@ export const addPost = createAsyncThunk("posts/addPost", async (post) => {
     }
 });
 
-export const updatePost = createAsyncThunk("posts/updatePost", async (post, id) => {
+export const updatePost = createAsyncThunk("posts/updatePost", async ({title, content, id}) => {
     try{
-        const res = await axios.put(POSTS_URL, {post, id});
+        const res = await axios.put(`${POSTS_URL}/${id}`, {title, content});
         
         console.log(res);
 
@@ -52,10 +47,7 @@ export const updatePost = createAsyncThunk("posts/updatePost", async (post, id) 
 
 export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
     try{
-        console.log(id);
         const res = await axios.delete(POSTS_URL + `/${id}`);
-        
-        console.log(res);
 
         return res.data;
     }
@@ -77,15 +69,10 @@ export const blogPostSlice = createSlice({
             state.status = "loading";
         })
         .addCase(getPosts.fulfilled, (state, action) => {
-            console.log("Get posts fulfilled");
-            console.log(action.payload);
-            
             state.status = "suceeded";
             state.posts = action.payload;
         })
         .addCase(getPosts.rejected, (state, action) => {
-            console.log(action);
-
             state.status = "failed";
             state.message = action.payload;
         })
@@ -115,6 +102,7 @@ export const blogPostSlice = createSlice({
             console.log(action);
             
             state.status = "suceeded";
+            state.posts = state.posts.map(x => x._id === action.payload._id ? action.payload : x)
         })
         .addCase(updatePost.rejected, (state, action) => {
             console.log("update post rejected")
@@ -144,8 +132,6 @@ export const blogPostSlice = createSlice({
 
 export const selectAllPosts = (state) => state.blogPost.posts;
 export const selectOnePost = (state, id) => {
-    console.log(id);
-    console.log(state.blogPost.posts);
     return state.blogPost.posts.find(x => x._id == id);
 };
 export const selectPostStatus = (state) => state.blogPost.status;

@@ -31,7 +31,9 @@ const addBlogPost = AsyncHandler(async (req, res) => {
 });
 
 const updateBlogPost = AsyncHandler(async (req, res) => {
-    const [title, content, id] = req.body;
+    console.log("Hi");
+    const {title, content} = req.body;
+    const id = req.params.id;
 
     if(!id) {
         return res.status(400).json({error: "No post selected"});
@@ -39,7 +41,7 @@ const updateBlogPost = AsyncHandler(async (req, res) => {
 
     if(!title || !content) return res.status(400).json({error: "Title and post content are both required!"});
 
-    const post = await BlogPost.findByIdAndUpdate(id, {title, content});
+    const post = await BlogPost.findByIdAndUpdate(id, {title, content}, {new: true});
 
     if(!post) return res.status(400).json({error: "Bad, no post received"});
 
