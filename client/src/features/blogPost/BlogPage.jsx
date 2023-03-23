@@ -12,7 +12,7 @@ function BlogPage() {
 
     const {id} = useParams();
 
-    const userRole = "editor"; // viewer, editor
+    const userRole = "viewer"; // viewer, editor
     const post = useSelector((state) => selectOnePost(state, id));
 
     const [editing, setEditing] = useState(false);
@@ -47,7 +47,7 @@ function BlogPage() {
 
     const editorView = (
         <article
-        className="mx-auto w-[70%]"
+        className=""
         >
             <section
             className="flex justify-between"
@@ -78,7 +78,7 @@ function BlogPage() {
             {timeStamp}
             <section>
                 <textarea
-                className="resize-none w-[90%] mx-auto bg-inherit"
+                className="resize-none bg-inherit h-[400px]"
                 name="content"
                 id="content"
                 value={postData.content}
@@ -90,16 +90,26 @@ function BlogPage() {
     )
 
     const normalView = (
-        <article>
-            <h1>{post.title}</h1>
-            {timeStamp}
-            <p>{post.content}</p>
+        <article
+        className="max-w-[98%] mx-auto"
+        >
+            <header
+            className="mb-4"
+            >
+                <h1
+                className="text-2xl mx-auto border-b-2"
+                >{post.title}</h1>
+                {timeStamp}
+            </header>
+            <p
+            className="whitespace-pre-line"
+            >{post.content}</p>
         </article>
     )
 
     return (
         <div
-        className="bg-slate-100 min-w-[80%] max-w-[1250px] mx-auto"
+        className=""
         >
         {userRole === "viewer" ? normalView : editorView}
         </div>

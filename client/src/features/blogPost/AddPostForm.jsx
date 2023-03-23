@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { addPost } from "./blogPostSlice";
 
 function AddPostForm() {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({title: "", content: ""});
 
@@ -18,6 +20,9 @@ function AddPostForm() {
         e.preventDefault();
         dispatch(addPost(formData));
         console.log("End form submit");
+        // TODO: If fail, display err
+
+        navigate("/blog");
     }
 
     return (
