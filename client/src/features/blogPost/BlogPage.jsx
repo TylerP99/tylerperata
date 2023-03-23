@@ -29,8 +29,6 @@ function BlogPage() {
     const handleSave = (e) => {
         e.preventDefault();
 
-        console.log("EYE DEE", id);
-
         dispatch(updatePost({title: postData.title, content: postData.content, id}));
 
         setEditing(!editing);
