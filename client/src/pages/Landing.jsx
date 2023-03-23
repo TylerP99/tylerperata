@@ -15,7 +15,6 @@ function Landing() {
 
   return (
     <main className="w-full bg-black text-white">
-      <Menu/>
       <ContentBlock>
         <Hero/>
       </ContentBlock>

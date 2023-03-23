@@ -5,7 +5,6 @@ import Navigation from '../components/Navigation'
 function Freelancing() {
   return (
     <>
-    <Navigation />
     <div>Freelancing</div>
     </>
   )

@@ -7,7 +7,7 @@ function Navigation() {
 
     // Tailwind styles
     const navLayout = "flex justify-end";
-    const navStyles = "bg-red-300";
+    const navStyles = "bg-black";
     const navStyle = `${navStyles} ${navLayout}`;
 
     const ulLayout = "flex justify-evenly space-x-8 p-5";
@@ -19,8 +19,9 @@ function Navigation() {
     const liStyle = `${ulStyles} ${liLayout}`;
 
     const linkLayout = "";
-    const linkStyles = "hover:text-white";
-    const linkActive = "text-yellow-200";
+    const linkStyles = "hover:text-blue";
+    const linkActive = "text-green";
+    const linkInactive = "text-white"
     const linkStyle = `${linkStyles} ${linkLayout}`
 
     return (
@@ -30,31 +31,31 @@ function Navigation() {
 
                 <li className={liStyle}>
                     <NavLink
-                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : "")}
+                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : linkInactive)}
                     exact to="/"
                     >Home</NavLink>
                 </li>
                 <li className={liStyle}>
                     <NavLink
-                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : "")}
+                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : linkInactive)}
                     to="/portfolio"
                     >Portfolio</NavLink>
                 </li>
                 <li className={liStyle}>
                     <NavLink
-                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : "")}
+                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : linkInactive)}
                     to="/resume"
                     >Resume</NavLink>
                 </li>
                 <li className={liStyle}>
                     <NavLink
-                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive: "")}
+                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive: linkInactive)}
                     to="/freelancing"
                     >Freelancing</NavLink>
                 </li>
                 <li className={liStyle}>
                     <NavLink
-                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : "")}
+                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : linkInactive)}
                     to="/blog"
                     >Blog</NavLink>
                 </li>

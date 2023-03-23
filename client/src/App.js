@@ -9,6 +9,7 @@ import Blog from './pages/Blog';
 
 import Navigation from './components/Navigation';
 import BlogPage from './features/blogPost/BlogPage';
+import Layout from './pages/Layout';
 
 import { selectAllPosts } from './features/blogPost/blogPostSlice';
 
@@ -18,14 +19,16 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route path='/' element={<Landing/>} />
-        <Route path='/portfolio' element={<Portfolio/>} />
-        <Route path='/resume' element={<Resume/>} />
-        <Route path='/freelancing' element={<Freelancing/>} />
-        <Route path='/blog' element={<Blog/>} />
-        <Route path="/blog">
-          <Route index element={<Blog/>} />
-          <Route path=":id" element={<BlogPage/>} />
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<Landing/>} />
+          <Route path='/portfolio' element={<Portfolio/>} />
+          <Route path='/resume' element={<Resume/>} />
+          <Route path='/freelancing' element={<Freelancing/>} />
+          <Route path='/blog' element={<Blog/>} />
+          <Route path="/blog">
+            <Route index element={<Blog/>} />
+            <Route path=":id" element={<BlogPage/>} />
+          </Route>
         </Route>
       </Routes>
     </Router>

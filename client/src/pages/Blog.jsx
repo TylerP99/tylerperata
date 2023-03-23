@@ -6,7 +6,6 @@ import PostList from '../features/blogPost/PostList'
 function Blog() {
   return (
     <>
-      <Navigation />
       <PostList/>
     </>
   )

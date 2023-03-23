@@ -5,7 +5,6 @@ import Navigation from '../components/Navigation'
 function Portfolio() {
   return (
     <>
-    <Navigation />
     <div>Portfolio</div>
     </>
   )
