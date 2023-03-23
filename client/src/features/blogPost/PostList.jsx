@@ -1,12 +1,10 @@
 import {useDispatch, useSelector} from "react-redux";
 import { useEffect } from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaPlus, FaTrash } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 
 import {getPosts, deletePost, selectAllPosts, selectPostStatus} from "./blogPostSlice";
-
-import AddPostForm from "./AddPostForm";
 
 
 
@@ -16,6 +14,8 @@ function PostList() {
   
   const posts = useSelector(selectAllPosts);
   const postStatus = useSelector(selectPostStatus);
+
+  const userRole = "editor"; // viewer || editor
 
   useEffect(() => {
     if(postStatus === "idle") {
@@ -39,18 +39,28 @@ function PostList() {
         className="border-2 rounded-sm p-4 mb-3 w-[95%] mx-auto"
         key={x._id} 
         >
-          <button 
-          type="button"
-          data-post-id={x._id}
-          onClick={handleDeletePost}
+          <div
+          className="flex items-center justify-between"
           >
-            <FaTrash/>
-          </button>
-          <Link to={`/blog/${x._id}`} >
-            <h3
-            className="bold text-xl mb-2"
-            >{x.title}</h3>
-          </Link>
+            <Link to={`/blog/${x._id}`} >
+              <h3
+              className="bold text-xl"
+              >{x.title}</h3>
+            </Link>
+            {
+            userRole === "editor" &&
+            <button 
+            type="button"
+            data-post-id={x._id}
+            onClick={handleDeletePost}
+            >
+              <FaTrash/>
+            </button>
+            }
+          </div>
+          <p
+          className="text-sm italics"
+          >{new Date(x.createdAt).toLocaleString()}</p>
           <p>{x.content.slice(0,100) + (x.content.length >= 100 ? "..." : "")}</p>
 
         </article>
@@ -61,8 +71,16 @@ function PostList() {
         <h2
         className="text-4xl border-b-black border-b-2 mb-5 p-4"
         >Posts</h2>
+        {
+        userRole === "editor" &&
+        <Link 
+        className="flex items-center border-2 gap-2 rounded-md w-[95%] px-5 py-3 mx-auto mb-3"
+        to="./newPost"
+        >
+          <FaPlus/>Create New Post
+        </Link>
+        }
         {renderedPosts}
-        <AddPostForm/>
     </div>
   );
 }

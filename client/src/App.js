@@ -12,6 +12,7 @@ import BlogPage from './features/blogPost/BlogPage';
 import Layout from './pages/Layout';
 
 import { selectAllPosts } from './features/blogPost/blogPostSlice';
+import AddPostForm from './features/blogPost/AddPostForm';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/blog">
             <Route index element={<Blog/>} />
             <Route path=":id" element={<BlogPage/>} />
+            <Route path="newPost" element={<AddPostForm/>} />
           </Route>
         </Route>
       </Routes>

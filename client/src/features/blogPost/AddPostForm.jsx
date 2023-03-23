@@ -21,16 +21,22 @@ function AddPostForm() {
     }
 
     return (
-        <div>
+        <div className="w-[97%] mx-auto">
+            <h1
+            className="text-2xl border-b-2 mb-4"
+            >Create New Post</h1>
             <form
             onSubmit={handleSubmit}
             >
                 <section
-                className="flex flex-col"
+                className="flex flex-col mb-4"
                 >
-                    <label htmlFor="title">Title</label>
+                    <label
+                    className="text-xl"
+                    htmlFor="title"
+                    >Title</label>
                     <input
-                    className="border"
+                    className="border p-1 text-lg"
                     id="title"
                     name="title"
                     type="text"
@@ -40,11 +46,14 @@ function AddPostForm() {
                     />
                 </section>
                 <section
-                className="flex flex-col"
+                className="flex flex-col mb-4"
                 >
-                    <label htmlFor="content">Content</label>
+                    <label 
+                    className="text-xl"
+                    htmlFor="content"
+                    >Content</label>
                     <textarea
-                    className="border resize-none"
+                    className="border resize-none p-1 text-lg h-[400px]"
                     id="content"
                     name="content"
                     onChange={handleFieldChange}
@@ -54,7 +63,7 @@ function AddPostForm() {
                 </section>
                 <button 
                 type="submit"
-                className="border-2 rounded-md px-4 py-2 hover:underline"
+                className="border-2 rounded-md px-4 py-2 w-[75%] mx-auto block hover:underline"
                 >Create Post</button>
             </form>
         </div>
