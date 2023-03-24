@@ -12,7 +12,7 @@ function BlogPage() {
 
     const {id} = useParams();
 
-    const userRole = "viewer"; // viewer, editor
+    const userRole = "editor"; // viewer, editor
     const post = useSelector((state) => selectOnePost(state, id));
 
     const [editing, setEditing] = useState(false);
@@ -47,38 +47,40 @@ function BlogPage() {
 
     const editorView = (
         <article
-        className=""
+        className="w-[98%] max-w-[1250px] mx-auto bg-white px-2 py-3"
         >
             <section
-            className="flex justify-between"
+            className="mb-4"
             >
-                <h1
-                className="text-4xl"
+                <section
+                className="flex justify-between items-center border-b-2"
                 >
                     <input
-                    className="bg-inherit"
+                    className={"bg-inherit w-[90%] text-4xl" + " " + (editing && "border")}
                     name="title"
                     id="title"
                     value={postData.title}
                     onChange={handleChange}
                     disabled={!editing}
                     />
-                </h1>
-                <section>
-                    <button onClick={handleToggleEdit}>
-                        {!editing ?
-                        <FaEdit/>
-                        :
-                        <FaTimes/>
-                        }
-                    </button>
-                    {editing && <button onClick={handleSave} ><FaSave/></button>}
+                    <section
+                    className="w-[10%] flex items-center justify-around"
+                    >
+                        {editing && <button onClick={handleSave} ><FaSave/></button>}
+                        <button className="block" onClick={handleToggleEdit}>
+                            {!editing ?
+                            <FaEdit/>
+                            :
+                            <FaTimes/>
+                            }
+                        </button>
+                    </section>
                 </section>
+                {timeStamp}
             </section>
-            {timeStamp}
             <section>
                 <textarea
-                className="resize-none bg-inherit h-[400px]"
+                className={"resize-none bg-inherit w-full h-[400px]" + " " + (editing && "border")}
                 name="content"
                 id="content"
                 value={postData.content}
@@ -91,7 +93,7 @@ function BlogPage() {
 
     const normalView = (
         <article
-        className="max-w-[98%] mx-auto"
+        className="w-[98%] max-w-[1250px] mx-auto bg-white px-2 py-3"
         >
             <header
             className="mb-4"
@@ -101,15 +103,15 @@ function BlogPage() {
                 >{post.title}</h1>
                 {timeStamp}
             </header>
-            <p
-            className="whitespace-pre-line"
-            >{post.content}</p>
+            <div>
+                {post.content.split("\n").map(x => (<p className="indent-8">{x}</p>))}
+            </div>
         </article>
     )
 
     return (
         <div
-        className=""
+        className="bg-stone-200 min-h-screen"
         >
         {userRole === "viewer" ? normalView : editorView}
         </div>
