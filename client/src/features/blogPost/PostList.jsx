@@ -32,7 +32,9 @@ function PostList() {
   }
 
   const renderedPosts = !posts.length ? 
-  <p>No posts</p> 
+  <p
+  className="text-2xl bold mx-auto w-fit"
+  >No posts</p> 
   :
   posts.map(x => (
         <article 
