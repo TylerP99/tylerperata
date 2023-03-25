@@ -7,7 +7,7 @@ function Navigation() {
 
     // Tailwind styles
     const navLayout = "flex justify-end";
-    const navStyles = "bg-black";
+    const navStyles = "bg-black border-b border-white";
     const navStyle = `${navStyles} ${navLayout}`;
 
     const ulLayout = "flex justify-evenly space-x-8 p-5";

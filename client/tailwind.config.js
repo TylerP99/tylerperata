@@ -16,6 +16,39 @@ module.exports = {
         green: "#55D9B3",
         black: "#0D0D0D",
         white: "#F2F2F2"
+      },
+      keyframes: {
+        slideRight: {
+          "from": {
+            transform: "translateX(-100%)",
+            opacity: "0%"
+          },
+          "50%": {
+            opacity: "0%"
+          },
+          "to": {
+            transform: "translateX(0%)",
+            opacity: "100%"
+          }
+        },
+        slideLeft: {
+          "from": {
+            transform: "translateX(100%)",
+            opacity: "0%"
+          },
+          "50%": {
+            opacity: "0%"
+          },
+          "to": {
+            transform: "translateX(0%)",
+            opacity: "100%"
+          }
+        },
+      },
+      animation: {
+        slideRight: "0.5s ease-out 1 slideRight",
+        slideLeft: "0.5s ease-out 1 slideLeft",
+
       }
     },
   },

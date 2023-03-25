@@ -14,7 +14,7 @@ function Landing() {
   console.log(location);
 
   return (
-    <main className="w-full bg-black text-white">
+    <main className="w-full bg-[#02041c] text-white">
       <ContentBlock>
         <Hero/>
       </ContentBlock>
