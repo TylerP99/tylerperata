@@ -1,6 +1,5 @@
-
-
 import {NavLink} from "react-router-dom";
+import "../style.css";
 
 function Navigation() {
 
@@ -19,7 +18,7 @@ function Navigation() {
     const liStyle = `${ulStyles} ${liLayout}`;
 
     const linkLayout = "";
-    const linkStyles = "hover:text-blue";
+    const linkStyles = "hover:text-blue hover-underline-animation";
     const linkActive = "text-green";
     const linkInactive = "text-white"
     const linkStyle = `${linkStyles} ${linkLayout}`
@@ -36,7 +35,7 @@ function Navigation() {
                     >Home</NavLink>
                 </li>
                 <li className={liStyle}>
-                    <NavLink
+                    ;<NavLink
                     className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : linkInactive)}
                     to="/portfolio"
                     >Portfolio</NavLink>
