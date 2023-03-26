@@ -44,11 +44,25 @@ module.exports = {
             opacity: "100%"
           }
         },
+        growWidth: {
+          "from": {
+            width: "10vw",
+            height: "10vw",
+          },
+          "70%": {
+            width: "10vw",
+            height: "10vw",
+          },
+          "to": {
+            width: "80vw",
+            height: "10vw",
+          }
+        }
       },
       animation: {
         slideRight: "0.5s ease-out 1 slideRight",
         slideLeft: "0.5s ease-out 1 slideLeft",
-
+        growWidth: "1s linear 1 growWidth",
       }
     },
   },
