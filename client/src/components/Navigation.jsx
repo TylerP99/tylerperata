@@ -14,7 +14,7 @@ function Navigation() {
     const ulStyle = `${ulStyles} ${ulLayout}`;
 
     const liLayout = "";
-    const liStyles = "";
+    //const liStyles = "";
     const liStyle = `${ulStyles} ${liLayout}`;
 
     const linkLayout = "";

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {BsStack} from "react-icons/bs"
-import { FaUser, FaLaptopCode, FaDatabase } from 'react-icons/fa'
+import { FaUser, FaLaptopCode } from 'react-icons/fa'
 
 import SocialDisplay from './SocialDisplay'
 
@@ -18,6 +18,7 @@ function Hero() {
           <span>Tyler Perata</span>
           <div></div>
         </h1>
+        <SocialDisplay/>
         
         
       </section>     
@@ -26,10 +27,18 @@ function Hero() {
 
       <h3
       className='text-black bg-red-500 border-2 border-white rounded-full text-3xl p-10 pr-10 animate-slideLeft w-[40vw]'
-      >Full Stack</h3>
+      >
+        <BsStack/>
+        Full Stack
+        <div></div>
+      </h3>
       <h2
         className='text-black bg-red-500 border-2 border-white rounded-full text-5xl p-10 pr-40 animate-slideLeft'
-        >Web Developer</h2>
+      >
+        <FaLaptopCode/>
+        <span>Web Developer</span>
+        <div></div>
+      </h2>
         
       </section>   
 

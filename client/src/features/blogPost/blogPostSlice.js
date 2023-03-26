@@ -132,7 +132,7 @@ export const blogPostSlice = createSlice({
 
 export const selectAllPosts = (state) => state.blogPost.posts;
 export const selectOnePost = (state, id) => {
-    return state.blogPost.posts.find(x => x._id == id);
+    return state.blogPost.posts.find(x => x._id === id);
 };
 export const selectPostStatus = (state) => state.blogPost.status;
 

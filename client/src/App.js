@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+//import { useDispatch, useSelector } from 'react-redux';
 
 import Landing from './pages/Landing';
 import Portfolio from './pages/Portfolio';
@@ -7,11 +7,10 @@ import Resume from './pages/Resume';
 import Freelancing from './pages/Freelancing';
 import Blog from './pages/Blog';
 
-import Navigation from './components/Navigation';
 import BlogPage from './features/blogPost/BlogPage';
 import Layout from './pages/Layout';
 
-import { selectAllPosts } from './features/blogPost/blogPostSlice';
+//import { selectAllPosts } from './features/blogPost/blogPostSlice';
 import AddPostForm from './features/blogPost/AddPostForm';
 
 function App() {

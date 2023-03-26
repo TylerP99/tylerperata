@@ -8,11 +8,6 @@ import LinkButton from "./LinkButton";
 
 function ProjectCard() {
 
-  const cardStyle = "w-1/3 border";
-
-  const headerStyle = "";
-
-
   return (
     <section className="w-full shadow px-5 py-3 mb-5 border-2 md:w-[48%] lg:w-[31%] xl:w-[23%]">
       <section className="mb-3">
@@ -23,13 +18,14 @@ function ProjectCard() {
         </h2>
         <img
         src={image} 
+        alt="The landing page of the project"
         /> 
       </section>
       <section className="info">
         <ul className="flex flex-wrap gap-3 mb-2 mx-auto">
           <li><Technology Icon={FaReact} text="React" /></li>
-          <li><Technology Icon={FaReact} text="React" /></li>
-          <li><Technology Icon={FaReact} text="React" /></li>
+          <li><Technology Icon={SiTailwindcss} text="TailwindCSS" /></li>
+          <li><Technology Icon={FaNodeJs} text="NodeJS" /></li>
           <li><Technology Icon={FaReact} text="React" /></li>
           <li><Technology Icon={FaReact} text="React" /></li>
           <li><Technology Icon={FaReact} text="React" /></li>

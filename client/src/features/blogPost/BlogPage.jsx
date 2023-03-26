@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { updatePost } from "./blogPostSlice";
 
-import { FaCog, FaEdit, FaSave, FaTimes } from "react-icons/fa"
+import { FaEdit, FaSave, FaTimes } from "react-icons/fa"
 import { selectOnePost } from "./blogPostSlice";
 import { useState } from "react";
 
@@ -56,7 +56,7 @@ function BlogPage() {
                 className="flex justify-between items-center border-b-2"
                 >
                     <input
-                    className={"bg-inherit w-[90%] text-4xl" + " " + (editing && "border")}
+                    className={"bg-inherit w-[90%] text-4xl" + (editing && " border")}
                     name="title"
                     id="title"
                     value={postData.title}
@@ -80,7 +80,7 @@ function BlogPage() {
             </section>
             <section>
                 <textarea
-                className={"resize-none bg-inherit w-full h-[400px]" + " " + (editing && "border")}
+                className={"resize-none bg-inherit w-full h-[400px]" + (editing && " border")}
                 name="content"
                 id="content"
                 value={postData.content}
