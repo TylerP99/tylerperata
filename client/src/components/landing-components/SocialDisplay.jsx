@@ -3,36 +3,30 @@ import {Link} from "react-router-dom";
 
 function SocialDisplay() {
   return (
-    <ul className="text-6xl">
+    <ul className="text-3xl flex">
 
         <li>
-            <Link>
+            <a href="https://www.linkedin.com/in/tylerperata/" target="_blank">
                 <FaLinkedin/>
-            </Link>
+            </a>
         </li>
 
         <li>
-            <Link>
+            <a href="https://github.com/TylerP99" target="_blank">
                 <FaGithub/>
-            </Link>
+            </a>
         </li>
 
         <li>
-            <Link>
+            <a href="https://twitter.com/TylerMP99" target="_blank">
                 <FaTwitter/>
-            </Link>
+            </a>
         </li>
 
         <li>
-            <Link>
+            <a href="https://wellfound.com/u/tyler-perata" target="_blank">
                 <FaAngellist/>
-            </Link>
-        </li>
-
-        <li>
-            <Link>
-                <FaInstagram/>
-            </Link>
+            </a>
         </li>
         
     </ul>
