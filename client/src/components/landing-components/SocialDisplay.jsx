@@ -1,9 +1,8 @@
-import {FaAngellist, FaInstagram, FaTwitter, FaGithub, FaLinkedin} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import {FaAngellist, FaTwitter, FaGithub, FaLinkedin} from "react-icons/fa";
 
-function SocialDisplay() {
+function SocialDisplay({className=""}) {
   return (
-    <ul className="text-3xl flex">
+    <ul className={`text-3xl flex gap-2 border-b-2 border-white w-fit ${className}`}>
 
         <li>
             <a href="https://www.linkedin.com/in/tylerperata/" target="_blank">
