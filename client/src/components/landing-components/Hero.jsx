@@ -53,7 +53,7 @@ function Hero() {
 
         <section className="flex flex-col items-center">
           <p>See my work below</p>
-          <FaCaretDown/>
+          <FaCaretDown className="hover:mt-1"/>
         </section>
 
 
