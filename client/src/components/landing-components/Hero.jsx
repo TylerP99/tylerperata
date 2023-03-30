@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import { useState } from "react";
 
 import {BsStack} from "react-icons/bs"
 import { FaUser, FaLaptopCode, FaCaretDown } from 'react-icons/fa'
@@ -6,8 +7,11 @@ import { FaUser, FaLaptopCode, FaCaretDown } from 'react-icons/fa'
 import SocialDisplay from './SocialDisplay'
 
 function Hero() {
+
+  const [hover, setHover] = useState(false);
+
   return (
-    <section className="flex flex-col w-[95%] mx-auto h-[100vh] border-white border pt-20">
+    <section className="flex flex-col w-[95%] mx-auto h-[100vh] pt-[4rem]">
 
       <section className='mb-5'>
         <h1
@@ -51,9 +55,11 @@ function Hero() {
           <Link className="block text-center border border-white px-10 py-5 text-2xl hover:underline hover:bg-white/20 hover:shadow-sm hover:shadow-white" to="/resume">My Resume</Link>
         </section>
 
-        <section className="flex flex-col items-center">
-          <p>See my work below</p>
-          <FaCaretDown className="hover:mt-1"/>
+        <section className={"flex flex-col items-center hover:cursor-pointer"} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+          <p
+            className={hover && "underline"}
+          >See my work below</p>
+          <FaCaretDown className={"transition" + (hover ? " translate-y-1" : "")} />
         </section>
 
 

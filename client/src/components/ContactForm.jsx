@@ -11,30 +11,47 @@ function ContactForm() {
   }
 
   return (
-    <div className='max-w-[1000px] w-[90%] mx-auto'>
+    <div className='max-w-[1000px] w-[90%] mx-auto py-20'>
 
       <h2
-      className='text-2xl bold border-b-2 mx-auto text-center w-[50%] mb-4'
+      className='text-2xl bold border-b-2 mx-auto text-center w-[50%] mb-2'
       >Contact Me</h2>
 
       <form
-      className='border px-5'
+      className='p-5'
       onSubmit={handleSubmit}
       >
 
-        <section
-        className='flex flex-col'
-        >
-          <label htmlFor="email">Email</label>
-          <input
-          className='text-lg p-2 text-black'
-          id='email'
-          name='email'
-          type="email"
-          required
-          onChange={handleChange}
-          value={formData.email}
-          />
+        <section className='md:flex md:justify-between' >
+          <section
+          className='flex flex-col md:w-[48%]'
+          >
+            <label htmlFor="name">Name</label>
+            <input
+            className='text-lg p-2 text-black mb-3 max-w-[500px]'
+            id='name'
+            name='name'
+            type="text"
+            required
+            onChange={handleChange}
+            value={formData.email}
+            />
+          </section>
+
+          <section
+          className='flex flex-col md:w-[48%]'
+          >
+            <label htmlFor="email">Email</label>
+            <input
+            className='text-lg p-2 text-black mb-3 max-w-[500px]'
+            id='email'
+            name='email'
+            type="email"
+            required
+            onChange={handleChange}
+            value={formData.email}
+            />
+          </section>
         </section>
 
         <section
@@ -42,7 +59,7 @@ function ContactForm() {
         >
           <label htmlFor="message">Message</label>
           <textarea
-          className='text-lg p-2 text-black'
+          className='text-lg p-2 text-black mb-5'
           id='message'
           name='message'
           required
@@ -51,7 +68,7 @@ function ContactForm() {
           />
         </section>
 
-        <button type='submit'>Send</button>
+        <button className='border block text-xl px-20 py-3 mx-auto hover:bg-white/20' type='submit'>Send</button>
 
       </form>
 
