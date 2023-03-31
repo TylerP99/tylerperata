@@ -1,13 +1,15 @@
 import React from 'react'
 import { Outlet } from "react-router-dom";
+import Footer from '../components/Footer';
 
 import Navigation from '../components/Navigation';
 
 function Layout() {
   return (
-    <div>
+    <div className='min-h-[100vh] relative'>
         <Navigation/>
         <Outlet/>
+        <Footer/>
     </div>
   )
 }

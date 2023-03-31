@@ -13,14 +13,16 @@ function ContactForm() {
   return (
     <div className='max-w-[1000px] w-[90%] mx-auto py-20'>
 
-      <h2
-      className='text-2xl bold border-b-2 mx-auto text-center w-[50%] mb-2'
-      >Contact Me</h2>
+      
 
       <form
-      className='p-5'
+      className='px-5 py-10 bg-black'
       onSubmit={handleSubmit}
       >
+
+        <h2
+        className='text-2xl bold border-b-2 mx-auto text-center w-[50%] mb-2'
+        >Contact Me</h2>
 
         <section className='md:flex md:justify-between' >
           <section

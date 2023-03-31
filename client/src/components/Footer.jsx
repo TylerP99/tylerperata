@@ -2,7 +2,9 @@ import React from 'react'
 
 function Footer() {
   return (
-    <footer>Footer</footer>
+    <footer
+    className='bg-black text-white absolute bottom-0 w-[100%]'
+    >Footer</footer>
   )
 }
 
