@@ -11,6 +11,7 @@ const POSTS_URL = "http://localhost:5000/api/posts"
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
     try{
+        console.log("Get posts");
         const res = await axios.get(POSTS_URL);
         
         return res.data;
@@ -71,6 +72,7 @@ export const blogPostSlice = createSlice({
         .addCase(getPosts.fulfilled, (state, action) => {
             state.status = "suceeded";
             state.posts = action.payload;
+            console.log("Got posts successfully");
         })
         .addCase(getPosts.rejected, (state, action) => {
             state.status = "failed";
@@ -132,6 +134,7 @@ export const blogPostSlice = createSlice({
 
 export const selectAllPosts = (state) => state.blogPost.posts;
 export const selectOnePost = (state, id) => {
+    console.log("Selecting post");
     return state.blogPost.posts.find(x => x._id === id);
 };
 export const selectPostStatus = (state) => state.blogPost.status;

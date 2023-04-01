@@ -6,6 +6,9 @@ import "./App.css";
 import reportWebVitals from './reportWebVitals';
 import {store} from "./app/store";
 import { Provider } from 'react-redux';
+import { getPosts } from './features/blogPost/blogPostSlice';
+
+store.dispatch(getPosts());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

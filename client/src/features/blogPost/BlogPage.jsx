@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 import { updatePost } from "./blogPostSlice";
 
@@ -15,11 +16,28 @@ function BlogPage() {
     const userRole = "editor"; // viewer, editor
     const post = useSelector((state) => selectOnePost(state, id));
 
+    console.log(post, id);
+
     const [editing, setEditing] = useState(false);
     const [postData, setPostData] = useState({
-        title: post.title,
-        content: post.content,
+        title: "",
+        content: "",
     })
+
+    useEffect( () => {
+        if(post) {
+            setPostData({
+                title: post.title,
+                content: post.content,
+            })
+        }
+    }, [post]);
+
+    if(!post) {
+        return (
+            <h1>Post not found.</h1>
+        )
+    }
 
     const handleToggleEdit = (e) => {
         e.preventDefault();

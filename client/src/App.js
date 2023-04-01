@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-//import { useDispatch, useSelector } from 'react-redux';
 
 import Landing from './pages/Landing';
 import Portfolio from './pages/Portfolio';

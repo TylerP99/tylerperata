@@ -1,27 +1,20 @@
 import {useDispatch, useSelector} from "react-redux";
-import { useEffect } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 
-import {getPosts, deletePost, selectAllPosts, selectPostStatus} from "./blogPostSlice";
+import {deletePost, selectAllPosts, selectPostStatus} from "./blogPostSlice";
 
 
 
 function PostList() {
 
   const dispatch = useDispatch();
-  
+
   const posts = useSelector(selectAllPosts);
   const postStatus = useSelector(selectPostStatus);
 
   const userRole = "editor"; // viewer || editor
-
-  useEffect(() => {
-    if(postStatus === "idle") {
-      dispatch(getPosts());
-    }
-  },[postStatus, dispatch])
 
   const handleDeletePost = (e) => {
     e.preventDefault();    
