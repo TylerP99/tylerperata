@@ -62,7 +62,7 @@ function PostList() {
     ));
 
   return (
-    <div className="bg-[#02041c] py-1 min-h-screen">
+    <div className="bg-[#02041c] py-10 min-h-screen">
       <section className="max-w-[1250px] mx-auto bg-white min-h-screen px-3">
           <h2
           className="text-4xl border-b-black border-b-2 mb-5 p-4"

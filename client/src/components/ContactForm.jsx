@@ -16,7 +16,7 @@ function ContactForm() {
       
 
       <form
-      className='px-5 py-10 bg-black'
+      className='px-5 py-10 bg-black  border-2 border-white rounded-md'
       onSubmit={handleSubmit}
       >
 

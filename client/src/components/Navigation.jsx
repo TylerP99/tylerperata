@@ -35,7 +35,7 @@ function Navigation() {
                     >Home</NavLink>
                 </li>
                 <li className={liStyle}>
-                    ;<NavLink
+                    <NavLink
                     className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : linkInactive)}
                     to="/portfolio"
                     >Portfolio</NavLink>

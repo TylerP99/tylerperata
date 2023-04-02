@@ -25,7 +25,7 @@ function BlogPage() {
 
     return (
         <div
-        className="bg-[#02041c] py-1 min-h-screen"
+        className="bg-[#02041c] py-10 min-h-screen"
         >
             <article
             className="w-[98%] max-w-[1250px] mx-auto bg-white px-2 py-3"
