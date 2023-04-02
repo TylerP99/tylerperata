@@ -62,20 +62,22 @@ function PostList() {
     ));
 
   return (
-    <div>
-        <h2
-        className="text-4xl border-b-black border-b-2 mb-5 p-4"
-        >Posts</h2>
-        {
-        userRole === "editor" &&
-        <Link 
-        className="flex items-center border-2 gap-2 rounded-md w-[95%] px-5 py-3 mx-auto mb-3"
-        to="./newPost"
-        >
-          <FaPlus/>Create New Post
-        </Link>
-        }
-        {renderedPosts}
+    <div className="bg-[#02041c] py-1 min-h-screen">
+      <section className="max-w-[1250px] mx-auto bg-white min-h-screen px-3">
+          <h2
+          className="text-4xl border-b-black border-b-2 mb-5 p-4"
+          >Posts</h2>
+          {
+          userRole === "editor" &&
+          <Link 
+          className="flex items-center border-2 gap-2 rounded-md w-[95%] px-5 py-3 mx-auto mb-3"
+          to="./newPost"
+          >
+            <FaPlus/>Create New Post
+          </Link>
+          }
+          {renderedPosts}
+      </section>
     </div>
   );
 }
