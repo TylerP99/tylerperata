@@ -48,7 +48,7 @@ function EditPostPage() {
 
         <form
         onSubmit={handleSubmit}
-        className="px-10"
+        className="w-[95%] mx-auto"
         >
                 <section
                 className="flex flex-col mb-4"

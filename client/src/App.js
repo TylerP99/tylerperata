@@ -13,6 +13,7 @@ import Layout from './pages/Layout';
 import AddPostForm from './features/blogPost/AddPostForm';
 import EditPostPage from './features/blogPost/EditPostPage';
 import BlogLayout from './pages/BlogLayout';
+import LoadPosts from './features/blogPost/LoadPosts';
 
 function App() {
 
@@ -25,7 +26,6 @@ function App() {
           <Route path='/portfolio' element={<Portfolio/>} />
           <Route path='/resume' element={<Resume/>} />
           <Route path='/freelancing' element={<Freelancing/>} />
-          <Route path='/blog' element={<Blog/>} />
           <Route path="/blog" element={<BlogLayout/>}>
             <Route index element={<Blog/>} />
             <Route path=":id" element={<BlogPage/>} />

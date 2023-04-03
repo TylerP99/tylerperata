@@ -26,12 +26,13 @@ function AddPostForm() {
     }
 
     return (
-        <div className="w-[97%] mx-auto">
+        <>
             <h1
-            className="text-2xl border-b-2 mb-4"
+            className="text-4xl border-b-black border-b-2 mb-5 p-4"
             >Create New Post</h1>
             <form
             onSubmit={handleSubmit}
+            className="w-[95%] mx-auto"
             >
                 <section
                 className="flex flex-col mb-4"
@@ -71,7 +72,7 @@ function AddPostForm() {
                 className="border-2 rounded-md px-4 py-2 w-[75%] mx-auto block hover:underline"
                 >Create Post</button>
             </form>
-        </div>
+        </>
     )
 }
 

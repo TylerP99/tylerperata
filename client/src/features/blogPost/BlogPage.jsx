@@ -34,7 +34,7 @@ function BlogPage() {
                 <Link to={`/blog/edit/${post._id}`} >Edit Post</Link>
                 {timeStamp}
             </header>
-            <div className="text-xl" >
+            <div className="text-xl w-[95%] mx-auto" >
                 {post.content.split("\n").map(x => (<p className="indent-8">{x}</p>))}
             </div>
         </article>
