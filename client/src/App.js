@@ -27,10 +27,12 @@ function App() {
           <Route path='/resume' element={<Resume/>} />
           <Route path='/freelancing' element={<Freelancing/>} />
           <Route path="/blog" element={<BlogLayout/>}>
-            <Route index element={<Blog/>} />
-            <Route path=":id" element={<BlogPage/>} />
-            <Route path="newPost" element={<AddPostForm/>} />
-            <Route path="edit/:id" element={<EditPostPage/>} />
+            <Route path="" element={<LoadPosts/>} >
+              <Route index element={<Blog/>} />
+              <Route path=":id" element={<BlogPage/>} />
+              <Route path="newPost" element={<AddPostForm/>} />
+              <Route path="edit/:id" element={<EditPostPage/>} />
+            </Route>
           </Route>
         </Route>
       </Routes>
