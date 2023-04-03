@@ -12,7 +12,7 @@ import Layout from './pages/Layout';
 //import { selectAllPosts } from './features/blogPost/blogPostSlice';
 import AddPostForm from './features/blogPost/AddPostForm';
 import EditPostPage from './features/blogPost/EditPostPage';
-import BlogLayout from './pages/BlogLayout';
+import GenericLayout from './pages/GenericLayout';
 import LoadPosts from './features/blogPost/LoadPosts';
 
 function App() {
@@ -23,11 +23,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Landing/>} />
-          <Route path='/portfolio' element={<Portfolio/>} />
-          <Route path='/resume' element={<Resume/>} />
-          <Route path='/freelancing' element={<Freelancing/>} />
-          <Route path="/blog" element={<BlogLayout/>}>
-            <Route path="" element={<LoadPosts/>} >
+          <Route path="" element={<GenericLayout/>} >
+            <Route path='/portfolio' element={<Portfolio/>} />
+            <Route path='/resume' element={<Resume/>} />
+            <Route path='/freelancing' element={<Freelancing/>} />
+            <Route path="/blog" element={<LoadPosts/>} >
               <Route index element={<Blog/>} />
               <Route path=":id" element={<BlogPage/>} />
               <Route path="newPost" element={<AddPostForm/>} />
