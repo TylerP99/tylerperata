@@ -1,17 +1,24 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const initialState = {
-    posts: [],
-    status: "idle", //idle, loading, succeeded, failed
-    message: null,
-}
 
 const POSTS_URL = "http://localhost:5000/api/posts"
 
+const postsAdapter = createEntityAdapter({
+    selectId: (post) => post._id,
+    sortComparer: (a,b) => b.updatedAt.localeCompare(a.updatedAt),
+})
+
+const initialState = postsAdapter.getInitialState({
+    status: "idle", //idle, loading, succeeded, failed
+    message: null,
+});
+
+
+
+
+
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
     try{
-        console.log("Get posts");
         const res = await axios.get(POSTS_URL);
         
         return res.data;
@@ -28,7 +35,6 @@ export const addPost = createAsyncThunk("posts/addPost", async (post) => {
         
     }
     catch(e) {
-        console.log("Add post error")
         return e.message;
     }
 });
@@ -36,8 +42,6 @@ export const addPost = createAsyncThunk("posts/addPost", async (post) => {
 export const updatePost = createAsyncThunk("posts/updatePost", async ({title, content, id}) => {
     try{
         const res = await axios.put(`${POSTS_URL}/${id}`, {title, content});
-        
-        console.log(res);
 
         return res.data;
     }
@@ -71,72 +75,50 @@ export const blogPostSlice = createSlice({
         })
         .addCase(getPosts.fulfilled, (state, action) => {
             state.status = "suceeded";
-            state.posts = action.payload;
-            console.log("Got posts successfully");
+            postsAdapter.upsertMany(state, action.payload);
         })
         .addCase(getPosts.rejected, (state, action) => {
             state.status = "failed";
             state.message = action.payload;
         })
         .addCase(addPost.pending, (state) => {
-            console.log("Add post pending")
             state.status = "loading";
         })
         .addCase(addPost.fulfilled, (state, action) => {
-            console.log("Add post fulfilled")
-            console.log(action);
-            
             state.status = "suceeded";
-            state.posts.push(action.payload);
+            postsAdapter.upsertOne(state, action.payload);
         })
         .addCase(addPost.rejected, (state, action) => {
-            console.log("Add post rejected")
-            console.log(action);
-
             state.status = "failed";
         })
         .addCase(updatePost.pending, (state) => {
-            console.log("update post pending")
             state.status = "loading";
         })
         .addCase(updatePost.fulfilled, (state, action) => {
-            console.log("update post fulfilled")
-            console.log(action);
-            
             state.status = "suceeded";
-            state.posts = state.posts.map(x => x._id === action.payload._id ? action.payload : x)
+            postsAdapter.upsertOne(state, action.payload);
         })
         .addCase(updatePost.rejected, (state, action) => {
-            console.log("update post rejected")
-            console.log(action);
-
             state.status = "failed";
         })
         .addCase(deletePost.pending, (state) => {
-            console.log("delete post pending")
             state.status = "loading";
         })
         .addCase(deletePost.fulfilled, (state, action) => {
-            console.log("delete post fulfilled")
-            console.log(action);
-            
             state.status = "suceeded";
-            state.posts = state.posts.filter(x => x._id !== action.payload._id);
+            postsAdapter.removeOne(state, action.payload._id)
         })
         .addCase(deletePost.rejected, (state, action) => {
-            console.log("delete post rejected")
-            console.log(action);
-
             state.status = "failed";
         })
     },
 });
 
-export const selectAllPosts = (state) => state.blogPost.posts;
-export const selectOnePost = (state, id) => {
-    console.log("Selecting post");
-    return state.blogPost.posts.find(x => x._id === id);
-};
+export const {
+    selectAll: selectAllPosts,
+    selectById: selectPostById,
+} = postsAdapter.getSelectors(state => state.blogPost);
+
 export const selectPostStatus = (state) => state.blogPost.status;
 
 

@@ -11,6 +11,8 @@ import Layout from './pages/Layout';
 
 //import { selectAllPosts } from './features/blogPost/blogPostSlice';
 import AddPostForm from './features/blogPost/AddPostForm';
+import EditPostPage from './features/blogPost/EditPostPage';
+import BlogLayout from './pages/BlogLayout';
 
 function App() {
 
@@ -24,10 +26,11 @@ function App() {
           <Route path='/resume' element={<Resume/>} />
           <Route path='/freelancing' element={<Freelancing/>} />
           <Route path='/blog' element={<Blog/>} />
-          <Route path="/blog">
+          <Route path="/blog" element={<BlogLayout/>}>
             <Route index element={<Blog/>} />
             <Route path=":id" element={<BlogPage/>} />
             <Route path="newPost" element={<AddPostForm/>} />
+            <Route path="edit/:id" element={<EditPostPage/>} />
           </Route>
         </Route>
       </Routes>

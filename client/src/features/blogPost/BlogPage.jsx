@@ -1,12 +1,12 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectOnePost } from "./blogPostSlice";
+import { selectPostById } from "./blogPostSlice";
 
 function BlogPage() {
     const dispatch = useDispatch();
 
     const {id} = useParams();
-    const post = useSelector((state) => selectOnePost(state, id));
+    const post = useSelector((state) => selectPostById(state, id));
 
     if(!post) {
         return (
@@ -24,25 +24,20 @@ function BlogPage() {
     )
 
     return (
-        <div
-        className="bg-[#02041c] py-10 min-h-screen"
-        >
-            <article
-            className="w-[98%] max-w-[1250px] mx-auto bg-white px-2 py-3"
+        <article>
+            <header
+            className="mb-4"
             >
-                <header
-                className="mb-4"
-                >
-                    <h1
-                    className="text-4xl mx-auto border-b-2"
-                    >{post.title}</h1>
-                    {timeStamp}
-                </header>
-                <div className="text-xl" >
-                    {post.content.split("\n").map(x => (<p className="indent-8">{x}</p>))}
-                </div>
-            </article>
-        </div>
+                <h1
+                className="text-4xl border-b-black border-b-2 mb-5 p-4"
+                >{post.title}</h1>
+                <Link to={`/blog/edit/${post._id}`} >Edit Post</Link>
+                {timeStamp}
+            </header>
+            <div className="text-xl" >
+                {post.content.split("\n").map(x => (<p className="indent-8">{x}</p>))}
+            </div>
+        </article>
     )
 }
 
