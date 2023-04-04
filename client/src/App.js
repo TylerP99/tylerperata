@@ -9,7 +9,6 @@ import Blog from './pages/Blog';
 import BlogPage from './features/blogPost/BlogPage';
 import Layout from './pages/Layout';
 
-//import { selectAllPosts } from './features/blogPost/blogPostSlice';
 import AddPostForm from './features/blogPost/AddPostForm';
 import EditPostPage from './features/blogPost/EditPostPage';
 import GenericLayout from './pages/GenericLayout';
