@@ -15,8 +15,6 @@ const initialState = postsAdapter.getInitialState({
 
 
 
-
-
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
     try{
         const res = await axios.get(POSTS_URL);
