@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const POSTS_URL = "http://localhost:5000/api/posts"
+const POSTS_URL = "http://localhost:5000/api/posts";
 
 const postsAdapter = createEntityAdapter({
     selectId: (post) => post._id,
@@ -31,8 +31,8 @@ export const getPosts = createAsyncThunk("posts/getPosts", async () => {
 export const addPost = createAsyncThunk("posts/addPost", async (post) => {
     try{
         const res = await axios.post(POSTS_URL, post);
+
         return res.data;
-        
     }
     catch(e) {
         return e.message;
@@ -52,7 +52,7 @@ export const updatePost = createAsyncThunk("posts/updatePost", async ({title, co
 
 export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
     try{
-        const res = await axios.delete(POSTS_URL + `/${id}`);
+        const res = await axios.delete(`${POSTS_URL}/${id}`);
 
         return res.data;
     }
