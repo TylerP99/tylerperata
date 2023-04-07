@@ -14,6 +14,7 @@ import EditPostPage from './features/blogPost/EditPostPage';
 import GenericLayout from './pages/GenericLayout';
 import LoadPosts from './features/blogPost/LoadPosts';
 import ContactPage from './features/contact/ContactPage';
+import CheckAdmin from './components/CheckAdmin';
 
 function App() {
 
@@ -33,8 +34,8 @@ function App() {
               <Route path="newPost" element={<AddPostForm/>} />
               <Route path="edit/:id" element={<EditPostPage/>} />
             </Route>
-            <Route path="/admin">
-              <Route path="messages" element={ContactPage} />
+            <Route path="/admin" element={<CheckAdmin/>} >
+              <Route path="messages" element={<ContactPage/>} />
             </Route>
           </Route>
         </Route>

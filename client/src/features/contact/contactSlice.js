@@ -18,7 +18,7 @@ const initialState = contactsAdapter.getInitialState({
 export const getContacts = createAsyncThunk("contacts/getContacts", async () => {
     try{
         const res = await axios.get(CONTACTS_URL);
-        
+        console.log(res.data);
         return res.data;
     }
     catch(e) {
@@ -26,9 +26,9 @@ export const getContacts = createAsyncThunk("contacts/getContacts", async () => 
     }
 });
 
-export const addContact = createAsyncThunk("contacts/addContact", async (post) => {
+export const addContact = createAsyncThunk("contacts/addContact", async (contact) => {
     try{
-        const res = await axios.post(CONTACTS_URL, post);
+        const res = await axios.post(CONTACTS_URL, contact);
 
         return res.data;
     }
@@ -61,7 +61,7 @@ export const deleteContact = createAsyncThunk("contacts/deleteContact", async (i
 
 
 export const contactsSlice = createSlice({
-    name: "contacts",
+    name: "contact",
     initialState,
     reducers: {
 
@@ -121,9 +121,9 @@ export const contactsSlice = createSlice({
 export const {
     selectAll: selectAllContacts,
     selectById: selectContactById,
-} = contactsAdapter.getSelectors(state => state.contacts);
+} = contactsAdapter.getSelectors(state => state.contact);
 
-export const selectContactStatus = (state) => state.contacts.status;
+export const selectContactStatus = (state) => state.status;
 
 
 export default contactsSlice.reducer;

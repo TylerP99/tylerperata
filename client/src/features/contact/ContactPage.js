@@ -5,6 +5,8 @@ function ContactPage() {
 
   const contacts = useSelector(selectAllContacts);
 
+  console.log(contacts);
+
   const ContactCard = ({contact}) => (
     <article>
         <h2>{`From: ${contact.name}`}</h2>

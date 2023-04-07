@@ -1,13 +1,26 @@
-import {useState} from 'react'
+import { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
+
+import { addContact, selectContactStatus } from "./contactSlice";
 
 function ContactForm() {
 
-  const [formData, setFormData] = useState({email: "", message: ""});
+  const dispatch = useDispatch();
+
+  let status = useSelector(selectContactStatus);
+
+  const [formData, setFormData] = useState({name: "", email: "", message: ""});
 
   const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Submit");
+    
+    dispatch(addContact(formData));
+    
+    if(status === "suceeded") {
+      setFormData({name: "", email: "", message: ""});
+    }
   }
 
   return (
@@ -24,6 +37,9 @@ function ContactForm() {
         className='text-2xl bold border-b-2 mx-auto text-center w-[50%] mb-2'
         >Contact Me</h2>
 
+        { status === "suceeded" && <p>Message successfully sent! </p> }
+        { status === "failed" && <p>Message failed to send...</p> }
+
         <section className='md:flex md:justify-between' >
           <section
           className='flex flex-col md:w-[48%]'
@@ -36,7 +52,7 @@ function ContactForm() {
             type="text"
             required
             onChange={handleChange}
-            value={formData.email}
+            value={formData.name}
             />
           </section>
 
