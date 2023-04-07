@@ -73,7 +73,7 @@ export const contactsSlice = createSlice({
         })
         .addCase(getContacts.fulfilled, (state, action) => {
             state.status = "suceeded";
-            postsAdapter.upsertMany(state, action.payload);
+            contactsAdapter.upsertMany(state, action.payload);
         })
         .addCase(getContacts.rejected, (state, action) => {
             state.status = "failed";
@@ -85,7 +85,7 @@ export const contactsSlice = createSlice({
         })
         .addCase(addContact.fulfilled, (state, action) => {
             state.status = "suceeded";
-            postsAdapter.upsertOne(state, action.payload);
+            contactsAdapter.upsertOne(state, action.payload);
         })
         .addCase(addContact.rejected, (state, action) => {
             state.message = action.payload;
@@ -97,7 +97,7 @@ export const contactsSlice = createSlice({
         })
         .addCase(updateContact.fulfilled, (state, action) => {
             state.status = "suceeded";
-            postsAdapter.upsertOne(state, action.payload);
+            contactsAdapter.upsertOne(state, action.payload);
         })
         .addCase(updateContact.rejected, (state, action) => {
             state.message = action.payload;
@@ -109,7 +109,7 @@ export const contactsSlice = createSlice({
         })
         .addCase(deleteContact.fulfilled, (state, action) => {
             state.status = "suceeded";
-            postsAdapter.removeOne(state, action.payload._id)
+            contactsAdapter.removeOne(state, action.payload._id)
         })
         .addCase(deleteContact.rejected, (state, action) => {
             state.message = action.payload;
