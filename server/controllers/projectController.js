@@ -7,6 +7,8 @@ const getAllProjects = AsyncHandler(async (req, res) => {
 
     if(!projects) return res.status(404).json({error: "No projects found."});
 
+    console.log(projects);
+
     return res.status(200).json(projects);
 });
 

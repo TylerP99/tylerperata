@@ -31,7 +31,7 @@ function Navigation() {
                 <li className={liStyle}>
                     <NavLink
                     className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : linkInactive)}
-                    exact to="/"
+                    to="/"
                     >Home</NavLink>
                 </li>
                 <li className={liStyle}>

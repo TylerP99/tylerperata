@@ -3,21 +3,23 @@ import axios from "axios";
 
 const PROJECT_URL = "http://localhost:5000/api/projects";
 
-const projectsAdapter = createEntityAdapter({
+const projectAdapter = createEntityAdapter({
     selectId: (project) => project._id,
     sortComparer: (a,b) => b.createdAt.localeCompare(a.createdAt),
 });
 
-const initialState = {
+const initialState = projectAdapter.getInitialState({
     status: "idle", // idle, loading, succeeded, failed
     message: "",
-};
+});
 
 
 
 export const getAllProjects = createAsyncThunk("/project/getProjects", async () => {
     try {
         const res = await axios.get(PROJECT_URL);
+
+        console.log(res.data);
 
         return res.data;
     }
@@ -29,7 +31,10 @@ export const getAllProjects = createAsyncThunk("/project/getProjects", async () 
 
 export const addProject = createAsyncThunk("/project/addProject", async (project) => {
     try {
+        console.log("Posting");
         const res = await axios.post(PROJECT_URL, project);
+
+        console.log(res.data);
 
         return res.data;
     }
@@ -69,29 +74,34 @@ export const projectSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(getAllProjects.pending, (state) => state.status = "loading")
+        .addCase(getAllProjects.pending, (state) => {
+            state.status = "loading" 
+        })
         .addCase(getAllProjects.fulfilled, (state, action) => {
-            projectAdapter.upsertMany(action.payload);
             state.status = "suceeded";
+            console.log("Project Fetch", state, action.payload);
+            projectAdapter.upsertMany(state, action.payload);
         })
         .addCase(getAllProjects.rejected, (state, action) => {
             state.message = action.payload;
             state.status = "failed";
         })
 
-        .addCase(addProject.pending, (state) => state.status = "loading")
+        .addCase(addProject.pending, (state) => { state.status = "loading" })
         .addCase(addProject.fulfilled, (state, action) => {
-            projectAdapter.upsertOne(action.payload);
             state.status = "suceeded";
+            projectAdapter.upsertOne(state, action.payload);
         })
         .addCase(addProject.rejected, (state, action) => {
+            console.log("Failed");
+            console.log(action);
             state.message = action.payload;
             state.status = "failed";
         })
 
-        .addCase(updateProject.pending, (state) => state.status = "loading")
+        .addCase(updateProject.pending, (state) => { state.status = "loading" })
         .addCase(updateProject.fulfilled, (state, action) => {
-            projectAdapter.upsertOne(action.payload);
+            projectAdapter.upsertOne(state, action.payload);
             state.status = "suceeded";
         })
         .addCase(updateProject.rejected, (state, action) => {
@@ -99,9 +109,9 @@ export const projectSlice = createSlice({
             state.status = "failed";
         })
 
-        .addCase(deleteProject.pending, (state) => state.status = "loading")
+        .addCase(deleteProject.pending, (state) => { state.status = "loading" })
         .addCase(deleteProject.fulfilled, (state, action) => {
-            projectAdapter.removeOne(action.payload);
+            projectAdapter.removeOne(state, action.payload);
             state.status = "suceeded";
         })
         .addCase(deleteProject.rejected, (state, action) => {
@@ -116,6 +126,6 @@ export const {
     selectById: selectProjectByID,
 } = projectAdapter.getSelectors(state => state.project);
 
-export const selectProjectStatus = (state) => state.status;
+export const selectProjectStatus = (state) => state.project.status;
 
 export default projectSlice.reducer;

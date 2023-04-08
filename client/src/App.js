@@ -15,6 +15,7 @@ import GenericLayout from './pages/GenericLayout';
 import LoadPosts from './features/blogPost/LoadPosts';
 import ContactPage from './features/contact/ContactPage';
 import CheckAdmin from './components/CheckAdmin';
+import AddProjectForm from './features/project/AddProjectForm';
 
 function App() {
 
@@ -31,11 +32,13 @@ function App() {
             <Route path="/blog" element={<LoadPosts/>} >
               <Route index element={<Blog/>} />
               <Route path=":id" element={<BlogPage/>} />
-              <Route path="newPost" element={<AddPostForm/>} />
-              <Route path="edit/:id" element={<EditPostPage/>} />
+              
             </Route>
             <Route path="/admin" element={<CheckAdmin/>} >
               <Route path="messages" element={<ContactPage/>} />
+              <Route path="newProject" element={<AddProjectForm/>} />
+              <Route path="newPost" element={<AddPostForm/>} />
+              <Route path="editPost/:id" element={<EditPostPage/>} />
             </Route>
           </Route>
         </Route>

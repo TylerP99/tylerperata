@@ -6,7 +6,7 @@ const CONTACTS_URL = "http://localhost:5000/api/contacts";
 const contactsAdapter = createEntityAdapter({
     selectId: (contact) => contact._id,
     sortComparer: (a,b) => b.createdAt.localeCompare(a.createddAt),
-})
+});
 
 const initialState = contactsAdapter.getInitialState({
     status: "idle", //idle, loading, succeeded, failed
@@ -73,6 +73,7 @@ export const contactsSlice = createSlice({
         })
         .addCase(getContacts.fulfilled, (state, action) => {
             state.status = "suceeded";
+            console.log("Contact Fetch", state, action.payload)
             contactsAdapter.upsertMany(state, action.payload);
         })
         .addCase(getContacts.rejected, (state, action) => {
@@ -123,7 +124,7 @@ export const {
     selectById: selectContactById,
 } = contactsAdapter.getSelectors(state => state.contact);
 
-export const selectContactStatus = (state) => state.status;
+export const selectContactStatus = (state) => state.contact.status;
 
 
 export default contactsSlice.reducer;

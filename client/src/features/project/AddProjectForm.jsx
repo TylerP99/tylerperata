@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {v4 as uuid} from "uuid";
 
+import { FaTimes } from "react-icons/fa";
+
 
 import { addProject, selectProjectStatus } from "./projectSlice";
 
@@ -14,6 +16,7 @@ function AddProjectForm() {
   const [formData, setFormData] = useState({
       name: "",
       description: "",
+      technologies: "",
       github: "",
       liveLink: "",
   });
@@ -22,30 +25,51 @@ function AddProjectForm() {
 
   const projectStatus = useSelector(selectProjectStatus);
 
-  const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
+  const handleChange = (e) => {
+      setFormData({...formData, [e.target.name]: e.target.value});
+  }
 
-  const handleTechChange = (e) => {
+  const handleTechnologyAdd = (e) => {
+      if(e.key !== "Enter" || e.target.value === "") return;
       e.preventDefault();
+
+      const id = uuid();
+
+      setTechnologies([...technologies, { id, name: e.target.value }]);
+      setFormData({...formData, technologies: ""});
   };
+
+  const handleTechnologyDelete = (e) => {
+      e.preventDefault();
+
+      const targetID = e.currentTarget.dataset.id;
+      setTechnologies(technologies.filter(x => x.id !== targetID));
+  }
 
   const handleSubmit = (e) => {
       e.preventDefault();
 
+      const tech = technologies.map(x => x.name);
+
+      const data = {
+          ...formData,
+          technologies: tech,
+      };
+
       console.log(projectStatus);
 
-      dispatch(addProject(formData));
+      dispatch(addProject(data));
 
       console.log(projectStatus);
   };
 
   return (
+    <>
+    <h1 className="text-4xl border-b-black border-b-2 mb-5 p-4">Add New Project</h1>
     <form 
     className="w-[95%] mx-auto"
     onSubmit={handleSubmit}
     >
-        <h2
-        className='text-2xl bold border-b-2 mx-auto text-center w-[50%] mb-2'
-        >Add New Project</h2>   
         
         <section
         className="flex flex-col mb-4"
@@ -83,6 +107,30 @@ function AddProjectForm() {
         </section>   
 
         {/*TODO TECHNOLOGIES*/}
+        <section>
+
+            <label className="text-xl" htmlFor="technologies">Add Technologies</label>
+
+            <section>
+                {technologies.map(technology => (
+                    <section key={technology.id} className="flex justify-between" >
+                        <p>{technology.name}</p>
+                        <button type="button" data-id={technology.id} onClick={handleTechnologyDelete} ><FaTimes/></button>
+                    </section>
+                ))}
+            </section>
+
+            <input
+            className="border p-1 text-lg"
+            id="technologies"
+            name="technologies"
+            type="text"
+            onKeyDown={handleTechnologyAdd}
+            onChange={handleChange}
+            value={formData.technologies}
+            />
+
+        </section>
 
         <section
         className="flex flex-col mb-4"
@@ -119,7 +167,10 @@ function AddProjectForm() {
             required
             />
         </section>  
+
+        <button type="submit">Add Project</button>
     </form>
+    </>
   )
 }
 

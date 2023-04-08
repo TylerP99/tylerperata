@@ -6,7 +6,7 @@ const POSTS_URL = "http://localhost:5000/api/posts";
 const postsAdapter = createEntityAdapter({
     selectId: (post) => post._id,
     sortComparer: (a,b) => b.updatedAt.localeCompare(a.updatedAt),
-})
+});
 
 const initialState = postsAdapter.getInitialState({
     status: "idle", //idle, loading, succeeded, failed
