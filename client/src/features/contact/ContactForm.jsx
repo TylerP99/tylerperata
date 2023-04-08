@@ -26,8 +26,6 @@ function ContactForm() {
   return (
     <div className='max-w-[1000px] w-[90%] mx-auto py-20'>
 
-      
-
       <form
       className='px-5 py-10 bg-black  border-2 border-white rounded-md'
       onSubmit={handleSubmit}
