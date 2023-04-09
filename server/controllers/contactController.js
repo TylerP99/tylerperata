@@ -22,15 +22,17 @@ const createContact = AsyncHandler(async (req, res) => {
     return res.status(201).json(contact);
 });
 
-const updateContact = AsyncHandler(async (req, res) => {
+const setContactReplied = AsyncHandler(async (req, res) => {
     const { id } = req.params;
-    const {name, email, message} = req.body;
+    const { replied } = req.body;
 
-    if(!name || !email || !message) return res.status(400).json({error: "All fields are required."});
+    console.log(replied);
 
-    const contact = await Contact.findByIdAndUpdate(id, {name, email, message}, {new: true});
+    const contact = await Contact.findByIdAndUpdate(id, {replied}, {new: true});
 
-    if(!contact) return res.status(400).json({error: "That contact was not found."});
+    console.log(contact);
+
+    if(!contact) return res.status(404).json({error: "That contact was not found."});
 
     return res.status(200).json(contact);
 });
@@ -50,6 +52,6 @@ const deleteContact = AsyncHandler(async (req, res) => {
 module.exports = {
     getAllContacts,
     createContact,
-    updateContact,
+    setContactReplied,
     deleteContact,
 }

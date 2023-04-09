@@ -12,6 +12,10 @@ const ContactSchema = mongoose.Schema({
     message: {
         type: String,
         require
+    },
+    replied: {
+        type: Boolean,
+        default: false,
     }
 }, {timestamps: true});
 

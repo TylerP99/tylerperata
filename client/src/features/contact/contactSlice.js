@@ -37,9 +37,9 @@ export const addContact = createAsyncThunk("contacts/addContact", async (contact
     }
 });
 
-export const updateContact = createAsyncThunk("contacts/updateContact", async ({title, content, id}) => {
+export const setContactReplied = createAsyncThunk("contacts/setContactReplied", async ({replied, id}) => {
     try{
-        const res = await axios.put(`${CONTACTS_URL}/${id}`, {title, content});
+        const res = await axios.put(`${CONTACTS_URL}/${id}`, {replied});
 
         return res.data;
     }
@@ -93,14 +93,15 @@ export const contactsSlice = createSlice({
             state.status = "failed";
         })
 
-        .addCase(updateContact.pending, (state) => {
+        .addCase(setContactReplied.pending, (state) => {
             state.status = "loading";
         })
-        .addCase(updateContact.fulfilled, (state, action) => {
+        .addCase(setContactReplied.fulfilled, (state, action) => {
             state.status = "suceeded";
+            console.log(action.payload);
             contactsAdapter.upsertOne(state, action.payload);
         })
-        .addCase(updateContact.rejected, (state, action) => {
+        .addCase(setContactReplied.rejected, (state, action) => {
             state.message = action.payload;
             state.status = "failed";
         })
