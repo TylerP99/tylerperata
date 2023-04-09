@@ -1,10 +1,10 @@
-import React from 'react'
+import PageHeader from '../components/PageHeader'
 
 function Resume() {
   return (
-    <>
-    <div>Resume</div>
-    </>
+    <div>
+      <PageHeader text="Resume" />
+    </div>
   )
 }
 

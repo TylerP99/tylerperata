@@ -18,6 +18,7 @@ import CheckAdmin from './components/CheckAdmin';
 import AddProjectForm from './features/project/AddProjectForm';
 import UpdateProjectForm from "./features/project/UpdateProjectForm";
 import ProjectList from './features/project/ProjectList';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
               
             </Route>
             <Route path="/admin" element={<CheckAdmin/>} >
+              <Route index element={<AdminDashboard/>} />
               <Route path="messages" element={<ContactPage/>} />
               <Route path="projects" element={<ProjectList/>} />
               <Route path="newProject" element={<AddProjectForm/>} />

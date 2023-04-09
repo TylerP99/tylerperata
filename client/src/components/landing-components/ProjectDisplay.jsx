@@ -1,4 +1,4 @@
-import ProjectCard from "../ProjectCard"
+import ProjectCard from "../../features/project/ProjectCard"
 import SectionHeader from "../SectionHeader"
 
 function ProjectDisplay() {

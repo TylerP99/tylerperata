@@ -1,10 +1,10 @@
 import { FaNodeJs, FaReact } from "react-icons/fa"
 import { SiTailwindcss } from "react-icons/si"
 
-import image from "../assets/hyrule_compendium.png"
+import image from "../../assets/hyrule_compendium.png"
 
-import Technology from "./project-card/Technology";
-import LinkButton from "./LinkButton";
+import Technology from "./Technology";
+import LinkButton from "../../components/LinkButton";
 
 function ProjectCard() {
 

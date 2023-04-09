@@ -1,10 +1,11 @@
 import React from 'react'
+import PageHeader from '../components/PageHeader'
 
 function Freelancing() {
   return (
-    <>
-    <div>Freelancing</div>
-    </>
+    <div>
+      <PageHeader text="Freelancing" />
+    </div>
   )
 }
 
