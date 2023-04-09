@@ -16,6 +16,8 @@ import LoadPosts from './features/blogPost/LoadPosts';
 import ContactPage from './features/contact/ContactPage';
 import CheckAdmin from './components/CheckAdmin';
 import AddProjectForm from './features/project/AddProjectForm';
+import UpdateProjectForm from "./features/project/UpdateProjectForm";
+import ProjectList from './features/project/ProjectList';
 
 function App() {
 
@@ -36,7 +38,9 @@ function App() {
             </Route>
             <Route path="/admin" element={<CheckAdmin/>} >
               <Route path="messages" element={<ContactPage/>} />
+              <Route path="projects" element={<ProjectList/>} />
               <Route path="newProject" element={<AddProjectForm/>} />
+              <Route path="editProject/:id" element={<UpdateProjectForm/>} />
               <Route path="newPost" element={<AddPostForm/>} />
               <Route path="editPost/:id" element={<EditPostPage/>} />
             </Route>
