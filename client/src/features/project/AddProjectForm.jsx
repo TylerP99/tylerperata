@@ -73,6 +73,8 @@ function AddProjectForm() {
       data.append("liveLink", formData.liveLink);
 
       dispatch(addProject(data));
+
+      navigate("/admin/projects");
   };
 
   return (

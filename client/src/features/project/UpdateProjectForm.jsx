@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {v4 as uuid} from "uuid";
@@ -25,9 +25,18 @@ function UpdateProjectForm() {
       liveLink: project.liveLink,
   });
 
+  const [image, setImage] = useState("");
+  const [imageURL, setImageURL] = useState("");
+
   const [technologies, setTechnologies] = useState(project.technologies.map( x => {
       return {name:x, id: uuid()}
   }));
+
+  useEffect(() => {
+    if(image === "") return;
+    console.log(image);
+    setImageURL(URL.createObjectURL(image));
+  }, [image]);
 
   const projectStatus = useSelector(selectProjectStatus);
 
@@ -52,16 +61,20 @@ function UpdateProjectForm() {
       setTechnologies(technologies.filter(x => x.id !== targetID));
   }
 
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+}
+
   const handleSubmit = (e) => {
       e.preventDefault();
-
+      const data = new FormData();
       const tech = technologies.map(x => x.name);
-
-      const data = {
-          ...formData,
-          technologies: tech,
-      };
-
+      data.append("name", formData.name);
+      data.append("description", formData.description);
+      data.append("image", image);
+      data.append("technologies", tech);
+      data.append("github", formData.github);
+      data.append("liveLink", formData.liveLink);
       dispatch(updateProject({project: data, id}));
 
       navigate("/admin/projects");
@@ -70,11 +83,12 @@ function UpdateProjectForm() {
   return (
     <>
     <h1 className="text-4xl border-b-black border-b-2 mb-5 p-4">Update Project</h1>
+
     <form 
     className="w-[95%] mx-auto"
     onSubmit={handleSubmit}
     >
-        
+        <img src={imageURL} />
         <section
         className="flex flex-col mb-4"
         >
@@ -108,7 +122,23 @@ function UpdateProjectForm() {
             value={formData.description}
             required
             />
-        </section>   
+        </section>  
+
+        <section
+        className="flex flex-col mb-4"
+        >
+            <label
+            className="text-xl"
+            htmlFor="description"
+            >Project Image</label>
+            <input 
+            id="image"
+            name="image"
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            />
+        </section> 
 
         {/*TODO TECHNOLOGIES*/}
         <section>

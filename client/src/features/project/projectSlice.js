@@ -46,7 +46,7 @@ export const addProject = createAsyncThunk("/project/addProject", async (project
 
 export const updateProject = createAsyncThunk("project/updateProject", async ({project, id}) => {
     try{
-        const res = await axios.put(`${PROJECT_URL}/${id}`, project);
+        const res = await axios.put(`${PROJECT_URL}/${id}`, project, {headers: {"Content-Type": "multipart/form-data"}});
 
         return res.data;
     }
@@ -101,8 +101,8 @@ export const projectSlice = createSlice({
 
         .addCase(updateProject.pending, (state) => { state.status = "loading" })
         .addCase(updateProject.fulfilled, (state, action) => {
-            projectAdapter.upsertOne(state, action.payload);
             state.status = "suceeded";
+            projectAdapter.upsertOne(state, action.payload);
         })
         .addCase(updateProject.rejected, (state, action) => {
             state.message = action.payload;

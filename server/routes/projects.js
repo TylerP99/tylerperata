@@ -11,7 +11,7 @@ router.route("/")
       .get(getAllProjects)
       .post(upload.single("image"), addProject);
 router.route("/:id")
-      .put(updateProject)
+      .put(upload.single("image"), updateProject)
       .delete(deleteProject);
 
 module.exports = router;
