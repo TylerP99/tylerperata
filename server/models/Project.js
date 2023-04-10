@@ -9,6 +9,12 @@ const ProjectSchema = mongoose.Schema({
         type: String,
         require,
     },
+    image: {
+        type: String,
+    },
+    cloudinaryID: {
+        type: String,
+    },
     technologies: {
         type: Array,
     },

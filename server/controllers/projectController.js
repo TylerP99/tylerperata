@@ -1,4 +1,5 @@
 const AsyncHandler = require("express-async-handler");
+const cloudinary = require("../config/cloudinary");
 
 const Project = require("../models/Project");
 
@@ -14,14 +15,19 @@ const getAllProjects = AsyncHandler(async (req, res) => {
 
 const addProject = AsyncHandler(async (req, res) => {
     const {name, description, technologies, github, liveLink} = req.body;
+    const image = req.file.path;
+
+    const cloudinaryResult = await cloudinary.uploader.upload(image);
 
     if(!name || !description || !liveLink) return res.status(400).json({error: "Project name, description, and live link are all required."});
 
     const project = await Project.create({
         name,
         description,
+        image: cloudinaryResult.secure_url,
+        cloudinaryID: cloudinaryResult.public_id,
         liveLink,
-        technologies: technologies || null,
+        technologies: technologies.split(",") || null,
         github: github || null,
     });
 

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../middleware/multer");
 
 const { getAllProjects,
         addProject,
@@ -8,7 +9,7 @@ const { getAllProjects,
 
 router.route("/")
       .get(getAllProjects)
-      .post(addProject);
+      .post(upload.single("image"), addProject);
 router.route("/:id")
       .put(updateProject)
       .delete(deleteProject);

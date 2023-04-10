@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {v4 as uuid} from "uuid";
@@ -21,7 +21,16 @@ function AddProjectForm() {
       liveLink: "",
   });
 
+  const [image, setImage] = useState("");
+  const [imageURL, setImageURL] = useState("");
+
   const [technologies, setTechnologies] = useState([]);
+
+  useEffect(() => {
+    if(image === "") return;
+    console.log(image);
+    setImageURL(URL.createObjectURL(image));
+  }, [image]);
 
   const projectStatus = useSelector(selectProjectStatus);
 
@@ -46,21 +55,24 @@ function AddProjectForm() {
       setTechnologies(technologies.filter(x => x.id !== targetID));
   }
 
+  const handleImageChange = (e) => {
+      setImage(e.target.files[0]);
+  }
+
   const handleSubmit = (e) => {
       e.preventDefault();
 
+      const data = new FormData();
       const tech = technologies.map(x => x.name);
 
-      const data = {
-          ...formData,
-          technologies: tech,
-      };
-
-      console.log(projectStatus);
+      data.append("name", formData.name);
+      data.append("description", formData.description);
+      data.append("image", image);
+      data.append("technologies", tech);
+      data.append("github", formData.github);
+      data.append("liveLink", formData.liveLink);
 
       dispatch(addProject(data));
-
-      console.log(projectStatus);
   };
 
   return (
@@ -70,7 +82,7 @@ function AddProjectForm() {
     className="w-[95%] mx-auto"
     onSubmit={handleSubmit}
     >
-        
+        <img src={imageURL} />
         <section
         className="flex flex-col mb-4"
         >
@@ -105,6 +117,22 @@ function AddProjectForm() {
             required
             />
         </section>   
+
+        <section
+        className="flex flex-col mb-4"
+        >
+            <label
+            className="text-xl"
+            htmlFor="description"
+            >Project Image</label>
+            <input 
+            id="image"
+            name="image"
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            />
+        </section>
 
         {/*TODO TECHNOLOGIES*/}
         <section>

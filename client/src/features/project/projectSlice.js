@@ -32,7 +32,7 @@ export const getAllProjects = createAsyncThunk("/project/getProjects", async () 
 export const addProject = createAsyncThunk("/project/addProject", async (project) => {
     try {
         console.log("Posting");
-        const res = await axios.post(PROJECT_URL, project);
+        const res = await axios.post(PROJECT_URL, project, {headers: {"Content-Type": "multipart/form-data"}});
 
         console.log(res.data);
 
