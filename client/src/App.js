@@ -19,6 +19,7 @@ import AddProjectForm from './features/project/AddProjectForm';
 import UpdateProjectForm from "./features/project/UpdateProjectForm";
 import ProjectList from './features/project/ProjectList';
 import AdminDashboard from './pages/AdminDashboard';
+import LoadProjects from "./features/project/LoadProjects";
 
 function App() {
 
@@ -29,7 +30,9 @@ function App() {
         <Route path="/" element={<Layout/>}>
           <Route index element={<Landing/>} />
           <Route path="" element={<GenericLayout/>} >
-            <Route path='/portfolio' element={<Portfolio/>} />
+            <Route path='/portfolio' element={<LoadProjects/>}>
+              <Route index element={<Portfolio/>} />
+            </Route>
             <Route path='/resume' element={<Resume/>} />
             <Route path='/freelancing' element={<Freelancing/>} />
             <Route path="/blog" element={<LoadPosts/>} >
