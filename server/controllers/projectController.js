@@ -47,7 +47,9 @@ const updateProject = AsyncHandler(async (req, res) => {
 
     if(req.file) {
         const image = req.file.path;
-        await cloudinary.uploader.destroy(project.cloudinaryID);
+        if(project.image) {
+            await cloudinary.uploader.destroy(project.cloudinaryID);
+        }
         cloudinaryResult = await cloudinary.uploader.upload(image);
     }
 
