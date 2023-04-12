@@ -4,6 +4,16 @@ import { selectAllProjects } from "../features/project/projectSlice";
 
 import PageHeader from '../components/PageHeader'
 
+function ProjectCard({project}) {
+  return (
+    <article
+    className="border mb-5"
+    >
+      <h3>{project.name}</h3>
+    </article>
+  )
+}
+
 function Portfolio() {
 
   const projects = useSelector(selectAllProjects);
@@ -16,7 +26,7 @@ function Portfolio() {
       <PageHeader text="Portfolio" />
 
       <section>
-        {projects.map(x => <p>{x.name}</p>)}
+        {projects.map(x => <ProjectCard key={x._id} project={x} />)}
       </section>
     </div>
     </>
