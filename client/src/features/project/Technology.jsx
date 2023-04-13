@@ -1,5 +1,5 @@
-import { FaReact, FaHtml5, FaCss3, FaJs, FaNode,  } from "react-icons/fa";
-import {SiTailwindcss, SiExpress} from "react-icons/si";
+import { FaReact, FaHtml5, FaCss3, FaJs, FaNode  } from "react-icons/fa";
+import {SiTailwindcss, SiExpress, SiMongodb} from "react-icons/si";
 import { TbApi } from "react-icons/tb";
 
 function Technology({text}) {
@@ -23,6 +23,8 @@ function Technology({text}) {
         return SiExpress;
       case "apis":
         return TbApi;
+      case "mongodb":
+        return SiMongodb;
       default:
         return null;
     }
