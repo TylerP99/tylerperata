@@ -7,7 +7,13 @@ function AdminDashboard() {
   return (
     <div>
         <PageHeader text="Dashboard" />
-        <Link to="./messages">View Messages</Link>
+        <section className="flex flex-col" >
+          <Link to="./messages">View Messages</Link>
+          <Link to="./newProject">Add New Project</Link>
+          <Link to="./projects">Edit/Delete Projects</Link>
+          <Link to="./newPost">Add New Post</Link>
+          <Link to="./posts">Edit/Delete Posts</Link>
+        </section>
     </div>
   )
 }
