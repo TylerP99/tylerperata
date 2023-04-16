@@ -19,7 +19,7 @@ function Navigation() {
 
     const linkLayout = "";
     const linkStyles = "hover:text-blue hover-underline-animation";
-    const linkActive = "text-green";
+    const linkActive = "hover-underline";
     const linkInactive = "text-white"
     const linkStyle = `${linkStyles} ${linkLayout}`
 
