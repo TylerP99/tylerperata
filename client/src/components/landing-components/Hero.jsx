@@ -35,7 +35,7 @@ function Hero() {
         >I am a</h3>
 
         <h3
-        className='flex flex-row-reverse items-center justify-between text-white bg-inherit bg-red-500 rounded-full text-2xl font-bold py-8 px-5 gap-5 mb-3 md:w-[40vw] h-[5vw]'
+        className='flex flex-row-reverse items-center justify-between text-white bg-inherit bg-red-500 rounded-full text-2xl font-bold py-8 px-5 gap-5 mb-3'
         >
           <BsStack/>
           Full Stack
@@ -53,11 +53,6 @@ function Hero() {
       <section className="flex flex-col items-center">
 
         <p className="text-xl md:text-xl bold mb-5">Let's make something great together</p>
-
-        <section className="w-[50%] flex flex-col justify-around items-center mb-5 md:flex-row md:gap-5">
-          <Link className="block mb-3 text-center border border-white w-full px-4 py-3 text-2xl hover:bg-white/20 hover:shadow-sm hover:shadow-white" to="/freelancing">Freelancing</Link>
-          <Link className="block mb-3 text-center border border-white w-full px-4 py-3 text-2xl hover:bg-white/20 hover:shadow-sm hover:shadow-white" to="/resume">Resume</Link>
-        </section>
 
         <a href="#work" className={"flex flex-col items-center hover:cursor-pointer"} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
           <p

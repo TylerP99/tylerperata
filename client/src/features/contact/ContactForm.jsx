@@ -75,7 +75,7 @@ function ContactForm() {
         >
           <label htmlFor="message">Message</label>
           <textarea
-          className='text-lg p-2 text-black mb-5'
+          className='text-lg p-2 text-black mb-5 min-h-[300px]'
           id='message'
           name='message'
           required

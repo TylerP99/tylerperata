@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Portfolio from './pages/Portfolio';
 import Resume from './pages/Resume';
-import Freelancing from './pages/Freelancing';
 import Blog from './pages/Blog';
 
 import BlogPage from './features/blogPost/BlogPage';
@@ -34,7 +33,6 @@ function App() {
               <Route index element={<Portfolio/>} />
             </Route>
             <Route path='/resume' element={<Resume/>} />
-            <Route path='/freelancing' element={<Freelancing/>} />
             <Route path="/blog" element={<LoadPosts/>} >
               <Route index element={<Blog/>} />
               <Route path=":id" element={<BlogPage/>} />
