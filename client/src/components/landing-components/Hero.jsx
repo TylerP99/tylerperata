@@ -13,39 +13,39 @@ function Hero() {
   return (
     <section className="flex flex-col w-[95%] mx-auto h-[100vh] pt-[4rem]">
 
-      <section className='mb-5 flex flex-col items-center'>
-        <h3>Hello, my name is</h3>
+      <section className='flex flex-col items-center mb-10'>
+        <h3
+        className="text-2xl"
+        >Hello, my name is</h3>
         <h1
-        className='flex justify-between items-center w-full text-white bg-inherit border-8 border-green rounded-full text-4xl transition-opacity animate-growWidth md:w-[80vw] md:h-[10vw] p-10 mb-1'
-
+        className='flex justify-center items-center w-full bg-inherit text-5xl px-10 pb-5 mb-1 text-center text-green font-bold'
         >
-          <FaUser/>
-          <span>Tyler Perata</span>
-          <div></div>
+          Tyler Perata
         </h1>
-        <SocialDisplay className='text-6xl'/>
+        <SocialDisplay className='text-4xl'/>
         
         
       </section>      
 
 
-      <section className='flex flex-col items-center mb-10'>
+      <section className='flex flex-col items-center mb-20'>
         
-        <h3>I am a</h3>
+        <h3
+        className="text-lg mb-2"
+        >I am a</h3>
 
         <h3
-        className='flex flex-row-reverse items-center justify-between text-white bg-inherit bg-red-500 rounded-full text-2xl font-bold px-10 py-10 gap-5 animate-slideLeft mb-3 md:w-[40vw] h-[5vw]'
+        className='flex flex-row-reverse items-center justify-between text-white bg-inherit bg-red-500 rounded-full text-2xl font-bold py-8 px-5 gap-5 mb-3 md:w-[40vw] h-[5vw]'
         >
           <BsStack/>
           Full Stack
           <div></div>
         </h3>
         <h2
-          className='flex flex-row-reverse items-center justify-between w-full text-white bg-inherit border-b-8 border-red-500 rounded-full text-3xl p-10 animate-slideLeft md:w-[80vw] md:h-[10vw]'
+          className='flex items-center justify-center gap-5 w-full text-white bg-inherit text-3xl animate-slideLeft'
         >
-          <FaLaptopCode/>
           <span>Web Developer</span>
-          <div></div>
+          <FaLaptopCode/>
         </h2>
         
       </section>  
@@ -54,9 +54,9 @@ function Hero() {
 
         <p className="text-xl md:text-xl bold mb-5">Let's make something great together</p>
 
-        <section className="w-[90%] flex flex-col justify-around items-center mb-5 md:flex-row md:w-[40%]">
-          <Link className="block mb-3 text-center border border-white px-10 py-5 text-2xl hover:bg-white/20 hover:shadow-sm hover:shadow-white" to="/freelancing">Freelancing</Link>
-          <Link className="block mb-3 text-center border border-white px-10 py-5 text-2xl hover:bg-white/20 hover:shadow-sm hover:shadow-white" to="/resume">My Resume</Link>
+        <section className="w-[50%] flex flex-col justify-around items-center mb-5 md:flex-row md:gap-5">
+          <Link className="block mb-3 text-center border border-white w-full px-4 py-3 text-2xl hover:bg-white/20 hover:shadow-sm hover:shadow-white" to="/freelancing">Freelancing</Link>
+          <Link className="block mb-3 text-center border border-white w-full px-4 py-3 text-2xl hover:bg-white/20 hover:shadow-sm hover:shadow-white" to="/resume">Resume</Link>
         </section>
 
         <a href="#work" className={"flex flex-col items-center hover:cursor-pointer"} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
