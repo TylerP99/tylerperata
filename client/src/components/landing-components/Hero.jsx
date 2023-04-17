@@ -52,6 +52,8 @@ function Hero() {
 
       <section className="flex flex-col items-center">
 
+        <p>I like building cool and useful sites and solving interesting problems!</p>
+
         <p className="text-xl md:text-xl bold mb-5">Let's make something great together</p>
 
         <a href="#work" className={"flex flex-col items-center hover:cursor-pointer"} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
