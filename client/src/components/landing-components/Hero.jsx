@@ -13,9 +13,9 @@ function Hero() {
   return (
     <section className="flex flex-col w-[95%] mx-auto h-[100vh] pt-[4rem]">
 
-      <section className="justify-between items-center md:flex md:p-32" >
+      <section className="justify-between items-center md:flex md:p-32 md:pb-20" >
 
-        <section className='flex flex-col items-center mb-10 md:items-start '>
+        <section className='flex flex-col items-center mb-20 md:items-start '>
           <h3
           className="text-2xl md:text-4xl"
           >Hello, my name is</h3>
@@ -56,7 +56,7 @@ function Hero() {
 
       <section className="flex flex-col items-center">
 
-        <p className="mb-5 text-lg text-center" >I enjoy building cool and useful sites and solving interesting problems!</p>
+        <p className="mb-20 text-xl text-center" >I enjoy building cool and useful sites and solving interesting problems!</p>
 
         <p className="text-xl md:text-xl bold mb-5">Let's make something great together</p>
 
