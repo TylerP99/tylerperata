@@ -19,6 +19,8 @@ import UpdateProjectForm from "./features/project/UpdateProjectForm";
 import ProjectList from './features/project/ProjectList';
 import AdminDashboard from './pages/AdminDashboard';
 import LoadProjects from "./features/project/LoadProjects";
+import AdminLogin from './features/admin/AdminLogin';
+import AdminRegister from "./features/admin/AdminRegister";
 
 function App() {
 
@@ -39,6 +41,8 @@ function App() {
               
             </Route>
             <Route path="/admin" element={<CheckAdmin/>} >
+              <Route path="register" element={<AdminRegister/>} />
+              <Route path="login" element={<AdminLogin/>} />
               <Route index element={<AdminDashboard/>} />
               <Route path="messages" element={<ContactPage/>} />
               <Route path="projects" element={<ProjectList/>} />
