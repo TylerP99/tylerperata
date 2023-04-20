@@ -20,7 +20,7 @@ export const registerAdmin = createAsyncThunk("/admin/register", async (formData
     }
 });
 
-export const loginAdmin = createAsyncThunk("/admin/login", async ({email, password}) => {
+export const loginAdmin = createAsyncThunk("/admin/login", async (formData) => {
     try{
         const res = await axios.post(`${ADMIN_URL}/login`, formData);
         console.log(res);
