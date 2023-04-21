@@ -13,33 +13,69 @@ const registerUser = AsyncHandler( async (req, res) => {
 
     if( adminSecret !== process.env.ADMIN_SECRET) return res.status(400).json({error: "Admin secret incorrect"});
 
-    const existing = await User.find({email});
+    const existing = await User.findOne({email});
+
+    console.log(existing);
 
     if(existing) return res.status(400).json({error: "Email in use"});
 
-    const admin = await User.create({username, email, password, roles: ["admin"]});
+    let admin = await User.create({username, email, password, roles: ["admin"]});
 
-    return res.status(201).json({user: admin});
+    admin = {username: admin.username, email: admin.email, roles: admin.roles, _id: admin._id};
+
+    const refreshToken = genRefreshToken(admin);
+    const accessToken = genAccessToken(admin);
+
+    res.cookie("refresh", refreshToken, {
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+        maxAge: 30000 //1*24*60*60*1000,
+    });
+
+    return res.status(201).json({user: admin, access: accessToken});
 });
 
 const authenticateUser = AsyncHandler( async (req, res) => {
+    const { email, password } = req.body;
 
+    if(!email || !password) return res.status(400).json({error: "All fields required"});
+
+    const user = await User.findOne({email});
+
+    if(!user) return res.status(404).json({error: "User not found"});
+
+    if(!user.comparePassword(password)) return res.status(400).json({error: "Password incorrect"});
+
+    const admin = {username: user.username, email: user.email, roles: user.roles, _id: user._id};
+
+    const refreshToken = genRefreshToken(admin);
+    const accessToken = genAccessToken(admin);
+
+    res.cookie("refresh", refreshToken, {
+        httpOnly: true,
+        sameSite: "none",
+        secure: true,
+        maxAge: 30000 //1*24*60*60*1000,
+    });
+
+    return res.status(200).json({user: admin, access: accessToken});
 });
 
 const refreshUser = AsyncHandler( async (req, res) => {
-
+    
 });
 
 const logoutUser = AsyncHandler( async (req, res) => {
 
 });
 
-const genAccessToken = () => {
-
+const genAccessToken = (data) => {
+    return jwt.sign(data, process.env.JWT_ACCESS_SECRET, {expiresIn: "10s"});
 };
 
-const genRefreshToken = () => {
-
+const genRefreshToken = (data) => {
+    return jwt.sign(data, process.env.JWT_REFRESH_SECRET, {expiresIn: "30s"});
 };
 
 module.exports = {
