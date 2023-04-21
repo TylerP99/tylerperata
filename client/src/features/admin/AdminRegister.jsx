@@ -1,6 +1,11 @@
-import {useState} from 'react'
+import {useState} from 'react';
+
+import { useDispatch } from "react-redux";
+import { registerAdmin } from "./adminSlice.js";
 
 function AdminRegister() {
+
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -15,7 +20,7 @@ function AdminRegister() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Submit");
+    dispatch(registerAdmin(formData));
   }
   
 
