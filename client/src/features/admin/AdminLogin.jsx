@@ -1,6 +1,11 @@
-import {useState} from 'react'
+import {useState} from 'react';
+
+import { useDispatch } from "react-redux";
+import { loginAdmin } from "./adminSlice";
 
 function AdminLogin() {
+
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -12,7 +17,7 @@ function AdminLogin() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("Submit");
+    dispatch(loginAdmin(formData));
   }
   
 

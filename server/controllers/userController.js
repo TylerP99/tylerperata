@@ -45,7 +45,7 @@ const authenticateUser = AsyncHandler( async (req, res) => {
 
     if(!user) return res.status(404).json({error: "User not found"});
 
-    if(!user.comparePassword(password)) return res.status(400).json({error: "Password incorrect"});
+    if(!(await user.comparePassword(password))) return res.status(400).json({error: "Password incorrect"});
 
     const admin = {username: user.username, email: user.email, roles: user.roles, _id: user._id};
 
@@ -63,7 +63,7 @@ const authenticateUser = AsyncHandler( async (req, res) => {
 });
 
 const refreshUser = AsyncHandler( async (req, res) => {
-    
+
 });
 
 const logoutUser = AsyncHandler( async (req, res) => {
