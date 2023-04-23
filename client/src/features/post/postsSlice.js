@@ -1,4 +1,4 @@
-import { createSlice, createEntityAdapter, createSelector } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSelector } from "@reduxjs/toolkit";
 
 import { apiSlice } from "../api/apiSlice";
 
@@ -9,7 +9,7 @@ const postsAdapter = createEntityAdapter({
 
 const initialState = postsAdapter.getInitialState();
 
-export const extendedApiSlice = apiSlice.injectEndpoints({
+export const postsApiSlice = apiSlice.injectEndpoints({
 
     endpoints: builder => ({
         getPosts: builder.query({
@@ -54,7 +54,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 
 });
 
-export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select();
+export const selectPostsResult = postsApiSlice.endpoints.getPosts.select();
 
 const selectPostsData = createSelector(
     selectPostsResult,
@@ -66,7 +66,7 @@ export const {
     useAddNewPostMutation,
     useUpdatePostMutation,
     useDeletePostMutation,
-} = extendedApiSlice;
+} = postsApiSlice;
 
 export const {
     selectAll: selectAllPosts,

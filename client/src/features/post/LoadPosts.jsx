@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-import { extendedApiSlice } from "./postsSlice";
+import { postsApiSlice } from "./postsSlice";
 
 function LoadPosts() {
   const dispatch = useDispatch();
-  dispatch(extendedApiSlice.endpoints.getPosts.initiate());
+  dispatch(postsApiSlice.endpoints.getPosts.initiate());
   
   return (
       <Outlet/>

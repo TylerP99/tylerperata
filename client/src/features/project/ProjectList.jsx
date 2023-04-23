@@ -1,22 +1,26 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-import { selectAllProjects, deleteProject } from "./projectSlice";
+import { selectAllProjects, useDeleteProjectMutation } from "./projectSlice";
 
 
 function ProjectList() {
 
-  const dispatch = useDispatch();
+  const [deleteProject] = useDeleteProjectMutation();
 
   const projects = useSelector(selectAllProjects);
 
-  const handleDelete = (e) => {
+  const handleDelete = async (e) => {
     e.preventDefault();
-
     const id = e.currentTarget.dataset.id;
 
-    dispatch(deleteProject(id));
+    try{
+      await deleteProject(id);
+    }
+    catch(e) {
+      console.error(e);
+    }
   }
 
   const ProjectCard = ({project}) => (
@@ -39,6 +43,7 @@ function ProjectList() {
   return (
     <div>
       <h1>Projects</h1>
+      <Link to={"/admin/newProject"} >Add New Project</Link>
       <section>
         {projects.map(x => <ProjectCard project={x} />)}
       </section>

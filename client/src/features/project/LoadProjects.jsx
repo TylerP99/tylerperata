@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 import  { useDispatch } from "react-redux";
 
-import { getAllProjects } from "./projectSlice";
+import { projectApiSlice } from "./projectSlice";
 
 function LoadProjects() {
   
   const dispatch = useDispatch();
 
-  dispatch(getAllProjects());
+  dispatch(projectApiSlice.endpoints.getProjects.initiate());
 
   return (
     <Outlet/>

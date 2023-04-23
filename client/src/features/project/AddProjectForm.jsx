@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {v4 as uuid} from "uuid";
 
 import { FaTimes } from "react-icons/fa";
 
 
-import { addProject, selectProjectStatus } from "./projectSlice";
+import { useAddNewProjectMutation } from "./projectSlice";
 
 function AddProjectForm() {
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [addNewProject, {isLoading}] = useAddNewProjectMutation();
 
   const [formData, setFormData] = useState({
       name: "",
@@ -31,8 +32,6 @@ function AddProjectForm() {
     console.log(image);
     setImageURL(URL.createObjectURL(image));
   }, [image]);
-
-  const projectStatus = useSelector(selectProjectStatus);
 
   const handleChange = (e) => {
       setFormData({...formData, [e.target.name]: e.target.value});
@@ -59,7 +58,7 @@ function AddProjectForm() {
       setImage(e.target.files[0]);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
       e.preventDefault();
 
       const data = new FormData();
@@ -72,9 +71,14 @@ function AddProjectForm() {
       data.append("github", formData.github);
       data.append("liveLink", formData.liveLink);
 
-      dispatch(addProject(data));
+      try{
+        await addNewProject(data);
 
-      navigate("/admin/projects");
+        navigate("/admin/projects");
+      }
+      catch(e) {
+          console.error(e);
+      }
   };
 
   return (
@@ -93,7 +97,7 @@ function AddProjectForm() {
             htmlFor="name"
             >Project Name</label>
             <input
-            className="border p-1 text-lg"
+            className="border p-1 text-lg bg-slate-800"
             id="name"
             name="name"
             type="text"
@@ -110,7 +114,7 @@ function AddProjectForm() {
             htmlFor="description"
             >Project Description</label>
             <textarea
-            className="border p-1 text-lg"
+            className="border p-1 text-lg bg-slate-800"
             id="description"
             name="description"
             type="text"
@@ -151,7 +155,7 @@ function AddProjectForm() {
             </section>
 
             <input
-            className="border p-1 text-lg"
+            className="border p-1 text-lg bg-slate-800"
             id="technologies"
             name="technologies"
             type="text"
@@ -170,7 +174,7 @@ function AddProjectForm() {
             htmlFor="github"
             >Project Repo</label>
             <input
-            className="border p-1 text-lg"
+            className="border p-1 text-lg bg-slate-800"
             id="github"
             name="github"
             type="text"
@@ -188,7 +192,7 @@ function AddProjectForm() {
             htmlFor="liveLink"
             >Project Live Link</label>
             <input
-            className="border p-1 text-lg"
+            className="border p-1 text-lg bg-slate-800"
             id="liveLink"
             name="liveLink"
             type="text"

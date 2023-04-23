@@ -1,131 +1,74 @@
-import { createSlice, createAsyncThunk, createSelector, createEntityAdapter } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 
-const PROJECT_URL = "http://localhost:5000/api/projects";
+import { apiSlice } from "../api/apiSlice";
 
 const projectAdapter = createEntityAdapter({
     selectId: (project) => project._id,
     sortComparer: (a,b) => b.createdAt.localeCompare(a.createdAt),
 });
 
-const initialState = projectAdapter.getInitialState({
-    status: "idle", // idle, loading, succeeded, failed
-    message: "",
+const initialState = projectAdapter.getInitialState();
+
+export const projectApiSlice = apiSlice.injectEndpoints({
+
+    endpoints: (builder) => ({
+        getProjects: builder.query({
+            query: () => "/projects",
+            transformResponse: responseData => projectAdapter.setAll(initialState, responseData),
+            providesTags: (res, error, arg) => [
+                { type: "Project", id: "LIST" },
+                ...res.ids.map(id => ({type: "Project", id}))
+            ],
+        }),
+        addNewProject: builder.mutation({
+            query: (initialProject) => ({
+                url: "/projects",
+                method: "POST",
+                body: initialProject,
+            }),
+            invalidatesTags: [
+                {type: "Project", id: "LIST"}
+            ]
+        }),
+        updateProject: builder.mutation({
+            query: (updatedProject) => ({
+                url: `/projects/${updatedProject._id}`,
+                method: "PUT",
+                body: updatedProject.data,
+            }),
+            invalidatesTags: (res, error, arg) => [
+                { type: "Project", id: arg._id }
+            ]
+        }),
+        deleteProject: builder.mutation({
+            query: (projectID) => ({
+                url: `projects/${projectID}`,
+                method: "DELETE",
+                body: {},
+            }),
+            invalidatesTags: ( res, error, arg ) => [
+                {type: "Project", id: arg}
+            ]
+        }),
+    }),
+
 });
 
+export const selectProjectsResult = projectApiSlice.endpoints.getProjects.select();
 
+const selectProjectsData = createSelector(
+    selectProjectsResult,
+    projectsResult => projectsResult.data,
+);
 
-export const getAllProjects = createAsyncThunk("/project/getProjects", async () => {
-    try {
-        const res = await axios.get(PROJECT_URL);
-
-        console.log(res.data);
-
-        return res.data;
-    }
-    catch(e) {
-        console.error(e);
-        return e;
-    }
-});
-
-export const addProject = createAsyncThunk("/project/addProject", async (project) => {
-    try {
-        console.log("Posting");
-        const res = await axios.post(PROJECT_URL, project, {headers: {"Content-Type": "multipart/form-data"}});
-
-        console.log(res.data);
-
-        return res.data;
-    }
-    catch(e) {
-        console.error(e);
-        return e;
-    }
-});
-
-export const updateProject = createAsyncThunk("project/updateProject", async ({project, id}) => {
-    try{
-        const res = await axios.put(`${PROJECT_URL}/${id}`, project, {headers: {"Content-Type": "multipart/form-data"}});
-
-        return res.data;
-    }
-    catch(e) {
-        console.error(e);
-        return e;
-    }
-});
-
-export const deleteProject = createAsyncThunk("project/deleteProject", async (id) => {
-    try {
-        const res = await axios.delete(`${PROJECT_URL}/${id}`);
-
-        return res.data;
-    }
-    catch(e) {
-        console.error(e);
-        return e;
-    }
-});
-
-export const projectSlice = createSlice({
-    name: "project",
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-        .addCase(getAllProjects.pending, (state) => {
-            state.status = "loading" 
-        })
-        .addCase(getAllProjects.fulfilled, (state, action) => {
-            state.status = "suceeded";
-            console.log("Project Fetch", state, action.payload);
-            projectAdapter.upsertMany(state, action.payload);
-        })
-        .addCase(getAllProjects.rejected, (state, action) => {
-            state.message = action.payload;
-            state.status = "failed";
-        })
-
-        .addCase(addProject.pending, (state) => { state.status = "loading" })
-        .addCase(addProject.fulfilled, (state, action) => {
-            state.status = "suceeded";
-            projectAdapter.upsertOne(state, action.payload);
-        })
-        .addCase(addProject.rejected, (state, action) => {
-            console.log("Failed");
-            console.log(action);
-            state.message = action.payload;
-            state.status = "failed";
-        })
-
-        .addCase(updateProject.pending, (state) => { state.status = "loading" })
-        .addCase(updateProject.fulfilled, (state, action) => {
-            state.status = "suceeded";
-            projectAdapter.upsertOne(state, action.payload);
-        })
-        .addCase(updateProject.rejected, (state, action) => {
-            state.message = action.payload;
-            state.status = "failed";
-        })
-
-        .addCase(deleteProject.pending, (state) => { state.status = "loading" })
-        .addCase(deleteProject.fulfilled, (state, action) => {
-            projectAdapter.removeOne(state, action.payload._id);
-            state.status = "suceeded";
-        })
-        .addCase(deleteProject.rejected, (state, action) => {
-            state.message = action.payload;
-            state.status = "failed";
-        })
-    },
-});
+export const {
+    useGetProjectsQuery,
+    useAddNewProjectMutation,
+    useUpdateProjectMutation,
+    useDeleteProjectMutation,
+} = projectApiSlice;
 
 export const {
     selectAll: selectAllProjects,
     selectById: selectProjectByID,
-} = projectAdapter.getSelectors(state => state.project);
-
-export const selectProjectStatus = (state) => state.project.status;
-
-export default projectSlice.reducer;
+} = projectAdapter.getSelectors(state => selectProjectsData(state) ?? initialState);
