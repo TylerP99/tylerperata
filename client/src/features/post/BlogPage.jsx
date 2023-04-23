@@ -1,9 +1,8 @@
 import { Link, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { selectPostById } from "./blogPostSlice";
+import { useSelector } from "react-redux";
+import { selectPostById } from "./postsSlice";
 
 function BlogPage() {
-    const dispatch = useDispatch();
 
     const {id} = useParams();
     const post = useSelector((state) => selectPostById(state, id));
@@ -31,7 +30,6 @@ function BlogPage() {
                 <h1
                 className="text-4xl border-b-black border-b-2 mb-5 p-4"
                 >{post.title}</h1>
-                <Link to={`/blog/edit/${post._id}`} >Edit Post</Link>
                 {timeStamp}
             </header>
             <div className="text-xl w-[95%] mx-auto" >

@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-import { selectPostById, updatePost } from "./blogPostSlice";
+import { selectPostById, useUpdatePostMutation, useDeletePostMutation } from "./postsSlice";
 
 function EditPostPage() {
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
+  const [updatePost, {isLoading}] = useUpdatePostMutation();
+  const [deletePost] = useDeletePostMutation();
 
   const {id} = useParams();
   const post = useSelector( (state) => selectPostById(state, id) );
@@ -32,12 +34,29 @@ function EditPostPage() {
 
   const handleFieldChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
       e.preventDefault();
 
-      dispatch(updatePost({title:formData.title, content: formData.content, id}));
+      try{
+        await updatePost({title: formData.title, content: formData.content, _id: id}).unwrap();
 
-      navigate(`/blog/${id}`)
+        navigate(`/admin/posts`);
+      }     
+      catch(e) {
+          console.error(e);
+      }
+  }
+
+  const handleDeletePost = async (e) => {
+      e.preventDefault();
+
+      try{
+          await deletePost(id).unwrap();
+          navigate("/admin/posts");
+      }
+      catch(e) {
+          console.error(e);
+      }
   }
 
   return (
@@ -45,6 +64,8 @@ function EditPostPage() {
         <h1
         className="text-4xl border-b-black border-b-2 mb-5 p-4"
         >Edit Post</h1>
+
+        <button type="button" onClick={handleDeletePost}>Delete Post</button>
 
         <form
         onSubmit={handleSubmit}
@@ -58,7 +79,7 @@ function EditPostPage() {
                     htmlFor="title"
                     >Title</label>
                     <input
-                    className="border p-1 text-lg"
+                    className="border p-1 text-lg bg-slate-800"
                     id="title"
                     name="title"
                     type="text"
@@ -75,7 +96,7 @@ function EditPostPage() {
                     htmlFor="content"
                     >Content</label>
                     <textarea
-                    className="border resize-none p-1 text-lg h-[400px]"
+                    className="border resize-none p-1 text-lg h-[400px] bg-slate-800"
                     id="content"
                     name="content"
                     onChange={handleFieldChange}

@@ -1,28 +1,21 @@
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import { FaPlus, FaTrash } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 
-import {deletePost, selectAllPosts, selectPostStatus} from "./blogPostSlice";
-
+import { useGetPostsQuery, selectAllPosts } from "./postsSlice";
 
 
 function PostList() {
 
-  const dispatch = useDispatch();
+  const {
+    isLoading,
+    isSuccess,
+    isError,
+    error
+  } = useGetPostsQuery()
 
   const posts = useSelector(selectAllPosts);
-  const postStatus = useSelector(selectPostStatus);
-
-  const userRole = "editor"; // viewer || editor
-
-  const handleDeletePost = (e) => {
-    e.preventDefault();    
-    const id = e.currentTarget.dataset.postId;
-    console.log(id);
-
-    dispatch(deletePost(id));
-  }
 
   const renderedPosts = !posts.length ? 
   <p
@@ -42,16 +35,6 @@ function PostList() {
               className="bold text-xl"
               >{x.title}</h3>
             </Link>
-            {
-            userRole === "editor" &&
-            <button 
-            type="button"
-            data-post-id={x._id}
-            onClick={handleDeletePost}
-            >
-              <FaTrash/>
-            </button>
-            }
           </div>
           <p
           className="text-sm italics"
@@ -66,15 +49,6 @@ function PostList() {
       <h1
       className="text-4xl border-b-black border-b-2 mb-5 p-4"
       >Posts</h1>
-      {
-      userRole === "editor" &&
-      <Link 
-      className="flex items-center border-2 gap-2 rounded-md w-[95%] px-5 py-3 mx-auto mb-3"
-      to="./newPost"
-      >
-        <FaPlus/>Create New Post
-      </Link>
-      }
       {renderedPosts}
     </>
   );

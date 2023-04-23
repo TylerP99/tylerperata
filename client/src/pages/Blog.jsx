@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PostList from '../features/blogPost/PostList'
+import PostList from '../features/post/PostList'
 
 function Blog() {
   return (

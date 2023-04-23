@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { addPost } from "./blogPostSlice";
+import { useAddNewPostMutation } from "./postsSlice";
 
 function AddPostForm() {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const [addNewPost, {isLoading}] = useAddNewPostMutation();
 
     const [formData, setFormData] = useState({title: "", content: ""});
 
@@ -15,14 +15,17 @@ function AddPostForm() {
         setFormData({...formData, [e.target.name]:e.target.value});
     }
 
-    const handleSubmit = (e) => {
-        console.log("Form submit");
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(addPost(formData));
-        console.log("End form submit");
-        // TODO: If fail, display err
+        try {
+            const res = await addNewPost(formData);
+            console.log(res);
 
-        navigate("/blog");
+            navigate("/admin/posts");
+        }
+        catch(e) {
+            console.error(e);
+        }
     }
 
     return (
@@ -42,7 +45,7 @@ function AddPostForm() {
                     htmlFor="title"
                     >Title</label>
                     <input
-                    className="border p-1 text-lg"
+                    className="border p-1 text-lg bg-slate-800"
                     id="title"
                     name="title"
                     type="text"
@@ -59,7 +62,7 @@ function AddPostForm() {
                     htmlFor="content"
                     >Content</label>
                     <textarea
-                    className="border resize-none p-1 text-lg h-[400px]"
+                    className="border resize-none p-1 text-lg h-[400px] bg-slate-800"
                     id="content"
                     name="content"
                     onChange={handleFieldChange}
