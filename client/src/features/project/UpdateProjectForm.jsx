@@ -76,7 +76,7 @@ function UpdateProjectForm() {
       data.append("liveLink", formData.liveLink);
 
       try{
-        await updateProject({data, _id: id});
+        await updateProject({data, _id: id}).unwrap();
         navigate("/admin/projects");
       }
       catch(e) {

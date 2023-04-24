@@ -1,25 +1,23 @@
 import { useState } from 'react';
-import { useDispatch } from "react-redux";
-import { useSelector } from 'react-redux';
 
-import { addContact, selectContactStatus } from "./contactSlice";
+import { useAddNewMessageMutation } from "./messageSlice";
 
 function ContactForm() {
 
-  const dispatch = useDispatch();
+  const [ addNewMessage, {isLoading} ] = useAddNewMessageMutation();
 
-  let status = useSelector(selectContactStatus);
-
-  const [formData, setFormData] = useState({name: "", email: "", message: ""});
+  const [formData, setFormData] = useState({name: "", email: "", content: ""});
 
   const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
-    dispatch(addContact(formData));
-    
-    if(status === "suceeded") {
-      setFormData({name: "", email: "", message: ""});
+    try{
+      await addNewMessage(formData);
+    }
+    catch(e) {
+      console.error(e);
     }
   }
 
@@ -34,9 +32,6 @@ function ContactForm() {
         <h2
         className='text-2xl bold border-b-2 mx-auto text-center w-[50%] mb-2'
         >Contact Me</h2>
-
-        { status === "suceeded" && <p>Message successfully sent! </p> }
-        { status === "failed" && <p>Message failed to send...</p> }
 
         <section className='md:flex md:justify-between' >
           <section
@@ -73,14 +68,14 @@ function ContactForm() {
         <section
         className='flex flex-col'
         >
-          <label htmlFor="message">Message</label>
+          <label htmlFor="content">Message</label>
           <textarea
           className='text-lg p-2 text-black mb-5 min-h-[300px]'
-          id='message'
-          name='message'
+          id='content'
+          name='content'
           required
           onChange={handleChange}
-          value={formData.message}
+          value={formData.content}
           />
         </section>
 

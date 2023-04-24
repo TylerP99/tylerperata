@@ -41,8 +41,8 @@ export const postsApiSlice = apiSlice.injectEndpoints({
             ]
         }),
         deletePost: builder.mutation({
-            query: (deletedPost) => ({
-                url: `/posts/${deletedPost}`,
+            query: (postId) => ({
+                url: `/posts/${postId}`,
                 method: "DELETE",
                 body: {},
             }),

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { postsApiSlice } from "../features/post/postsSlice";
-import { getContacts } from "../features/contact/contactSlice";
+import { messageApiSlice } from "../features/message/messageSlice";
 import { projectApiSlice } from "../features/project/projectSlice";
 
 function CheckAdmin() {
@@ -10,7 +10,7 @@ function CheckAdmin() {
   const dispatch = useDispatch();
   
   dispatch(postsApiSlice.endpoints.getPosts.initiate());
-  dispatch(getContacts());
+  dispatch(messageApiSlice.endpoints.getMessages.initiate());
   dispatch(projectApiSlice.endpoints.getProjects.initiate());
 
   return (

@@ -72,7 +72,7 @@ function AddProjectForm() {
       data.append("liveLink", formData.liveLink);
 
       try{
-        await addNewProject(data);
+        await addNewProject(data).unwrap();
 
         navigate("/admin/projects");
       }

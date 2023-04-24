@@ -12,7 +12,7 @@ import AddPostForm from './features/post/AddPostForm';
 import EditPostPage from './features/post/EditPostPage';
 import GenericLayout from './pages/GenericLayout';
 import LoadPosts from './features/post/LoadPosts';
-import ContactPage from './features/contact/ContactPage';
+import MessagePage from './features/message/MessagePage';
 import CheckAdmin from './components/CheckAdmin';
 import AddProjectForm from './features/project/AddProjectForm';
 import UpdateProjectForm from "./features/project/UpdateProjectForm";
@@ -45,7 +45,7 @@ function App() {
               <Route path="register" element={<AdminRegister/>} />
               <Route path="login" element={<AdminLogin/>} />
               <Route index element={<AdminDashboard/>} />
-              <Route path="messages" element={<ContactPage/>} />
+              <Route path="messages" element={<MessagePage/>} />
               <Route path="projects" element={<ProjectList/>} />
               <Route path="newProject" element={<AddProjectForm/>} />
               <Route path="editProject/:id" element={<UpdateProjectForm/>} />

@@ -16,7 +16,7 @@ function ProjectList() {
     const id = e.currentTarget.dataset.id;
 
     try{
-      await deleteProject(id);
+      await deleteProject(id).unwrap();
     }
     catch(e) {
       console.error(e);
