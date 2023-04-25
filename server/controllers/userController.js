@@ -63,11 +63,32 @@ const authenticateUser = AsyncHandler( async (req, res) => {
 });
 
 const refreshUser = AsyncHandler( async (req, res) => {
+    const cookies = req.cookies;
 
+    if(!cookies?.refresh) return res.status(401).json({error: "No token"});
+
+    jwt.verify(cookies.refresh, 
+        process.env.JWT_REFRESH_SECRET, 
+        AsyncHandler( async (err, decoded) => {
+            if(err) return res.status(403).json({error: "Forbidden"});
+
+            const user = await User.findOne( {email: decoded.email} );
+
+            if(!user) return res.status(401).json({error: "Unauthorized"});
+
+            const accessToken = genAccessToken(decoded);
+
+            return res.status(200).json(accessToken);
+        })
+    )
 });
 
 const logoutUser = AsyncHandler( async (req, res) => {
+    const cookies = req.cookies;
 
+    if(!cookies?.refresh) return res.status(204).json({msg: "No cookie"});
+    res.clearCookie("refresh", { httpOnly: true, sameSite: "None", secure: true});
+    res.status(200).json({msg: "Cookie cleared"});
 });
 
 const genAccessToken = (data) => {
