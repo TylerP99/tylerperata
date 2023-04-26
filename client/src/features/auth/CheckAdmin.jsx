@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { postsApiSlice } from "../features/post/postsSlice";
-import { messageApiSlice } from "../features/message/messageSlice";
-import { projectApiSlice } from "../features/project/projectSlice";
+import { postsApiSlice } from "../post/postsSlice";
+import { messageApiSlice } from "../message/messageSlice";
+import { projectApiSlice } from "../project/projectSlice";
 
 function CheckAdmin() {
 

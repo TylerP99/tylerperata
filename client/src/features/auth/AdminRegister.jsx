@@ -1,11 +1,16 @@
 import {useState} from 'react';
-
 import { useDispatch } from "react-redux";
-import { registerAdmin } from "./adminSlice.js";
+import { useNavigate } from "react-router-dom";
+
+import { useRegisterMutation } from "./authApiSlice";
+import { setCredentials } from "./authSlice";
 
 function AdminRegister() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [register, {isLoading}] = useRegisterMutation();
 
   const [formData, setFormData] = useState({
     username: "",
@@ -15,12 +20,26 @@ function AdminRegister() {
     adminSecret: "",
   });
 
+  const [errorMsg, setErrorMsg] = useState(null);
+
   const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg(null);
 
-    dispatch(registerAdmin(formData));
+    try {
+      const data = await register(formData).unwrap();
+      console.log(data);
+      dispatch(setCredentials(data));
+      setFormData({username: "", email: "", password: "", password2: "", adminSecret: ""});
+      navigate("/admin");
+    }
+    catch(e) {
+      console.error(e);
+      if(!e.status) setErrorMsg( "No server response" );
+      else setErrorMsg(e.data.error);
+    }
   }
   
 
@@ -38,6 +57,8 @@ function AdminRegister() {
         className="text-2xl mx-auto text-center mb-7 w-fit border-b-2 border-white px-2"
         >Register Admin Account</h2>
 
+        <p>{(isLoading ? "Sending..." : undefined) || errorMsg}</p>
+
         <section
         className="flex flex-col mb-5"
         >
@@ -52,6 +73,7 @@ function AdminRegister() {
           type="text"
           onChange={handleChange}
           value={formData.username}
+          autoComplete="false"
           required
           />
         </section>
@@ -70,6 +92,7 @@ function AdminRegister() {
           type="email"
           onChange={handleChange}
           value={formData.email}
+          autoComplete="false"
           required
           />
         </section>

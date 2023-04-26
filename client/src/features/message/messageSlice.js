@@ -13,11 +13,16 @@ export const messageApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getMessages: builder.query({
             query: () => "/messages",
+            validateStatus: (response, result) => {
+                return response.status === 200 && !result.isError
+            },
             transformResponse: responseData => contactsAdapter.setAll(initialState, responseData),
-            providesTags: (res, error, arg) => [
-                { type: "Message", id: "LIST" },
-                ...res.ids.map(id => ({ type: "Message", id}))
-            ],
+            providesTags: (res, error, arg) => {
+                if(!res?.ids) return [{type: "Message", id: "LIST"}];
+
+                return [{ type: "Message", id: "LIST" },
+                ...res.ids.map(id => ({ type: "Message", id}))];
+            },
         }),
         addNewMessage: builder.mutation({
             query: (initialMessage) => ({

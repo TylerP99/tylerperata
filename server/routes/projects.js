@@ -6,12 +6,13 @@ const { getAllProjects,
         addProject,
         updateProject,
         deleteProject } = require("../controllers/projectController");
+const authUser = require("../middleware/authUser");
 
 router.route("/")
       .get(getAllProjects)
-      .post(upload.single("image"), addProject);
+      .post(authUser, upload.single("image"), addProject);
 router.route("/:id")
-      .put(upload.single("image"), updateProject)
-      .delete(deleteProject);
+      .put(authUser, upload.single("image"), updateProject)
+      .delete(authUser, deleteProject);
 
 module.exports = router;

@@ -14,11 +14,15 @@ export const projectApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getProjects: builder.query({
             query: () => "/projects",
+            validateStatus: (response, result) => {
+                return response.status === 200 && !result.isError
+            },
             transformResponse: responseData => projectAdapter.setAll(initialState, responseData),
-            providesTags: (res, error, arg) => [
-                { type: "Project", id: "LIST" },
-                ...res.ids.map(id => ({type: "Project", id}))
-            ],
+            providesTags: (res, error, arg) => {
+                if(!res?.ids) return [{type: "Project", id: "LIST"}];
+                return [{ type: "Project", id: "LIST" }, 
+                ...res.ids.map(id => ({type: "Project", id}))];
+            },
         }),
         addNewProject: builder.mutation({
             query: (initialProject) => ({

@@ -14,11 +14,15 @@ export const postsApiSlice = apiSlice.injectEndpoints({
     endpoints: builder => ({
         getPosts: builder.query({
             query: () => "/posts",
+            validateStatus: (response, result) => {
+                return response.status === 200 && !result.isError
+            },
             transformResponse: responseData => postsAdapter.setAll(initialState, responseData),
-            providesTags: (res, error, arg) => [
-                {type: "Post", id: "LIST"},
-                ...res.ids.map(id => ({type: "Post", id}))
-            ],
+            providesTags: (res, error, arg) => {
+                if(!res?.ids) return [{type: "Post", id: "LIST"}];
+                return [{type: "Post", id: "LIST"},
+                ...res.ids.map(id => ({type: "Post", id}))];
+            },
         }),
         addNewPost: builder.mutation({
             query: (initialPost) => ({

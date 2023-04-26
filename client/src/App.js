@@ -13,15 +13,16 @@ import EditPostPage from './features/post/EditPostPage';
 import GenericLayout from './pages/GenericLayout';
 import LoadPosts from './features/post/LoadPosts';
 import MessagePage from './features/message/MessagePage';
-import CheckAdmin from './components/CheckAdmin';
+import CheckAdmin from './features/auth/CheckAdmin';
 import AddProjectForm from './features/project/AddProjectForm';
 import UpdateProjectForm from "./features/project/UpdateProjectForm";
 import ProjectList from './features/project/ProjectList';
 import AdminDashboard from './pages/AdminDashboard';
 import LoadProjects from "./features/project/LoadProjects";
-import AdminLogin from './features/admin/AdminLogin';
-import AdminRegister from "./features/admin/AdminRegister";
+import AdminLogin from './features/auth/AdminLogin';
+import AdminRegister from "./features/auth/AdminRegister";
 import AdminPostsList from './features/post/AdminPostsList';
+import PersistLogin from './features/auth/PersistLogin';
 
 function App() {
 
@@ -41,17 +42,19 @@ function App() {
               <Route path=":id" element={<BlogPage/>} />
               
             </Route>
-            <Route path="/admin" element={<CheckAdmin/>} >
+            <Route path="/admin">
               <Route path="register" element={<AdminRegister/>} />
               <Route path="login" element={<AdminLogin/>} />
-              <Route index element={<AdminDashboard/>} />
-              <Route path="messages" element={<MessagePage/>} />
-              <Route path="projects" element={<ProjectList/>} />
-              <Route path="newProject" element={<AddProjectForm/>} />
-              <Route path="editProject/:id" element={<UpdateProjectForm/>} />
-              <Route path="posts" element={<AdminPostsList/>} />
-              <Route path="newPost" element={<AddPostForm/>} />
-              <Route path="editPost/:id" element={<EditPostPage/>} />
+              <Route element={<PersistLogin/>}>
+                <Route index element={<AdminDashboard/>} />
+                <Route path="messages" element={<MessagePage/>} />
+                <Route path="projects" element={<ProjectList/>} />
+                <Route path="newProject" element={<AddProjectForm/>} />
+                <Route path="editProject/:id" element={<UpdateProjectForm/>} />
+                <Route path="posts" element={<AdminPostsList/>} />
+                <Route path="newPost" element={<AddPostForm/>} />
+                <Route path="editPost/:id" element={<EditPostPage/>} />
+              </Route>
             </Route>
           </Route>
         </Route>

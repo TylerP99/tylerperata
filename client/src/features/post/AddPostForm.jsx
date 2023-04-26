@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAddNewPostMutation } from "./postsSlice";
@@ -7,9 +7,14 @@ function AddPostForm() {
 
     const navigate = useNavigate();
 
-    const [addNewPost, {isLoading}] = useAddNewPostMutation();
+    const [addNewPost, {isLoading, isSuccess, isError, error}] = useAddNewPostMutation();
 
     const [formData, setFormData] = useState({title: "", content: ""});
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    useEffect(() => {
+        setErrorMessage(null);
+    }, [formData]);
 
     const handleFieldChange = (e) => {
         setFormData({...formData, [e.target.name]:e.target.value});
@@ -21,7 +26,8 @@ function AddPostForm() {
             const res = await addNewPost(formData);
             console.log(res);
 
-            navigate("/admin/posts");
+            if(res?.error) return setErrorMessage(res.error.data.error);
+            console.log("Success");
         }
         catch(e) {
             console.error(e);
@@ -37,6 +43,7 @@ function AddPostForm() {
             onSubmit={handleSubmit}
             className="w-[95%] mx-auto"
             >
+                <p>{errorMessage    }</p>
                 <section
                 className="flex flex-col mb-4"
                 >
