@@ -7,12 +7,13 @@ const { getAllProjects,
         updateProject,
         deleteProject } = require("../controllers/projectController");
 const authUser = require("../middleware/authUser");
+const apiLimiter = require("../middleware/apiLimiter");
 
 router.route("/")
-      .get(getAllProjects)
-      .post(authUser, upload.single("image"), addProject);
+      .get(apiLimiter, getAllProjects)
+      .post(apiLimiter, authUser, upload.single("image"), addProject);
 router.route("/:id")
-      .put(authUser, upload.single("image"), updateProject)
-      .delete(authUser, deleteProject);
+      .put(apiLimiter, authUser, upload.single("image"), updateProject)
+      .delete(apiLimiter, authUser, deleteProject);
 
 module.exports = router;

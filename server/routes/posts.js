@@ -3,6 +3,9 @@ const router = express.Router();
 
 const {getBlogPosts, getBlogPost, addBlogPost, updateBlogPost, deleteBlogPost} = require("../controllers/blogPostController");
 const authUser = require("../middleware/authUser");
+const apiLimiter = require("../middleware/apiLimiter");
+
+router.all(apiLimiter);
 
 router.route("/")
       .get(getBlogPosts)
