@@ -5,7 +5,7 @@ import { FaTrash } from "react-icons/fa";
 
 function MessagePage() {
 
-  const [setMessageStatus, {isLoading}] = useSetMessageStatusMutation();
+  const [setMessageStatus] = useSetMessageStatusMutation();
 
   const [deleteMessage] = useDeleteMessageMutation();
 

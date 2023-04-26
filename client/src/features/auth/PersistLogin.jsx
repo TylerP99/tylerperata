@@ -27,9 +27,8 @@ function PersistLogin() {
     useEffect(() => {
         console.log("Useffect")
         console.log(effectRan);
-        if(effectRan === true) { //TODO: Add a developer mode check || process.env.NODE_ENV !== "development"
+        if(effectRan.current === true) { //TODO: Add a developer mode check || process.env.NODE_ENV !== "development"
             const verifyRefreshToken = async () => {
-                console.log("Verifying refresh token");
                 try {
                     const result = await refresh();
                     console.log("Verification result", result);
@@ -58,6 +57,7 @@ function PersistLogin() {
     }
     else if(isError) {
         console.log("Refresh error");
+        console.log(error);
         content = <Link to="/admin/login">Log in again</Link>;
     }
     else if(isSuccess && trueSuccess) {
@@ -71,6 +71,7 @@ function PersistLogin() {
     }
     else {
         console.log("No")
+        console.log(error);
     }
 
     return content;

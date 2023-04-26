@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {v4 as uuid} from "uuid";
 
@@ -88,7 +87,7 @@ function AddProjectForm() {
     className="w-[95%] mx-auto"
     onSubmit={handleSubmit}
     >
-        <img src={imageURL} />
+        <img src={imageURL} alt="File uploaded by user" />
         <section
         className="flex flex-col mb-4"
         >
@@ -201,6 +200,8 @@ function AddProjectForm() {
             required
             />
         </section>  
+
+        <p>{isLoading?"Sending":undefined}</p>
 
         <button type="submit">Add Project</button>
     </form>

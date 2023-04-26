@@ -36,7 +36,7 @@ function ProjectList() {
       <p>Linkus</p>
       <p>{project.github}</p>
       <p>{project.liveLink}</p>
-      <img src={project.image} />
+      <img src={project.image} alt="" />
     </article>
   )
 

@@ -25,9 +25,11 @@ function AddPostForm() {
         try {
             const res = await addNewPost(formData);
             console.log(res);
+            console.log(isLoading, isSuccess, isError, error)
 
             if(res?.error) return setErrorMessage(res.error.data.error);
             console.log("Success");
+            if(false) navigate("/admin/posts");
         }
         catch(e) {
             console.error(e);

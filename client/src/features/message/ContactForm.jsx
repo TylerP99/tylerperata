@@ -4,7 +4,7 @@ import { useAddNewMessageMutation } from "./messageSlice";
 
 function ContactForm() {
 
-  const [ addNewMessage, {isLoading} ] = useAddNewMessageMutation();
+  const [addNewMessage, {isLoading}] = useAddNewMessageMutation();
 
   const [formData, setFormData] = useState({name: "", email: "", content: ""});
 
@@ -79,6 +79,7 @@ function ContactForm() {
           />
         </section>
 
+        <p>{isLoading ? "Loading..." : undefined}</p>
         <button className='border block text-xl px-20 py-3 mx-auto hover:bg-white/20' type='submit'>Send</button>
 
       </form>

@@ -92,7 +92,7 @@ function UpdateProjectForm() {
     className="w-[95%] mx-auto"
     onSubmit={handleSubmit}
     >
-        <img src={imageURL} />
+        <img src={imageURL} alt="" />
         <section
         className="flex flex-col mb-4"
         >
@@ -206,6 +206,7 @@ function UpdateProjectForm() {
             />
         </section>  
 
+        <p>{isLoading ? "Sending..." : undefined}</p>
         <button type="submit">Update Project</button>
     </form>
     </>

@@ -36,7 +36,7 @@ function AdminDashboard() {
           <button 
           className='border-2 px-5 py-10 text-center w-[48%] hover:bg-white/20' 
           onClick={sendLogout}
-          >Logout</button>
+          >{isLoading ? "Logging out..." : "Logout"}</button>
         </section>
     </div>
   )
