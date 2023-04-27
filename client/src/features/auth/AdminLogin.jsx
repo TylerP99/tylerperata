@@ -2,17 +2,20 @@ import {useEffect, useState} from 'react';
 import { useDispatch } from "react-redux";
 import {useNavigate} from "react-router-dom";
 
+import ClipLoader from "react-spinners/ClipLoader";
+import {FaTimes} from "react-icons/fa";
+
 import { useLoginMutation } from "./authApiSlice";
 import { setCredentials } from "./authSlice";
 import usePersist from "../../hooks/usePersist";
 
 
-function AdminLogin() {
+function AdminLogin() { // TODO: Add error display
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [login, {isLoading}] = useLoginMutation();
+  const [login, {isLoading, isSuccess, isError, error}] = useLoginMutation();
 
   const [persist, setPersist] = usePersist();
 
@@ -33,13 +36,23 @@ function AdminLogin() {
 
   const handleToggle = () => setPersist(prev => !prev);
 
-  const handleSubmit = async (e) => {
+  const handleDismiss = (e) => {
     e.preventDefault();
     setErrorMsg(null);
+  }
+
+  const handleSubmit = async (e) => {
+    console.log("form submit");
+    e.preventDefault();
 
     try {
+      console.log("Initiating login call");
       const data = await login(formData).unwrap();
+      console.log("Login call done");
+      console.log("Set credentials initated");
       dispatch(setCredentials(data));
+      console.log("Stuff");
+      console.log(isLoading, isSuccess, isError, error);
       setFormData({email: "", password: ""});
       navigate("/admin");
     }
@@ -55,7 +68,6 @@ function AdminLogin() {
     <div
     className='bg-black text-white max-w-[750px] mx-auto border-white border-y-2'
     >
-
       <form
       className='py-8 px-16'
       onSubmit={handleSubmit}
@@ -65,7 +77,14 @@ function AdminLogin() {
         className="text-2xl mx-auto text-center mb-7 w-fit border-b-2 border-white px-2"
         >Login Admin Account</h2>
 
-        <p>{(isLoading ? "Sending..." : undefined) || errorMsg}</p>
+        {
+          errorMsg !== null ?
+          <section className='flex justify-between items-center p-1 mb-5 border border-white' >
+            <p>{errorMsg}</p>
+            <button type='button' onClick={handleDismiss}><FaTimes/></button>
+          </section>
+          : undefined
+        }
 
         <section
         className="flex flex-col mb-5"
@@ -117,7 +136,14 @@ function AdminLogin() {
           />
         </section>
 
-        <button type="submit" className='block mx-auto w-[50%] py-3 text-xl border-2 border-white hover:bg-white/20'>Login</button>
+        <button 
+        type="submit" 
+        className={'flex justify-center items-center relative mx-auto max-w-[400px] w-[100%] py-3 text-xl border-2 border-white hover:bg-white/20 ' + (isLoading ? "bg-white/20" : "")}
+        disabled={isLoading}
+        >
+          {isLoading ? <ClipLoader className='absolute left-[2%]' color={"#ffffff"} /> : undefined}
+          <span>Log In</span>
+        </button>
 
       </form>
 

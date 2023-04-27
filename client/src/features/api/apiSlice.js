@@ -46,6 +46,7 @@ const baseQuerywithReauth = async (args, api, extraOptions) => {
         console.log("Requery result", result);
     }
 
+    console.log("Base query with reauth returning");
     return result;
 }
 
