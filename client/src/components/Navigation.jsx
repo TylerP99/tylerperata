@@ -43,12 +43,6 @@ function Navigation() {
                 <li className={liStyle}>
                     <NavLink
                     className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : linkInactive)}
-                    to="/resume"
-                    >Resume</NavLink>
-                </li>
-                <li className={liStyle}>
-                    <NavLink
-                    className={({ isActive }) => linkStyle + " " + (isActive ? linkActive : linkInactive)}
                     to="/blog"
                     >Blog</NavLink>
                 </li>

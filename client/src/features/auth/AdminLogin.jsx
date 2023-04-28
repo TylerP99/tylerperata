@@ -2,12 +2,13 @@ import {useEffect, useState} from 'react';
 import { useDispatch } from "react-redux";
 import {useNavigate} from "react-router-dom";
 
-import ClipLoader from "react-spinners/ClipLoader";
-import {FaTimes} from "react-icons/fa";
+import {FaTimes, FaExclamationCircle} from "react-icons/fa";
 
 import { useLoginMutation } from "./authApiSlice";
 import { setCredentials } from "./authSlice";
 import usePersist from "../../hooks/usePersist";
+
+import SpinnerButton from '../../components/SpinnerButton';
 
 
 function AdminLogin() { // TODO: Add error display
@@ -42,17 +43,11 @@ function AdminLogin() { // TODO: Add error display
   }
 
   const handleSubmit = async (e) => {
-    console.log("form submit");
     e.preventDefault();
 
     try {
-      console.log("Initiating login call");
       const data = await login(formData).unwrap();
-      console.log("Login call done");
-      console.log("Set credentials initated");
       dispatch(setCredentials(data));
-      console.log("Stuff");
-      console.log(isLoading, isSuccess, isError, error);
       setFormData({email: "", password: ""});
       navigate("/admin");
     }
@@ -79,71 +74,68 @@ function AdminLogin() { // TODO: Add error display
 
         {
           errorMsg !== null ?
-          <section className='flex justify-between items-center p-1 mb-5 border border-white' >
-            <p>{errorMsg}</p>
-            <button type='button' onClick={handleDismiss}><FaTimes/></button>
-          </section>
+            <section className='flex justify-between items-center p-1 mb-5 border border-white' >
+              <p className="flex items-center gap-1" ><FaExclamationCircle color="rgb(239 68 68)" />{errorMsg}</p>
+              <button type='button' onClick={handleDismiss}><FaTimes/></button>
+            </section>
           : undefined
         }
 
         <section
-        className="flex flex-col mb-5"
+          className="flex flex-col mb-5"
         >
           <label 
-          htmlFor="email"
-          className='text-lg mb-2'
+            htmlFor="email"
+            className='text-lg mb-2'
           >Email</label>
           <input
-          className="p-2 text-lg text-black"
-          id="email"
-          name="email"
-          type="email"
-          onChange={handleChange}
-          value={formData.email}
-          required
+            className="p-2 text-lg text-black"
+            id="email"
+            name="email"
+            type="email"
+            onChange={handleChange}
+            value={formData.email}
+            required
           />
         </section>
 
         <section
-        className="flex flex-col mb-5"
+          className="flex flex-col mb-5"
         >
           <label 
-          htmlFor="password"
-          className='text-lg mb-2'
+            htmlFor="password"
+            className='text-lg mb-2'
           >Password</label>
           <input
-          className="p-2 text-lg text-black"
-          id="password"
-          name="password"
-          type="password"
-          onChange={handleChange}
-          value={formData.password}
-          required
+            className="p-2 text-lg text-black"
+            id="password"
+            name="password"
+            type="password"
+            onChange={handleChange}
+            value={formData.password}
+            required
           />
         </section>
 
         <section
-        className="flex flex-row-reverse"
+          className="flex flex-row-reverse"
         >
           <label 
-          htmlFor="persist"
+            htmlFor="persist"
           >Remember this device?</label>
           <input
-          type="checkbox"
-          id="persist"
-          onChange={handleToggle}
-          checked={persist}
+            type="checkbox"
+            id="persist"
+            onChange={handleToggle}
+            checked={persist}
           />
         </section>
 
-        <button 
-        type="submit" 
-        className={'flex justify-center items-center relative mx-auto max-w-[400px] w-[100%] py-3 text-xl border-2 border-white hover:bg-white/20 ' + (isLoading ? "bg-white/20" : "")}
-        disabled={isLoading}
-        >
-          {isLoading ? <ClipLoader className='absolute left-[2%]' color={"#ffffff"} /> : undefined}
-          <span>Log In</span>
-        </button>
+        <SpinnerButton
+          type="submit"
+          text="Log In"
+          isLoading={isLoading}
+        />
 
       </form>
 

@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import ClipLoader from "react-spinners/ClipLoader";
+
 import { useRefreshMutation } from "./authApiSlice";
 import usePersist from "../../hooks/usePersist";
 import { selectAccessToken } from "./authSlice";
@@ -53,12 +55,21 @@ function PersistLogin() {
     }
     else if(isLoading) {
         console.log("Loading...");
-        content = <p>Loading...</p>;
+        content = <ClipLoader size={"60px"} color="#FFFFFF" className="absolute ml-[-30px] left-[50%] top-[30%] text-center" />
     }
     else if(isError) {
         console.log("Refresh error");
         console.log(error);
-        content = <Link to="/admin/login">Log in again</Link>;
+        content = (
+        <div
+        className="mx-auto bg-black border-y-2 border-white p-10 max-w-[700px]"
+        >
+            <p
+            className="text-xl text-center mb-5"
+            >You have been logged out. Please log in again.</p>
+            <Link className="border border-white block w-[50%] py-3 text-center mx-auto hover:bg-white/25" to="/admin/login">Log In</Link>
+        </div>
+        );
     }
     else if(isSuccess && trueSuccess) {
         console.log("Success");

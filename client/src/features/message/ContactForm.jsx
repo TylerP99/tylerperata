@@ -1,23 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import {FaTimes, FaExclamationCircle} from "react-icons/fa";
 
 import { useAddNewMessageMutation } from "./messageSlice";
 
+import SpinnerButton from '../../components/SpinnerButton';
+
 function ContactForm() {
 
-  const [addNewMessage, {isLoading}] = useAddNewMessageMutation();
+  const [addNewMessage, {isLoading, isSuccess}] = useAddNewMessageMutation();
 
   const [formData, setFormData] = useState({name: "", email: "", content: ""});
 
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    setErrorMsg(null);
+  }, [formData]);
+
   const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
+
+  const handleDismiss = (e) => {
+    e.preventDefault();
+    setErrorMsg(null);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
     try{
-      await addNewMessage(formData);
+      await addNewMessage(formData).unwrap();
+      console.log("Done")
     }
     catch(e) {
+      console.log("Caught");
       console.error(e);
+      setErrorMsg(e.data.error)
     }
   }
 
@@ -30,8 +48,23 @@ function ContactForm() {
       >
 
         <h2
-        className='text-2xl bold border-b-2 mx-auto text-center w-[50%] mb-2'
+        className='text-2xl bold border-b-2 mx-auto text-center w-[50%] mb-5'
         >Contact Me</h2>
+
+        {
+          errorMsg !== null ?
+            <section className='flex justify-between items-center p-1 mb-5 border border-white' >
+              <p className="flex items-center gap-1" ><FaExclamationCircle color="rgb(239 68 68)" />{errorMsg}</p>
+              <button type='button' onClick={handleDismiss}><FaTimes/></button>
+            </section>
+          : undefined
+        }
+
+        {
+          isSuccess ?
+          <p className='p-1 mb-5 border border-white' >Message Sent!</p>
+          : undefined
+        }
 
         <section className='md:flex md:justify-between' >
           <section
@@ -79,8 +112,11 @@ function ContactForm() {
           />
         </section>
 
-        <p>{isLoading ? "Loading..." : undefined}</p>
-        <button className='border block text-xl px-20 py-3 mx-auto hover:bg-white/20' type='submit'>Send</button>
+        <SpinnerButton 
+          type="submit"
+          text="Send" 
+          isLoading={isLoading} 
+        /> 
 
       </form>
 

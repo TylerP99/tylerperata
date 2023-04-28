@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Landing from './pages/Landing';
 import Portfolio from './pages/Portfolio';
-import Resume from './pages/Resume';
 import Blog from './pages/Blog';
 
 import BlogPage from './features/post/BlogPage';
@@ -36,7 +35,6 @@ function App() {
             <Route path='/portfolio' element={<LoadProjects/>}>
               <Route index element={<Portfolio/>} />
             </Route>
-            <Route path='/resume' element={<Resume/>} />
             <Route path="/blog" element={<LoadPosts/>} >
               <Route index element={<Blog/>} />
               <Route path=":id" element={<BlogPage/>} />

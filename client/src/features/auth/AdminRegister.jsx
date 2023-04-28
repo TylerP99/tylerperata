@@ -1,9 +1,13 @@
-import {useState} from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import {FaTimes, FaExclamationCircle} from "react-icons/fa";
+
 import { useRegisterMutation } from "./authApiSlice";
 import { setCredentials } from "./authSlice";
+
+import SpinnerButton from '../../components/SpinnerButton';
 
 function AdminRegister() {
 
@@ -22,11 +26,19 @@ function AdminRegister() {
 
   const [errorMsg, setErrorMsg] = useState(null);
 
+  useEffect(() => {
+    setErrorMsg(null);
+  }, [formData]);
+
   const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
+
+  const handleDismiss = (e) => {
+    e.preventDefault();
+    setErrorMsg(null);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMsg(null);
 
     try {
       const data = await register(formData).unwrap();
@@ -57,7 +69,14 @@ function AdminRegister() {
         className="text-2xl mx-auto text-center mb-7 w-fit border-b-2 border-white px-2"
         >Register Admin Account</h2>
 
-        <p>{(isLoading ? "Sending..." : undefined) || errorMsg}</p>
+        {
+          errorMsg !== null ?
+            <section className='flex justify-between items-center p-1 mb-5 border border-white' >
+              <p className="flex items-center gap-1" ><FaExclamationCircle color="rgb(239 68 68)" />{errorMsg}</p>
+              <button type='button' onClick={handleDismiss}><FaTimes/></button>
+            </section>
+          : undefined
+        }
 
         <section
         className="flex flex-col mb-5"
@@ -151,7 +170,11 @@ function AdminRegister() {
           />
         </section>
 
-        <button type="submit" className='block mx-auto w-[50%] py-3 text-xl border-2 border-white hover:bg-white/20'>Register</button>
+        <SpinnerButton
+          type="submit"
+          text="Register"
+          isLoading={isLoading}
+        />
 
       </form>
 

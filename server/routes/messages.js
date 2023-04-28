@@ -8,8 +8,8 @@ const apiLimiter = require("../middleware/apiLimiter");
 router.all(apiLimiter);
 
 router.route("/")
-      .get(getAllMessages)
-      .post(authUser, createMessage);
+      .get(authUser, getAllMessages)
+      .post(createMessage);
 
 router.route("/:id")
       .put(authUser, setMessageReplied)
