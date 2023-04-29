@@ -23,7 +23,7 @@ const addProject = AsyncHandler(async (req, res) => {
     }
 
     if(!name || !description || !liveLink) return res.status(400).json({error: "Project name, description, and live link are all required."});
-
+    
     const project = await Project.create({
         name,
         description,
