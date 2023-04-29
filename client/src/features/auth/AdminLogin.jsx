@@ -30,7 +30,7 @@ function AdminLogin() { // TODO: Add error display
 
   useEffect(() => {
     setErrorMsg(null);
-  }, [formData.email, formData.password]);
+  }, [formData]);
 
 
   const handleChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
@@ -53,7 +53,7 @@ function AdminLogin() { // TODO: Add error display
     }
     catch(e) {
       console.error(e);
-      if(!e.status) setErrorMsg("No server response");
+      if(!Number(e.status)) setErrorMsg("No server response");
       else setErrorMsg(e.data.error);
     }
   }

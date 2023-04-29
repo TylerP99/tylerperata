@@ -3,10 +3,11 @@ import {useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {v4 as uuid} from "uuid";
 
-import { FaTimes } from "react-icons/fa";
-
+import { FaTimes, FaExclamationCircle } from "react-icons/fa";
 
 import { useUpdateProjectMutation, selectProjectByID } from "./projectSlice";
+
+import SpinnerButton from "../../components/SpinnerButton";
 
 function UpdateProjectForm() {
 
@@ -33,6 +34,13 @@ function UpdateProjectForm() {
       return {name:x, id: uuid()}
   }));
 
+  const [errorMsg, setErrorMsg] = useState(null);
+
+
+  useEffect(() => {
+    setErrorMsg(null);
+  }, [formData, image]);
+
   useEffect(() => {
     if(image === "") return;
     console.log(image);
@@ -41,6 +49,11 @@ function UpdateProjectForm() {
 
   const handleChange = (e) => {
       setFormData({...formData, [e.target.name]: e.target.value});
+  }
+
+  const handleDismiss = (e) => {
+    e.preventDefault();
+    setErrorMsg(null);
   }
 
   const handleTechnologyAdd = (e) => {
@@ -81,20 +94,35 @@ function UpdateProjectForm() {
       }
       catch(e) {
           console.error(e);
+          if(!Number(e.status)) setErrorMsg("No server response");
+          else setErrorMsg(e.data.error);
       }
   };
 
   return (
-    <>
-    <h1 className="text-4xl border-b-black border-b-2 mb-5 p-4">Update Project</h1>
-
-    <form 
-    className="w-[95%] mx-auto"
-    onSubmit={handleSubmit}
+    <div
+    className='bg-black text-white max-w-[750px] mx-auto border-white border-y-2'
     >
-        <img src={imageURL} alt="" />
+      <form
+      className='py-8 px-16'
+      onSubmit={handleSubmit}
+      >
+
+        <h2
+        className="text-2xl mx-auto text-center mb-7 w-fit border-b-2 border-white px-2"
+        >Update Project</h2>
+
+        {
+          errorMsg !== null ?
+            <section className='flex justify-between items-center p-1 mb-5 border border-white' >
+              <p className="flex items-center gap-1" ><FaExclamationCircle color="rgb(239 68 68)" />{errorMsg}</p>
+              <button type='button' onClick={handleDismiss}><FaTimes/></button>
+            </section>
+          : undefined
+        }
+
         <section
-        className="flex flex-col mb-4"
+        className="flex flex-col mb-5"
         >
             <label
             className="text-xl"
@@ -111,7 +139,7 @@ function UpdateProjectForm() {
             />
         </section>  
         <section
-        className="flex flex-col mb-4"
+        className="flex flex-col mb-5"
         >
             <label
             className="text-xl"
@@ -129,20 +157,25 @@ function UpdateProjectForm() {
         </section>  
 
         <section
-        className="flex flex-col mb-4"
+        className="flex flex-col mb-5"
         >
             <label
-            className="text-xl"
-            htmlFor="description"
-            >Project Image</label>
-            <input 
-            id="image"
-            name="image"
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            />
-        </section> 
+            className="text-xl bg-slate-800 w-[48%] overflow-scroll border-2 text-center cursor-pointer py-3 hover:bg-white/25 mb-2"
+            htmlFor="image"
+            >
+                <span>Upload Image</span>
+                <input 
+                className="hidden"
+                id="image"
+                name="image"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                />
+            </label>
+            <p className="mb-2" >{image ? image.name : "No file uploaded"}</p>
+            {imageURL ? <img className="w-[90%] mx-auto" src={imageURL} alt=""/> : undefined}
+        </section>
 
         {/*TODO TECHNOLOGIES*/}
         <section>
@@ -171,7 +204,7 @@ function UpdateProjectForm() {
         </section>
 
         <section
-        className="flex flex-col mb-4"
+        className="flex flex-col mb-5"
         >
             <label
             className="text-xl"
@@ -189,7 +222,7 @@ function UpdateProjectForm() {
         </section> 
 
         <section
-        className="flex flex-col mb-4"
+        className="flex flex-col mb-5"
         >
             <label
             className="text-xl"
@@ -206,10 +239,13 @@ function UpdateProjectForm() {
             />
         </section>  
 
-        <p>{isLoading ? "Sending..." : undefined}</p>
-        <button type="submit">Update Project</button>
-    </form>
-    </>
+        <SpinnerButton
+        type="submit"
+        text="Update Project"
+        isLoading={isLoading}
+        />
+      </form>
+    </div>
   )
 }
 

@@ -29,10 +29,10 @@ function AddProjectForm() {
 
   const [technologies, setTechnologies] = useState([]);
 
-  const handleDismiss = (e) => {
-    e.preventDefault();
+
+  useEffect(() => {
     setErrorMsg(null);
-  }
+  }, [formData, image]);
 
   useEffect(() => {
     if(image === "") return;
@@ -63,6 +63,11 @@ function AddProjectForm() {
 
   const handleImageChange = (e) => {
       setImage(e.target.files[0]);
+  }
+
+  const handleDismiss = (e) => {
+    e.preventDefault();
+    setErrorMsg(null);
   }
 
   const handleSubmit = async (e) => {
@@ -100,7 +105,7 @@ function AddProjectForm() {
 
         <h2
         className="text-2xl mx-auto text-center mb-7 w-fit border-b-2 border-white px-2"
-        >Login Admin Account</h2>
+        >Add New Project</h2>
 
         {
           errorMsg !== null ?
