@@ -30,7 +30,7 @@ const registerUser = AsyncHandler( async (req, res) => {
         httpOnly: true,
         sameSite: "none",
         secure: true,
-        maxAge: 30000 //1*24*60*60*1000,
+        maxAge: 7*24*60*60*1000,
     });
 
     return res.status(201).json({user: admin, access: accessToken});
@@ -56,7 +56,7 @@ const authenticateUser = AsyncHandler( async (req, res) => {
         httpOnly: true,
         sameSite: "none",
         secure: true,
-        maxAge: 30000 //1*24*60*60*1000,
+        maxAge: 7*24*60*60*1000,
     });
 
     return res.status(200).json({user: admin, access: accessToken});
@@ -92,11 +92,11 @@ const logoutUser = AsyncHandler( async (req, res) => {
 });
 
 const genAccessToken = (data) => {
-    return jwt.sign(data, process.env.JWT_ACCESS_SECRET, {expiresIn: "10s"});
+    return jwt.sign(data, process.env.JWT_ACCESS_SECRET, {expiresIn: "15m"});
 };
 
 const genRefreshToken = (data) => {
-    return jwt.sign(data, process.env.JWT_REFRESH_SECRET, {expiresIn: "30s"});
+    return jwt.sign(data, process.env.JWT_REFRESH_SECRET, {expiresIn: "7d"});
 };
 
 module.exports = {
