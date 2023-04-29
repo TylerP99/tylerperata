@@ -65,6 +65,8 @@ const authenticateUser = AsyncHandler( async (req, res) => {
 const refreshUser = AsyncHandler( async (req, res) => {
     const cookies = req.cookies;
 
+    console.log(req.cookies);
+
     if(!cookies?.refresh) return res.status(401).json({error: "No token"});
 
     jwt.verify(cookies.refresh, 
@@ -76,7 +78,9 @@ const refreshUser = AsyncHandler( async (req, res) => {
 
             if(!user) return res.status(401).json({error: "Unauthorized"});
 
-            const accessToken = genAccessToken(decoded);
+            const {username, email, roles, _id} = decoded;
+
+            const accessToken = genAccessToken({username, email, roles, _id});
 
             return res.status(200).json(accessToken);
         })
