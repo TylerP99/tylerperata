@@ -90,7 +90,8 @@ function AddProjectForm() {
       }
       catch(e) {
           console.error(e);
-          setErrorMsg(e.data.error);
+          if(!Number(e.status)) setErrorMsg("No server response");
+          else setErrorMsg(e.data.error);
       }
   };
 

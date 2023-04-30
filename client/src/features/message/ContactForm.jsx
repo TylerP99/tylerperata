@@ -35,7 +35,8 @@ function ContactForm() {
     catch(e) {
       console.log("Caught");
       console.error(e);
-      setErrorMsg(e.data.error)
+      if(!Number(e.status)) setErrorMsg("No server response");
+      else setErrorMsg(e.data.error);
     }
   }
 

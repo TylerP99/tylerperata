@@ -1,13 +1,16 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useSetMessageStatusMutation, useDeleteMessageMutation, selectAllMessages } from "./messageSlice";
 
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaTimes, FaExclamationCircle } from "react-icons/fa";
 
 function MessagePage() {
 
   const [setMessageStatus] = useSetMessageStatusMutation();
 
   const [deleteMessage] = useDeleteMessageMutation();
+
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const messages = useSelector(selectAllMessages);
 
@@ -24,6 +27,8 @@ function MessagePage() {
     }
     catch(e) {
       console.error(e);
+      if(!Number(e.status)) setErrorMsg("No server response");
+      else setErrorMsg(e.data.error);
     }
   }
 
@@ -36,6 +41,11 @@ function MessagePage() {
     catch(e) {
       console.error(e);
     }
+  }
+
+  const handleDismiss = (e) => {
+    e.preventDefault();
+    setErrorMsg(null);
   }
 
   const MessageCard = ({message}) => (
@@ -67,6 +77,16 @@ function MessagePage() {
         <h1
         className="text-4xl border-b-black border-b-2 mb-5 p-4"
         >Messages</h1>
+
+        {
+          errorMsg !== null ?
+            <section className='flex justify-between items-center p-1 mb-5 border border-white' >
+              <p className="flex items-center gap-1" ><FaExclamationCircle color="rgb(239 68 68)" />{errorMsg}</p>
+              <button type='button' onClick={handleDismiss}><FaTimes/></button>
+            </section>
+          : undefined
+        } 
+
         <section className="pb-5" >
             {messages.length ?
               messages.map(x => <MessageCard key={x._id} message={x}/>)
