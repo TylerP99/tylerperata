@@ -44,14 +44,16 @@ function App() {
               <Route path="register" element={<AdminRegister/>} />
               <Route path="login" element={<AdminLogin/>} />
               <Route element={<PersistLogin/>}>
-                <Route index element={<AdminDashboard/>} />
-                <Route path="messages" element={<MessagePage/>} />
-                <Route path="projects" element={<ProjectList/>} />
-                <Route path="newProject" element={<AddProjectForm/>} />
-                <Route path="editProject/:id" element={<UpdateProjectForm/>} />
-                <Route path="posts" element={<AdminPostsList/>} />
-                <Route path="newPost" element={<AddPostForm/>} />
-                <Route path="editPost/:id" element={<EditPostPage/>} />
+                <Route element={<CheckAdmin/>}>
+                  <Route index element={<AdminDashboard/>} />
+                  <Route path="messages" element={<MessagePage/>} />
+                  <Route path="projects" element={<ProjectList/>} />
+                  <Route path="newProject" element={<AddProjectForm/>} />
+                  <Route path="editProject/:id" element={<UpdateProjectForm/>} />
+                  <Route path="posts" element={<AdminPostsList/>} />
+                  <Route path="newPost" element={<AddPostForm/>} />
+                  <Route path="editPost/:id" element={<EditPostPage/>} />
+                </Route>
               </Route>
             </Route>
           </Route>

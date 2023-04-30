@@ -82,7 +82,7 @@ const refreshUser = AsyncHandler( async (req, res) => {
 
             const accessToken = genAccessToken({username, email, roles, _id});
 
-            return res.status(200).json(accessToken);
+            return res.status(200).json({access: accessToken, user: {username, email, roles, _id}});
         })
     )
 });
