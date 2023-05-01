@@ -57,12 +57,21 @@ module.exports = {
             width: "80vw",
             height: "10vw",
           }
+        },
+        fadeIn: {
+          "from": {
+            opacity: "0",
+          },
+          "to": {
+            opacity: "1"
+          }
         }
       },
       animation: {
         slideRight: "0.5s ease-out 1 slideRight",
         slideLeft: "0.5s ease-out 1 slideLeft",
         growWidth: "1s linear 1 growWidth",
+        fadeIn: "1s ease-in 1 fadeIn",
       }
     },
   },

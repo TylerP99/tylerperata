@@ -3,8 +3,6 @@ import { SiTailwindcss } from "react-icons/si"
 
 import { useGetProjectsQuery } from "./projectSlice";
 
-import image from "../../assets/hyrule_compendium.png"
-
 import Technology from "./Technology";
 import LinkButton from "../../components/LinkButton";
 

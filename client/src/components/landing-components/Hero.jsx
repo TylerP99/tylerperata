@@ -20,7 +20,7 @@ function Hero() {
           className="text-2xl md:text-4xl"
           >Hello, my name is</h3>
           <h1
-          className='flex justify-center items-center w-full bg-inherit text-5xl px-10 pb-5 mb-1 text-center text-green font-bold md:px-0 md:text-8xl'
+          className='flex justify-center items-center w-full bg-inherit text-5xl px-10 pb-5 mb-1 text-center text-green font-bold md:px-0 md:text-8xl animate-fadeIn'
           >
             Tyler Perata
           </h1>
