@@ -17,7 +17,7 @@ const myCld = new Cloudinary({
 function ProjectCard({project, index}) {
   return (
     <article
-    className={"border mb-5 p-5 md:flex justify-between md:max-h-[400px]" + (index%2 === 0 ? " flex-row" : " flex-row-reverse")}
+    className={"border mb-5 p-5 md:flex justify-between md:max-h-[400px] bg-slate-800" + (index%2 === 0 ? " flex-row" : " flex-row-reverse")}
     >
       <section className="md:w-[48%] max-h-[100%] overflow-hidden mb-2" >
         <h3

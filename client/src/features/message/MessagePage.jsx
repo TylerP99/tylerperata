@@ -50,11 +50,11 @@ function MessagePage() {
 
   const MessageCard = ({message}) => (
     <article className="border mb-5 px-5 py-2" >
-        <header className="text-2xl border-b-2 flex justify-between items-center">
+        <header className="text-2xl border-b-2 flex justify-between items-center pb-1">
           <h2>{`From: ${message.name}${message.replied ? " - Replied" : ""}`}</h2>
           <div className="flex items-center justify-between gap-3" >
             <button 
-            className="border-2 rounded-md text-lg"
+            className="border-2 rounded-md text-lg p-1"
             type="button" 
             onClick={handleSetReplied} 
             data-id={message._id} 

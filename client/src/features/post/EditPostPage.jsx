@@ -5,17 +5,30 @@ import { useNavigate } from "react-router-dom";
 
 import { selectPostById, useUpdatePostMutation, useDeletePostMutation } from "./postsSlice";
 
+import { FaTimes, FaExclamationCircle, FaTrash } from "react-icons/fa";
+import ClipLoader from "react-spinners/ClipLoader";
+
+import SpinnerButton from "../../components/SpinnerButton";
+
+
+
 function EditPostPage() {
 
   const navigate = useNavigate();
 
   const [updatePost, {isLoading}] = useUpdatePostMutation();
-  const [deletePost] = useDeletePostMutation();
+  const [deletePost, {isLoading: deleteLoading}] = useDeletePostMutation();
 
   const {id} = useParams();
   const post = useSelector( (state) => selectPostById(state, id) );
 
   const [formData, setFormData] = useState({title: "", content: ""});
+
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    setErrorMsg(null);
+  }, [formData]);
 
   useEffect( () => {
     if(post) {
@@ -34,6 +47,11 @@ function EditPostPage() {
 
   const handleFieldChange = (e) => setFormData({...formData, [e.target.name]: e.target.value});
 
+  const handleDismiss = (e) => {
+    e.preventDefault();
+    setErrorMsg(null);
+  }
+
   const handleSubmit = async (e) => {
       e.preventDefault();
 
@@ -44,6 +62,8 @@ function EditPostPage() {
       }     
       catch(e) {
           console.error(e);
+          if(!Number(e.status)) setErrorMsg("No server response");
+          else setErrorMsg(e.data.error);
       }
   }
 
@@ -56,21 +76,44 @@ function EditPostPage() {
       }
       catch(e) {
           console.error(e);
+          if(!Number(e.status)) setErrorMsg("No server response");
+          else setErrorMsg(e.data.error);
       }
   }
 
   return (
-    <>
-        <h1
-        className="text-4xl border-b-black border-b-2 mb-5 p-4"
-        >Edit Post</h1>
-
-        <button type="button" onClick={handleDeletePost}>Delete Post</button>
-
-        <form
-        onSubmit={handleSubmit}
-        className="w-[95%] mx-auto"
+    <div
+        className='bg-black text-white max-w-[750px] mx-auto border-white border-y-2'
         >
+            <form
+            className='py-8 px-16'
+            onSubmit={handleSubmit}
+            >
+
+                <h2
+                className="flex justify-between items-center text-2xl mx-auto text-center mb-7 w-full px-2"
+                >
+                    <div></div>
+                    <span className="border-white border-b-2" >Add New Post</span>
+                    <div className="flex relative items-center">
+                        {deleteLoading && <ClipLoader size="30px" className="absolute left-[-130%]" color="#ffffff" />}
+                        <button
+                        className="block"
+                        type="button"
+                        onClick={handleDeletePost}
+                        ><FaTrash/></button>
+                    </div>
+                </h2>
+
+                {
+                errorMsg !== null ?
+                    <section className='flex justify-between items-center p-1 mb-5 border border-white' >
+                    <p className="flex items-center gap-1" ><FaExclamationCircle color="rgb(239 68 68)" />{errorMsg}</p>
+                    <button type='button' onClick={handleDismiss}><FaTimes/></button>
+                    </section>
+                : undefined
+                }
+
                 <section
                 className="flex flex-col mb-4"
                 >
@@ -104,12 +147,13 @@ function EditPostPage() {
                     required
                     />
                 </section>
-                <button 
+                <SpinnerButton
                 type="submit"
-                className="border-2 rounded-md px-4 py-2 w-[75%] mx-auto block hover:underline"
-                >Edit Post</button>
+                text="Edit Post"
+                isLoading={isLoading}
+                />
             </form>
-    </>
+    </div>
   )
 }
 

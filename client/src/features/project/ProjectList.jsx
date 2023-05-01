@@ -24,7 +24,7 @@ function ProjectList() {
   }
 
   const ProjectCard = ({project}) => (
-    <article className="border">
+    <article className="border bg-slate-800">
       <Link to={`/admin/editProject/${project._id}`} ><FaPen/></Link>
       <button type="button" onClick={handleDelete} data-id={project._id} ><FaTrash/></button>
       <h2>{project.name}</h2>
