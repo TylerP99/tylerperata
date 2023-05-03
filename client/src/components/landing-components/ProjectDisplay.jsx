@@ -1,5 +1,6 @@
 import ProjectCard from "../../features/project/ProjectCardShort";
 import SectionHeader from "../SectionHeader";
+import { Link } from "react-router-dom";
 
 import { useGetProjectsQuery } from "../../features/project/projectSlice";
 
@@ -15,10 +16,12 @@ function ProjectDisplay() {
     refetchOnMountOrArgChange: true
   });
 
-  if(isLoading) return <p>Loading...</p>
+  let projectDisplay = null;
+
+  if(isLoading) projectDisplay = <p>Loading...</p>
 
   if(isSuccess) {
-    return (
+    projectDisplay = (
     <section id="work" className="place-content-center">
         <SectionHeader text="My Projects"/>
         <section className="flex flex-wrap gap-1 justify-around align-center px-3">
@@ -28,7 +31,12 @@ function ProjectDisplay() {
   )
   }
 
-  return null
+  return (
+    <section>
+      {projectDisplay}
+      <Link className="block w-[50%] max-w-[200px] text-center text-xl p-2 mx-auto border-2 border-white" to="/portfolio">View my Full Portfolio</Link>
+    </section>
+  )
 }
 
 export default ProjectDisplay
