@@ -4,7 +4,7 @@ import { Cloudinary } from '@cloudinary/url-gen';
 
 import { selectAllProjects } from "../features/project/projectSlice";
 
-import PageHeader from '../components/PageHeader'
+import PageHeader from '../components/headers/PageHeader';
 import Technology from "../features/project/Technology";
 import LinkButton from "../components/LinkButton";
 

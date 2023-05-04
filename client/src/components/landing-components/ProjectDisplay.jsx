@@ -1,5 +1,5 @@
 import ProjectCard from "../../features/project/ProjectCardShort";
-import SectionHeader from "../SectionHeader";
+import SectionHeader from "../headers/SectionHeader";
 import { Link } from "react-router-dom";
 
 import { useGetProjectsQuery } from "../../features/project/projectSlice";
