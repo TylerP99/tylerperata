@@ -6,7 +6,7 @@ import Navigation from '../components/Navigation';
 
 function Layout() {
   return (
-    <div className='min-h-[100vh] relative'>
+    <div className='min-h-[100vh] relative pb-20'>
         <Navigation/>
         <Outlet/>
         <Footer/>

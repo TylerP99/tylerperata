@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 import { useGetProjectsQuery } from "../../features/project/projectSlice";
 
+import LinkButton from "../LinkButton";
+
 function ProjectDisplay() {
 
   const res = useGetProjectsQuery();
@@ -34,7 +36,7 @@ function ProjectDisplay() {
   return (
     <section>
       {projectDisplay}
-      <Link className="block w-[50%] max-w-[200px] text-center text-xl p-2 mx-auto border-2 border-white" to="/portfolio">View my Full Portfolio</Link>
+      <Link className="block w-[50%] max-w-[200px] text-center text-xl py-3 px-5 mx-auto border-2 border-white" to="/portfolio">View Full Portfolio</Link>
     </section>
   )
 }
