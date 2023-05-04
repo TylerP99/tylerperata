@@ -33,7 +33,7 @@ const registerUser = AsyncHandler( async (req, res) => {
         maxAge: 7*24*60*60*1000,
     });
 
-    return res.status(201).json({user: admin, access: accessToken});
+    return res.status(201).json({access: accessToken});
 });
 
 const authenticateUser = AsyncHandler( async (req, res) => {
@@ -59,7 +59,7 @@ const authenticateUser = AsyncHandler( async (req, res) => {
         maxAge: 7*24*60*60*1000,
     });
 
-    return res.status(200).json({user: admin, access: accessToken});
+    return res.status(200).json({access: accessToken});
 });
 
 const refreshUser = AsyncHandler( async (req, res) => {
@@ -82,7 +82,7 @@ const refreshUser = AsyncHandler( async (req, res) => {
 
             const accessToken = genAccessToken({username, email, roles, _id});
 
-            return res.status(200).json({access: accessToken, user: {username, email, roles, _id}});
+            return res.status(200).json({access: accessToken});
         })
     )
 });
