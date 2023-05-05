@@ -33,7 +33,7 @@ function Hero() {
         <section className='flex flex-col items-center mb-20 md:items-end'>
           
           <h3
-          className="text-lg mb-2 md:pr-10 md:text-2xl"
+          className="text-lg mb-2 md:pr-10 md:text-3xl"
           >I am a</h3>
 
           <h3
@@ -56,7 +56,7 @@ function Hero() {
 
       <section className="flex flex-col items-center">
 
-        <p className="mb-20 text-xl text-center" >I enjoy building cool and useful sites and solving interesting problems!</p>
+        <p className="mb-20 text-xl text-center" >I build fully functional, responsive, sleek websites. Need something built? Let's start talking!</p>
 
         <p className="text-xl md:text-xl bold mb-5">Let's make something great together</p>
 
