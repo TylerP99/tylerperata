@@ -49,8 +49,8 @@ function ContactForm() {
       >
 
         <h2
-        className='text-2xl bold border-b-2 mx-auto text-center w-[50%] mb-5'
-        >Contact Me</h2>
+        className='text-2xl bold mx-auto text-center w-[80%] mb-5'
+        >Interested in working together? Send me a message!</h2>
 
         {
           errorMsg !== null ?
