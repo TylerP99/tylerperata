@@ -50,7 +50,7 @@ function ContactForm() {
 
         <h2
         className='text-2xl bold mx-auto text-center w-[80%] mb-5'
-        >Interested in working together? Send me a message!</h2>
+        >Interested in working together?<br></br>Send me a message!</h2>
 
         {
           errorMsg !== null ?

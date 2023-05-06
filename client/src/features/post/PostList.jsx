@@ -24,7 +24,7 @@ function PostList() {
   :
   posts.map(x => (
         <article 
-        className="border-2 rounded-md p-4 mb-3 w-[95%] mx-auto"
+        className="border-2 rounded-md p-4 mb-3 mx-auto"
         key={x._id} 
         >
           <div
