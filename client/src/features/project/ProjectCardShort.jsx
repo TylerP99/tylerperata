@@ -1,6 +1,3 @@
-import { FaNodeJs, FaReact } from "react-icons/fa"
-import { SiTailwindcss } from "react-icons/si"
-
 import { useGetProjectsQuery } from "./projectSlice";
 
 import Technology from "./Technology";
@@ -23,7 +20,7 @@ function ProjectCard({projectId}) {
           {project.name}
         </h2>
         <img
-        className="border-2 border-white"
+        className="flex items-center justify-center border-2 border-white min-h-[200px]"
         src={project.image} 
         alt="The landing page of the project"
         /> 
