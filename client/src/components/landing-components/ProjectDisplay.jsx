@@ -24,8 +24,7 @@ function ProjectDisplay() {
 
   if(isSuccess) {
     projectDisplay = (
-    <section id="work" className="place-content-center">
-        <SectionHeader text="My Projects"/>
+    <section id="work" className="pb-20">
         <section className="flex flex-wrap gap-1 justify-around align-center px-3">
             {projects?.ids.slice(0, 3).map(x => (<ProjectCard projectId={x}/>))}
         </section>
@@ -34,9 +33,10 @@ function ProjectDisplay() {
   }
 
   return (
-    <section>
+    <section className="pb-40" >
+      <SectionHeader text="My Projects"/>
       {projectDisplay}
-      <Link className="block w-[50%] max-w-[200px] text-center text-xl py-3 px-5 mx-auto border-2 border-white" to="/portfolio">View Full Portfolio</Link>
+      <Link className="block w-[50%] max-w-[400px] text-center text-xl py-3 px-5 mx-auto border-2 border-white bg-black hover:bg-white/20" to="/portfolio">View Full Portfolio</Link>
     </section>
   )
 }

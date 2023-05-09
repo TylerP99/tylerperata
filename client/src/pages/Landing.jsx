@@ -1,25 +1,14 @@
-import React from 'react'
-
-import { useLocation } from "react-router-dom"
-
 import Hero from '../components/landing-components/Hero';
 import ProjectDisplay from '../components/landing-components/ProjectDisplay';
 import ContactForm from '../features/message/ContactForm';
-import ContentBlock from '../components/ContentBlock';
 
 function Landing() {
 
   return (
     <main className="w-full bg-[#02041c] text-white">
-      <ContentBlock>
-        <Hero/>
-      </ContentBlock>
-      <ContentBlock>
-        <ProjectDisplay/>
-      </ContentBlock>
-      <ContentBlock>
-        <ContactForm/>
-      </ContentBlock>
+      <Hero/>
+      <ProjectDisplay/>
+      <ContactForm/>
     </main>
   )
 }
