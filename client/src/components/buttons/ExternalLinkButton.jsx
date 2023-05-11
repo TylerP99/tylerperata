@@ -3,7 +3,7 @@ import React from 'react'
 function LinkButton({text, link, className=""}) {
   return (
     <a
-    className={"border-2 py-2 block text-center rounded-sm hover:bg-white/20" + " " + className}
+    className={`${className} border-2 py-2 block text-center rounded-sm hover:bg-white/20`}
     href={link}
     target="_blank"
     rel='noreferrer'

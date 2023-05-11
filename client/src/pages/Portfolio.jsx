@@ -6,7 +6,7 @@ import { selectAllProjects } from "../features/project/projectSlice";
 
 import PageHeader from '../components/headers/PageHeader';
 import Technology from "../features/project/Technology";
-import LinkButton from "../components/LinkButton";
+import ExternalLinkButton from "../components/buttons/ExternalLinkButton";
 
 const myCld = new Cloudinary({
   cloud: {
@@ -32,8 +32,8 @@ function ProjectCard({project, index}) {
           </section>
           <p className="mb-2 indent-8 overflow-scroll max-h-[150px] p-1" >{project.description}</p>
           <section className="flex items-center justify-between" >
-              <LinkButton className="w-[48%]" text="Live Site" link={project.liveLink} />
-              <LinkButton className="w-[48%]" text="Github Repo" link={project.github} />
+              <ExternalLinkButton className="w-[48%]" text="Live Site" link={project.liveLink} />
+              <ExternalLinkButton className="w-[48%]" text="Github Repo" link={project.github} />
           </section>
         </section>
       </section> 

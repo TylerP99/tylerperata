@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 import { useGetProjectsQuery } from "../../features/project/projectSlice";
 
-import LinkButton from "../LinkButton";
-
 function ProjectDisplay() {
 
   const res = useGetProjectsQuery();
