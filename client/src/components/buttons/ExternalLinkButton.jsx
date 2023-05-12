@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LinkButton({text, link, className=""}) {
+function ExternalLinkButton({text, link, className=""}) {
   return (
     <a
     className={`${className} border-2 py-2 block text-center rounded-sm hover:bg-white/20`}
@@ -11,4 +11,4 @@ function LinkButton({text, link, className=""}) {
   )
 }
 
-export default LinkButton
+export default ExternalLinkButton

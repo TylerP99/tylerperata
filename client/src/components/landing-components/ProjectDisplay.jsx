@@ -1,8 +1,9 @@
-import ProjectCard from "../../features/project/ProjectCardShort";
-import SectionHeader from "../headers/SectionHeader";
 import { Link } from "react-router-dom";
 
 import { useGetProjectsQuery } from "../../features/project/projectSlice";
+import ProjectCard from "../../features/project/ProjectCardShort";
+import SectionHeader from "../headers/SectionHeader";
+import InternalLinkButton from "../buttons/InternalLinkButton";
 
 function ProjectDisplay() {
 
@@ -34,7 +35,7 @@ function ProjectDisplay() {
     <section className="pb-40" >
       <SectionHeader text="My Projects"/>
       {projectDisplay}
-      <Link className="block w-[50%] max-w-[400px] text-center text-xl py-3 px-5 mx-auto border-2 border-white bg-black hover:bg-white/20" to="/portfolio">View Full Portfolio</Link>
+      <InternalLinkButton className="w-fit mx-auto" to="/portfolio" text="View Full Portfolio" />
     </section>
   )
 }
