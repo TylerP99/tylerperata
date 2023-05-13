@@ -7,7 +7,7 @@ import {FaTimes, FaExclamationCircle} from "react-icons/fa";
 import { useRegisterMutation } from "./authApiSlice";
 import { setCredentials } from "./authSlice";
 
-import SpinnerButton from '../../components/SpinnerButton';
+import SpinnerButton from '../../components/buttons/SpinnerButton';
 
 function AdminRegister() {
 

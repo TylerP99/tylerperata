@@ -5,7 +5,7 @@ import { useAddNewPostMutation } from "./postsSlice";
 
 import { FaTimes, FaExclamationCircle } from "react-icons/fa";
 
-import SpinnerButton from "../../components/SpinnerButton";
+import SpinnerButton from "../../components/buttons/SpinnerButton";
 
 function AddPostForm() {
 

@@ -4,7 +4,7 @@ import {FaTimes, FaExclamationCircle} from "react-icons/fa";
 
 import { useAddNewMessageMutation } from "./messageSlice";
 
-import SpinnerButton from '../../components/SpinnerButton';
+import SpinnerButton from '../../components/buttons/SpinnerButton';
 
 function ContactForm() {
 

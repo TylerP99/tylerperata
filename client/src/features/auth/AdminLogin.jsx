@@ -8,7 +8,7 @@ import { useLoginMutation } from "./authApiSlice";
 import { setCredentials } from "./authSlice";
 import usePersist from "../../hooks/usePersist";
 
-import SpinnerButton from '../../components/SpinnerButton';
+import SpinnerButton from '../../components/buttons/SpinnerButton';
 
 
 function AdminLogin() { // TODO: Add error display

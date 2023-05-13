@@ -7,7 +7,7 @@ import { FaTimes, FaExclamationCircle } from "react-icons/fa";
 
 import { useUpdateProjectMutation, selectProjectByID } from "./projectSlice";
 
-import SpinnerButton from "../../components/SpinnerButton";
+import SpinnerButton from "../../components/buttons/SpinnerButton";
 
 function UpdateProjectForm() {
 

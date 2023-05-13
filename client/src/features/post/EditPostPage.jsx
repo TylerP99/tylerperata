@@ -8,7 +8,7 @@ import { selectPostById, useUpdatePostMutation, useDeletePostMutation } from "./
 import { FaTimes, FaExclamationCircle, FaTrash } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import SpinnerButton from "../../components/SpinnerButton";
+import SpinnerButton from "../../components/buttons/SpinnerButton";
 
 
 
