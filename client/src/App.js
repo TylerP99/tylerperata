@@ -3,10 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Portfolio from './pages/Portfolio';
 import Blog from './pages/Blog';
-
 import BlogPage from './features/post/BlogPage';
 import Layout from './pages/Layout';
-
 import AddPostForm from './features/post/AddPostForm';
 import EditPostPage from './features/post/EditPostPage';
 import GenericLayout from './pages/GenericLayout';
