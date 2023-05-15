@@ -24,6 +24,7 @@ import PersistLogin from './features/auth/PersistLogin';
 import { projectApiSlice } from "./features/project/projectSlice";
 projectApiSlice.endpoints.getProjects.initiate();
 
+
 function App() {
 
   return (
