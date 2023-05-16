@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import SocialDisplay from "./landing-components/SocialDisplay"
 
 function Footer() {
   return (
@@ -8,6 +7,7 @@ function Footer() {
     >
       <section className='mx-auto w-fit' >
         Made by Tyler Perata
+        <SocialDisplay className="mx-auto" />
       </section>
     </footer>
   )
