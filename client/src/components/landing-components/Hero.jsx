@@ -1,10 +1,10 @@
-import {Link} from "react-router-dom";
 import { useState } from "react";
 
 import {BsStack} from "react-icons/bs"
-import { FaUser, FaLaptopCode, FaCaretDown } from 'react-icons/fa';
+import { FaLaptopCode, FaCaretDown } from 'react-icons/fa';
 
 import SocialDisplay from './SocialDisplay';
+
 
 function Hero() {
 
