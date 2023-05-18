@@ -1,15 +1,10 @@
-import { Link } from "react-router-dom";
-
 import { useGetProjectsQuery } from "../../features/project/projectSlice";
 import ProjectCard from "../../features/project/ProjectCardShort";
 import SectionHeader from "../headers/SectionHeader";
 import InternalLinkButton from "../buttons/InternalLinkButton";
 
+
 function ProjectDisplay() {
-
-  const res = useGetProjectsQuery();
-
-  console.log("Res", res);
 
   const {data: projects, isLoading, isSuccess} = useGetProjectsQuery("projectsList", {
     pollingInterval: 15000,
