@@ -12,7 +12,7 @@ function ProjectCard({projectId}) {
   });
 
   if(project) return (
-    <section className="w-full rounded-md bg-black shadow px-5 py-3 mb-5 border-2 md:w-[48%] lg:w-[31%] xl:w-[23%]">
+    <section className="w-full rounded-md bg-black shadow px-5 py-3 mb-5 border-2 md:w-[48%] lg:w-[31%] xl:w-[28%]">
       <section className="mb-3">
         <h2
         className="text-center font-medium text-xl mb-5"
