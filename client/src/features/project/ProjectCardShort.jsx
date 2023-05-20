@@ -1,5 +1,4 @@
 import { useGetProjectsQuery } from "./projectSlice";
-
 import Technology from "./Technology";
 import LinkButton from "../../components/buttons/ExternalLinkButton";
 
