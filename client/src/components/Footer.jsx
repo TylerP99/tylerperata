@@ -1,5 +1,6 @@
 import SocialDisplay from "./landing-components/SocialDisplay"
 
+
 function Footer() {
   return (
     <footer

@@ -2,6 +2,7 @@ import { useGetProjectsQuery } from "./projectSlice";
 import Technology from "./Technology";
 import LinkButton from "../../components/buttons/ExternalLinkButton";
 
+
 function ProjectCard({projectId}) {
 
   const { project } = useGetProjectsQuery("projectList", {

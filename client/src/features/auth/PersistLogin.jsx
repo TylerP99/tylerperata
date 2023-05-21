@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 import ClipLoader from "react-spinners/ClipLoader";
 
 import { useRefreshMutation } from "./authApiSlice";
