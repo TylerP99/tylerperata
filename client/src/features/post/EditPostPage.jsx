@@ -2,14 +2,11 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-import { selectPostById, useUpdatePostMutation, useDeletePostMutation } from "./postsSlice";
-
 import { FaTimes, FaExclamationCircle, FaTrash } from "react-icons/fa";
 import ClipLoader from "react-spinners/ClipLoader";
 
+import { selectPostById, useUpdatePostMutation, useDeletePostMutation } from "./postsSlice";
 import SpinnerButton from "../../components/buttons/SpinnerButton";
-
 
 
 function EditPostPage() {

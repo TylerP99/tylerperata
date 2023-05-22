@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { FaTrash, FaTimes, FaExclamationCircle } from "react-icons/fa";
+
 import { useSetMessageStatusMutation, useDeleteMessageMutation, selectAllMessages } from "./messageSlice";
 
-import { FaTrash, FaTimes, FaExclamationCircle } from "react-icons/fa";
 
 function MessagePage() {
 

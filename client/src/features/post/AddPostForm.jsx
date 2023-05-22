@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { useAddNewPostMutation } from "./postsSlice";
-
 import { FaTimes, FaExclamationCircle } from "react-icons/fa";
 
+import { useAddNewPostMutation } from "./postsSlice";
 import SpinnerButton from "../../components/buttons/SpinnerButton";
+
 
 function AddPostForm() {
 

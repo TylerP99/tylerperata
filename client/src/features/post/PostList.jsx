@@ -1,6 +1,4 @@
 import { useSelector } from "react-redux";
-import { FaPlus, FaTrash } from "react-icons/fa";
-
 import { Link } from "react-router-dom";
 
 import { useGetPostsQuery, selectAllPosts } from "./postsSlice";
