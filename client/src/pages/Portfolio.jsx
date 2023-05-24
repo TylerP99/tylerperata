@@ -3,16 +3,17 @@ import { AdvancedImage, lazyload, responsive } from "@cloudinary/react";
 import { Cloudinary } from '@cloudinary/url-gen';
 
 import { selectAllProjects } from "../features/project/projectSlice";
-
 import PageHeader from '../components/headers/PageHeader';
 import Technology from "../features/project/Technology";
 import ExternalLinkButton from "../components/buttons/ExternalLinkButton";
+
 
 const myCld = new Cloudinary({
   cloud: {
     cloudName: "dneczurie",
   }
 })
+
 
 function ProjectCard({project, index}) {
   return (

@@ -2,12 +2,11 @@ import { useState, useEffect } from "react";
 import {useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
 import {v4 as uuid} from "uuid";
-
 import { FaTimes, FaExclamationCircle } from "react-icons/fa";
 
 import { useUpdateProjectMutation, selectProjectByID } from "./projectSlice";
-
 import SpinnerButton from "../../components/buttons/SpinnerButton";
+
 
 function UpdateProjectForm() {
 

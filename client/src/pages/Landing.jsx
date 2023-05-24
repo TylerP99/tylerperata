@@ -2,6 +2,7 @@ import Hero from '../components/landing-components/Hero';
 import ProjectDisplay from '../components/landing-components/ProjectDisplay';
 import ContactForm from '../features/message/ContactForm';
 
+
 function Landing() {
 
   return (

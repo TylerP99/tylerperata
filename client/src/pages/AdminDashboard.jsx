@@ -1,9 +1,8 @@
-import React from 'react';
 import { Link } from "react-router-dom";
 
 import { useSendLogoutMutation } from "../features/auth/authApiSlice";
-
 import PageHeader from '../components/headers/PageHeader';
+
 
 function AdminDashboard() {
 

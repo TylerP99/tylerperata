@@ -2,6 +2,7 @@ import { FaReact, FaHtml5, FaCss3, FaJs, FaNode  } from "react-icons/fa";
 import {SiTailwindcss, SiExpress, SiMongodb} from "react-icons/si";
 import { TbApi } from "react-icons/tb";
 
+
 function Technology({text}) {
 
 
