@@ -7,7 +7,6 @@ import PageHeader from '../components/headers/PageHeader';
 import Technology from "../features/project/Technology";
 import ExternalLinkButton from "../components/buttons/ExternalLinkButton";
 
-
 const myCld = new Cloudinary({
   cloud: {
     cloudName: "dneczurie",

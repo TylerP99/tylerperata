@@ -20,8 +20,8 @@ import AdminLogin from './features/auth/AdminLogin';
 import AdminRegister from "./features/auth/AdminRegister";
 import AdminPostsList from './features/post/AdminPostsList';
 import PersistLogin from './features/auth/PersistLogin';
-
 import { projectApiSlice } from "./features/project/projectSlice";
+
 projectApiSlice.endpoints.getProjects.initiate();
 
 
