@@ -1,5 +1,3 @@
-import React from 'react'
-
 function ExternalLinkButton({text, link, className=""}) {
   return (
     <a
