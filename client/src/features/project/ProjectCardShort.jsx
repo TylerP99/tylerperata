@@ -36,7 +36,6 @@ function ProjectCard({projectId}) {
       </section>
     </section>
   )
-
   return null
 }
 
