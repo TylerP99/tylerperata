@@ -7,7 +7,7 @@ function ProjectCard({projectId}) {
 
   const { project } = useGetProjectsQuery("projectList", {
     selectFromResult: ({data}) => ({
-      project: data?.entities[projectId] 
+      project: data?.entities[projectId],
     })
   });
 
