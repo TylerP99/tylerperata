@@ -28,7 +28,6 @@ projectApiSlice.endpoints.getProjects.initiate();
 function App() {
 
   return (
-    <>
     <Router>
       <Routes>
         <Route path="/" element={<Layout/>}>
@@ -62,7 +61,6 @@ function App() {
         </Route>
       </Routes>
     </Router>
-    </>
   );
 }
 
