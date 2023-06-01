@@ -6,7 +6,7 @@ function InternalLinkButton({text="", to="#", className=""}) {
     className={`${className} text-xl text-white bg-black`}>
       <Link
       to={to}
-      className="block px-20 py-5 border-2 rounded-full hover:bg-white/20"
+      className={`${className} border-2 py-2 block text-center rounded-sm hover:bg-white/20`}
       >{text}</Link>
     </div>
   )
