@@ -1,8 +1,8 @@
-function ExternalLinkButton({text, link, className=""}) {
+function ExternalLinkButton({text, to="#", className=""}) {
   return (
     <a
     className={`${className} border-2 py-2 block text-center rounded-sm hover:bg-white/20`}
-    href={link}
+    href={to}
     target="_blank"
     rel='noreferrer'
     >{text}</a>
