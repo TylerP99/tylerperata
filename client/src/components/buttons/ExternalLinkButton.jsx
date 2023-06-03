@@ -9,4 +9,4 @@ function ExternalLinkButton({text, to="#", className=""}) {
   )
 }
 
-export default ExternalLinkButton
+export default ExternalLinkButton;
